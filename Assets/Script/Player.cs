@@ -9,15 +9,20 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 dir;
     private Vector3 mousePos;
+    private GameObject Hand;
 
     void Start()
     {
+        Hand = GameObject.Find("Hand").gameObject;
         rb = GetComponent<Rigidbody2D>();
     }
 
     
     private void Update()
     {
+
+        
+
         mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 rot = mousePos - transform.position;
@@ -27,14 +32,15 @@ public class Player : MonoBehaviour
         if (Mathf.Abs(rotZ) > Mathf.Abs(110))
         {
             Debug.Log("돌아!");
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
+            transform.localScale = new Vector3(-2, 2, 2);
+            Hand.transform.localScale = new Vector3(-1, -1, 1);
         }
         if (Mathf.Abs(rotZ) < Mathf.Abs(70))
         {
             Debug.Log("가만히 있어!");
 
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-
+            transform.localScale = new Vector3(2, 2, 2);
+            Hand.transform.localScale = new Vector3(1, 1, 1);
         }
 
         float moveX = Input.GetAxisRaw("Horizontal");
