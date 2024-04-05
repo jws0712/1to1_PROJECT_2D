@@ -6,9 +6,9 @@ public class ShootManager : MonoBehaviour
 {
     public static ShootManager Instance;
     public GameObject Hand;
-    [SerializeField] private Camera Camera;
-    private Vector3 mousePos;
-    public float rotZ;
+    //[SerializeField] private Camera Camera;
+    //private Vector3 mousePos;
+    //public float rotZ;
 
 
     private void Awake()
@@ -25,12 +25,12 @@ public class ShootManager : MonoBehaviour
 
     void Update()
     {
-        mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
+        //mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector3 rot = mousePos - Hand.transform.position;
+        //Vector3 rot = mousePos - Hand.transform.position;
 
-        rotZ = Mathf.Atan2(rot.y, rot.x) * Mathf.Rad2Deg;
+        //rotZ = Mathf.Atan2(rot.y, rot.x) * Mathf.Rad2Deg;
 
-        Hand.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        Hand.transform.rotation = Quaternion.Euler(0, 0, SpinMananger.Instance.rotZ);
     }
 }
