@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private Camera Camera;
+    [SerializeField] private Transform player;
+    Vector3 cameraPos;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        Vector3 mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
+
+        cameraPos = player.position + (mousePos - player.position) * (1f / 8f);
+
+        Camera.transform.position = new Vector3(cameraPos.x, cameraPos.y, Camera.transform.position.z);
     }
 }
