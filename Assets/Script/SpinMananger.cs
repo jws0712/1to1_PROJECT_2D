@@ -8,7 +8,7 @@ public class SpinMananger : MonoBehaviour
     [SerializeField] private Camera Camera;
     public float rotZ;
     private Vector3 mousePos;
-
+    public GameObject Hand;
 
     private void Awake()
     {
@@ -16,12 +16,14 @@ public class SpinMananger : MonoBehaviour
     }
     void Start()
     {
-        
+        Hand = GameObject.Find("Hand").gameObject;
     }
 
     
     void Update()
     {
+        Hand.transform.rotation = Quaternion.Euler(0, 0, SpinMananger.Instance.rotZ);
+
         mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 rot = mousePos - transform.position;

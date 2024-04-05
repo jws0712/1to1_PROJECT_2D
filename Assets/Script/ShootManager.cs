@@ -5,7 +5,10 @@ using UnityEngine;
 public class ShootManager : MonoBehaviour
 {
     public static ShootManager Instance;
-    public GameObject Hand;
+    public GameObject FirePos;
+    [SerializeField] private float cooltime;
+    [SerializeField] private GameObject Bullet;
+    private float currentTime;
 
 
     private void Awake()
@@ -15,13 +18,26 @@ public class ShootManager : MonoBehaviour
 
     private void Start()
     {
-        Hand = GameObject.Find("Hand").gameObject;
+        currentTime = cooltime;
+        FirePos = GameObject.Find("FirePos").gameObject;
     }
 
 
 
     void Update()
     {
-        Hand.transform.rotation = Quaternion.Euler(0, 0, SpinMananger.Instance.rotZ);
+        FirePos.transform.rotation = Quaternion.Euler(0, 0, SpinMananger.Instance.rotZ);
+
+       if(currentTime <= 0)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Instantiate(Bullet, FirePos.transform.position, FirePos.transform.rotation);
+                Debug.Log("น฿ป็");
+            }
+            currentTime = cooltime;
+        }
+        currentTime -= Time.deltaTime;
+        
     }
 }
