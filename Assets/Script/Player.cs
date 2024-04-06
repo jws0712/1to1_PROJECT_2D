@@ -5,9 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private float Jump_speed;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
     private Rigidbody2D rb;
-    private Vector2 dir;
+    private float Horizontal;
     private GameObject Hand;
+
 
     private void Start()
     {
@@ -18,6 +22,11 @@ public class Player : MonoBehaviour
     
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space) && IsGround())
+        {
+            rb.AddForce(Vector2.up * Jump_speed, ForceMode2D.Impulse);
+        }
+
         FlipX();
         MakeDir();
     }
@@ -29,16 +38,15 @@ public class Player : MonoBehaviour
 
     void MakeDir()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+        Horizontal = Input.GetAxisRaw("Horizontal");
 
 
-        dir = new Vector2(moveX, moveY).normalized;
+        
     }
 
     void PlayerMove()
     {
-        rb.velocity = dir * speed;
+        rb.velocity = new Vector2(Horizontal * speed, rb.velocity.y);
     }
 
     void FlipX()
@@ -53,5 +61,10 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector3(2, 2, 2);
             Hand.transform.localScale = new Vector3(1, 1, 1);
         }
+    }
+
+    private bool IsGround()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 }

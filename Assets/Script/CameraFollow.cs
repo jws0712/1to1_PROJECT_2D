@@ -17,7 +17,7 @@ public class CameraFollow : MonoBehaviour
     {
         Vector3 mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
 
-        cameraPos = player.position + (mousePos - player.position) * (5f / 20f);
+        cameraPos = player.position + (mousePos - player.position) * (1f / 4f);
 
         Camera.transform.position = new Vector3(cameraPos.x, cameraPos.y, Camera.transform.position.z);
     }
