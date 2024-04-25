@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpinMananger : MonoBehaviour
+public class SpinMananger1 : MonoBehaviour
 {
-    public static SpinMananger Instance = null;
+    public static SpinMananger1 Instance = null;
     [SerializeField] private Camera Camera;
     public float rotZ;
     private Vector3 mousePos;
@@ -22,7 +22,7 @@ public class SpinMananger : MonoBehaviour
     
     void Update()
     {
-        Hand.transform.rotation = Quaternion.Euler(0, 0, SpinMananger.Instance.rotZ);
+        Hand.transform.rotation = Quaternion.Euler(0, 0, SpinMananger1.Instance.rotZ);
 
         mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
 

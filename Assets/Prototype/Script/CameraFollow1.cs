@@ -2,16 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow1 : MonoBehaviour
 {
     [SerializeField] private Camera Camera;
     [SerializeField] private Transform player;
     Vector3 cameraPos;
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootManager : MonoBehaviour
+public class ShootManager1 : MonoBehaviour
 {
-    public static ShootManager Instance;
+    public static ShootManager1 Instance;
     public GameObject FirePos;
     [SerializeField] private float cooltime;
     [SerializeField] private GameObject Bullet;
@@ -26,7 +26,7 @@ public class ShootManager : MonoBehaviour
 
     void Update()
     {
-        FirePos.transform.rotation = Quaternion.Euler(0, 0, SpinMananger.Instance.rotZ);
+        FirePos.transform.rotation = Quaternion.Euler(0, 0, SpinMananger1.Instance.rotZ);
 
        if(currentTime <= 0)
         {

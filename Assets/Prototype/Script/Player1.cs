@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player1 : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float Jump_speed;
@@ -51,12 +51,12 @@ public class Player : MonoBehaviour
 
     void FlipX()
     {
-        if (Mathf.Abs(SpinMananger.Instance.rotZ) > Mathf.Abs(110))
+        if (Mathf.Abs(SpinMananger1.Instance.rotZ) > Mathf.Abs(110))
         {
             transform.localScale = new Vector3(-2, 2, 2);
             Hand.transform.localScale = new Vector3(-1, -1, 1);
         }
-        if (Mathf.Abs(SpinMananger.Instance.rotZ) < Mathf.Abs(70))
+        if (Mathf.Abs(SpinMananger1.Instance.rotZ) < Mathf.Abs(70))
         {
             transform.localScale = new Vector3(2, 2, 2);
             Hand.transform.localScale = new Vector3(1, 1, 1);

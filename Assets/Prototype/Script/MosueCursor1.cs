@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseCursor : MonoBehaviour
+public class MouseCursor1 : MonoBehaviour
 {
     [SerializeField] private Camera Camera;
     [SerializeField] private GameObject PlayerCursor;
@@ -17,7 +17,6 @@ public class MouseCursor : MonoBehaviour
     private void Update()
     {
         mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
-
         PlayerCursor.transform.position = mousePos;
     }
 }
