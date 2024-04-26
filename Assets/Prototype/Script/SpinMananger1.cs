@@ -22,6 +22,11 @@ public class SpinMananger1 : MonoBehaviour
     
     void Update()
     {
+
+    }
+
+    private void Spin()
+    {
         Hand.transform.rotation = Quaternion.Euler(0, 0, SpinMananger1.Instance.rotZ);
 
         mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
@@ -29,5 +34,10 @@ public class SpinMananger1 : MonoBehaviour
         Vector3 rot = mousePos - transform.position;
 
         rotZ = Mathf.Atan2(rot.y, rot.x) * Mathf.Rad2Deg;
+    }
+
+    private void Shot()
+    {
+
     }
 }

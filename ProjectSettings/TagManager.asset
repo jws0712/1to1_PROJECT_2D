@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - HandPos
+  - SpinPos
+  - FirePos
   layers:
   - Default
   - TransparentFX

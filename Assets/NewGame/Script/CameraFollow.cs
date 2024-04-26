@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 FollowPoint;
     private Vector3 mousePos;
-    void Update()
+    void LateUpdate()
     {
         mousePos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
 
