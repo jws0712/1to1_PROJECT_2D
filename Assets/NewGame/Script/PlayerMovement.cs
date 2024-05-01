@@ -13,9 +13,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform GroundCheckPos;
     [SerializeField] private LayerMask GroundLayer;
 
+    [Header("Script")]
+    [SerializeField] private PlayerShot ShotScript;
+
     private bool Isflip = true;
     private Rigidbody2D rb; 
-    private Vector2 Direction; 
+    private Vector2 Direction;
 
 
     private void Awake()
@@ -39,10 +42,8 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerInput()
     {
         float h = Input.GetAxisRaw("Horizontal") * moveSpeed;
-//        float v = Input.GetAxisRaw("Vertical") * moveSpeed;
 
         Direction = new Vector2(h, rb.velocity.y);
-//        Direction = new Vector2(h, v);
     }
     private void PlayerMove()
     {
@@ -56,8 +57,6 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.velocity = Vector2.up * jumpPower;
         }
-
-        Debug.Log(IsGround());
     }
 
     private bool IsGround()
@@ -67,14 +66,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Filp()
     {
-        if(Mathf.Abs(PlayerShot.instance.RotZ) >= 100f && Isflip)
+        if(Mathf.Abs(ShotScript.RotZ) >= 100f && Isflip)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            ShotScript.HandPos.localScale = new Vector3(-1, -1, 1);
             Isflip = false;
         }
-        if (Mathf.Abs(PlayerShot.instance.RotZ) <= 80f && !Isflip)
+        if (Mathf.Abs(ShotScript.RotZ) <= 80f && !Isflip)
         {
             transform.localScale = new Vector3(1, 1, 1);
+            ShotScript.HandPos.localScale = new Vector3(1, 1, 1);
             Isflip = true;
         }
     }

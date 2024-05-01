@@ -6,27 +6,27 @@ using UnityEngine.XR;
 
 public class PlayerShot : MonoBehaviour
 {
-    public static PlayerShot instance = null;
 
     [Header("Camera")]
     [SerializeField] private Camera MainCamera;
     [Header("Positions")]
-    [SerializeField] private Transform HandPos;
+    public Transform HandPos;
     [SerializeField] private Transform FirePos;
     [SerializeField] private Transform SpinPos;
     [Header("Bullet")]
     [SerializeField] private GameObject Bullet;
     [Header("CoolTime")]
     [SerializeField] private float coolTime;
-    private float currentTime = 0f;
+    [Header("Bullet Spread")]
+    [SerializeField] private float maxSpreadAngle;
+    [SerializeField] private float minSpreadAngle;
     [Header("Spin")]
     public float RotZ;
 
+    private Quaternion BulletAngle;
+    private float currentTime = 0f;
     private Vector3 mousePos;
-    private void Awake()
-    {
-        instance = this;
-    }
+
     private void Start()
     {
         HandPos = GameObject.FindWithTag("HandPos").transform;
@@ -37,7 +37,6 @@ public class PlayerShot : MonoBehaviour
     {
         Spin();
         Shot();
-        FilpX();
     }
 
     private void Spin()
@@ -56,23 +55,13 @@ public class PlayerShot : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                Instantiate(Bullet, FirePos.transform.position, FirePos.transform.rotation);
-                Debug.Log("น฿ป็");
+                float SperadAngle = FirePos.rotation.w + Random.Range(minSpreadAngle, maxSpreadAngle);
+                BulletAngle = new Quaternion(FirePos.rotation.x, FirePos.rotation.y, FirePos.rotation.z, SperadAngle);
+                Instantiate(Bullet, FirePos.transform.position, BulletAngle);
+                Debug.Log(FirePos.rotation);
             }
             currentTime = coolTime;
         }
         currentTime -= Time.deltaTime;
-    }
-
-    private void FilpX()
-    {
-        if (Mathf.Abs(RotZ) >= 120f)
-        {
-
-        }
-        else if (Mathf.Abs(RotZ) >= 60f)
-        {
-
-        }
     }
 }
