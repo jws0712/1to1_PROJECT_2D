@@ -1,21 +1,25 @@
-using UnityEngine;
-using UnityEngine.UIElements;
-
-public class CameraFollow : MonoBehaviour
+namespace OTO.Camera
 {
-    [Header("Camera")]
-    [SerializeField] private Camera MainCamera;
-    [Header("PlayerPosition")]
-    [SerializeField] private Transform PlayerPos;
+    //UnityEngine
+    using UnityEngine;
+    using UnityEngine.UIElements;
 
-    private Vector3 FollowPoint;
-    private Vector3 mousePos;
-    void LateUpdate()
+    public class CameraFollow : MonoBehaviour
     {
-        mousePos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
+        [Header("Camera")]
+        [SerializeField] private Camera MainCamera;
+        [Header("PlayerPosition")]
+        [SerializeField] private Transform PlayerPos;
 
-        FollowPoint = PlayerPos.position + (mousePos - PlayerPos.position) * (1f/3f);
+        private Vector3 FollowPoint;
+        private Vector3 mousePos;
+        void LateUpdate()
+        {
+            mousePos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-        MainCamera.transform.position = new Vector3(FollowPoint.x, FollowPoint.y, mousePos.z);
+            FollowPoint = PlayerPos.position + (mousePos - PlayerPos.position) * (1f / 3f);
+
+            MainCamera.transform.position = new Vector3(FollowPoint.x, FollowPoint.y, mousePos.z);
+        }
     }
 }

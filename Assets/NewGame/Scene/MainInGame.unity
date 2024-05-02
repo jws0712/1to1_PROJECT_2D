@@ -805,6 +805,7 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
+  ShotScript: {fileID: 734675146}
 --- !u!50 &734675142
 Rigidbody2D:
   serializedVersion: 4
@@ -904,7 +905,9 @@ MonoBehaviour:
   FirePos: {fileID: 0}
   SpinPos: {fileID: 0}
   Bullet: {fileID: 6183457796777578699, guid: d437f2ed53d3c3b489d7109c523def0b, type: 3}
-  coolTime: 0.1
+  coolTime: 0
+  maxSpreadAngle: 10
+  minSpreadAngle: -10
   RotZ: 0
 --- !u!1 &998602349
 GameObject:
