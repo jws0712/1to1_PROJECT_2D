@@ -41,7 +41,7 @@ namespace OTO.Player
         private void Update()
         {
             Spin();
-            Shot();
+            Shoot();
         }
 
         private void Spin()
@@ -54,16 +54,16 @@ namespace OTO.Player
 
             HandPos.transform.rotation = Quaternion.Euler(0, 0, RotZ);
         }
-        private void Shot()
+        private void Shoot()
         {
             if (Input.GetMouseButton(0) && IsShot == false)
             {
 
-                StartCoroutine(Shoot());
+                StartCoroutine(Shooting());
             }
         }
 
-        IEnumerator Shoot()
+        private IEnumerator Shooting()
         {
             float SpreadAngle = RotZ + Random.Range(minSpreadAngle, maxSpreadAngle);
             BulletAngle = Quaternion.Euler(0, 0, SpreadAngle);
