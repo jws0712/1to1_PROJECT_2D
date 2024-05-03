@@ -29,8 +29,8 @@ namespace OTO.Player
         public float RotZ;
 
         private Quaternion BulletAngle;
-        private float currentTime = 0f;
         private Vector3 mousePos;
+        private bool IsShot = false;
 
         private void Start()
         {
@@ -56,17 +56,21 @@ namespace OTO.Player
         }
         private void Shot()
         {
-            if (currentTime <= 0)
+            if (Input.GetMouseButton(0) && IsShot == false)
             {
-                if (Input.GetMouseButton(0))
-                {
-                    float SpreadAngle = RotZ + Random.Range(minSpreadAngle, maxSpreadAngle);
-                    BulletAngle = Quaternion.Euler(0, 0, SpreadAngle);
-                    Instantiate(Bullet, FirePos.transform.position, BulletAngle);
-                }
-                currentTime = coolTime;
+
+                StartCoroutine(Shoot());
             }
-            currentTime -= Time.deltaTime;
+        }
+
+        IEnumerator Shoot()
+        {
+            float SpreadAngle = RotZ + Random.Range(minSpreadAngle, maxSpreadAngle);
+            BulletAngle = Quaternion.Euler(0, 0, SpreadAngle);
+            Instantiate(Bullet, FirePos.transform.position, BulletAngle);
+            IsShot = true;
+            yield return new WaitForSeconds(coolTime);
+            IsShot = false;
         }
     }
 }
