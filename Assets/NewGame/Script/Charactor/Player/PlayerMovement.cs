@@ -21,9 +21,11 @@ namespace OTO.Player
         [SerializeField] private LayerMask GroundLayer;
 
         [Header("Dash")]
+        [SerializeField] private float DashTrailNumber;
         [SerializeField] private float DashPower;
         [SerializeField] private float DashingTime;
         [SerializeField] private float DashingCoolTime;
+        [SerializeField] GameObject DashTrail;
         private bool IsDash;
         private bool CanDash = true;
 
@@ -73,9 +75,8 @@ namespace OTO.Player
 
         private void PlayerJump()
         {
-            if (Input.GetButton("Jump") && IsGround())
+            if (Input.GetButtonDown("Jump") && IsGround())
             {
-                rb.velocity = Vector2.zero;
                 rb.velocity = Vector2.up * jumpPower;
             }
         }
@@ -105,9 +106,7 @@ namespace OTO.Player
         {
             if(Input.GetMouseButtonDown(1) && CanDash && Horizontal != 0)
             {
-                Debug.Log("´ë½Ã");
                 StartCoroutine(Dashing());
-
             }
         }
 
