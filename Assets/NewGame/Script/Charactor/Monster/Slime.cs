@@ -10,10 +10,22 @@ namespace OTO.Charactor.Monster
 
     public class Slime : Monster
     {
+        [Header("Move")]
+        [SerializeField] private float MoveSpeed;
         private void OnEnable()
         {
             base.Start();
             base.MonsterMovement();
+        }
+
+        private void FixedUpdate()
+        {
+            Movement();
+        }
+
+        private void Movement()
+        {
+            rb.velocity = new Vector2(MonsterBehavior * MoveSpeed, rb.velocity.y);
         }
     }
 }

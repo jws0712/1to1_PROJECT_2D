@@ -9,15 +9,7 @@ namespace OTO.Charactor
 
     public class Charactor : MonoBehaviour
     {
-        private void Start()
-        {
-            
-        }
-
-        private void Update()
-        {
-            
-        }
+        protected bool IsDead;
     }
 
 }

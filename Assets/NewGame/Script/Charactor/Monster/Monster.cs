@@ -8,47 +8,42 @@ namespace OTO.Charactor.Monster
     //UnityEngine
     using UnityEngine;
 
-    public class Monster : MonoBehaviour
+    public class Monster : Charactor
     {
-        private Rigidbody2D rb;
 
-        private bool IsDead;
         
+
+        //Protected variables
+        protected int MonsterBehavior;
+        protected Rigidbody2D rb;
+
+        //private variables
+
         protected virtual void Start()
         {
             rb = GetComponent<Rigidbody2D>();
         }
-        protected virtual void MonsterMovement()
+
+        /// <summary>
+        /// Behavior값을 return해주는 함수
+        /// </summary>
+        /// <returns></returns>
+        protected virtual int MonsterMovement()
         {
             //오른쪽, 왼쪽, 아이들 움직임 구현
             StartCoroutine(Co_SelectMovement());
+
+            return MonsterBehavior;
             
         }
 
+        // 특정시간마다 -1, 0, 1 중에서 한게의 값을 Behavior변수에 넣어주는 코루틴
         private IEnumerator Co_SelectMovement()
         {
-            if (IsDead) yield break;
-            int Behavior;
-            float Speed = 15f;
-
-            Behavior = Random.Range(-1, 2);
-
-            switch (Behavior)
-            {
-                case 0:
-                    rb.velocity = Vector2.zero;
-                    break;
-                case -1:
-                    rb.velocity = Vector2.left * Speed;
-                    break;
-                case 1:
-                    rb.velocity = Vector2.right * Speed;
-                    break;
-            }
-
-            yield return new WaitForSeconds(0.8f);
-
-            StartCoroutine(Co_SelectMovement());
+            if (IsDead) yield break; //Dead 상태라면 코루틴을 멈춤
+            MonsterBehavior = Random.Range(-1, 2); //-1, 0, 1 사이의 값을 랜덤으로 MonsterBehavior에 할당함
+            yield return new WaitForSeconds(1.2f); //1.2초 동안 대기함
+            StartCoroutine(Co_SelectMovement()); //다시 코루틴을 호출해서 무한반복함
         }
 
         protected virtual void FindPlayer()
