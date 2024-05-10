@@ -1,17 +1,16 @@
 namespace OTO.Charactor.Monster
 {
 
+
     //System
     using System.Collections;
     using System.Collections.Generic;
-
-    //Unity
-    using UnityEditor.Tilemaps;
+    
 
     //UnityEngine
     using UnityEngine;
 
-    public class Slime : Monster
+    public class Earthworm : Monster
     {
         [Header("Move")]
         [SerializeField] private float MoveSpeed;
@@ -20,8 +19,6 @@ namespace OTO.Charactor.Monster
         private void OnEnable()
         {
             Init();
-            rb.AddForce(Vector2.up * SpawnPower, ForceMode2D.Impulse);
-            rb.AddForce(Vector2.right * SpawnPower, ForceMode2D.Impulse);
 
             MonsterMovement();
         }
@@ -41,6 +38,6 @@ namespace OTO.Charactor.Monster
             rb.velocity = new Vector2(MonsterBehavior * MoveSpeed, rb.velocity.y);
         }
     }
-}
 
+}
 

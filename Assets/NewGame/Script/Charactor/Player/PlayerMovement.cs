@@ -75,7 +75,7 @@ namespace OTO.Player
 
         private void PlayerJump()
         {
-            if (Input.GetButton("Jump") && IsGround())
+            if (Input.GetButtonDown("Jump") && IsGround() && !IsDash)
             {
                 rb.velocity = Vector2.zero;
                 rb.velocity = Vector2.up * jumpPower;

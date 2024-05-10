@@ -19,7 +19,7 @@ namespace OTO.Charactor.Monster
 
         //private variables
 
-        protected virtual void Start()
+        protected void Init()
         {
             rb = GetComponent<Rigidbody2D>();
         }
@@ -28,7 +28,7 @@ namespace OTO.Charactor.Monster
         /// Behavior값을 return해주는 함수
         /// </summary>
         /// <returns></returns>
-        protected virtual int MonsterMovement()
+        protected int MonsterMovement()
         {
             //오른쪽, 왼쪽, 아이들 움직임 구현
             StartCoroutine(Co_SelectMovement());
@@ -44,6 +44,18 @@ namespace OTO.Charactor.Monster
             MonsterBehavior = Random.Range(-1, 2); //-1, 0, 1 사이의 값을 랜덤으로 MonsterBehavior에 할당함
             yield return new WaitForSeconds(1.2f); //1.2초 동안 대기함
             StartCoroutine(Co_SelectMovement()); //다시 코루틴을 호출해서 무한반복함
+        }
+
+        protected virtual void FlipX()
+        {
+            if (MonsterBehavior == -1)
+            {
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            }
+            else if (MonsterBehavior == 1)
+            {
+                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            }
         }
 
         protected virtual void FindPlayer()
