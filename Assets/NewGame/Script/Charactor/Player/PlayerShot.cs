@@ -56,7 +56,7 @@ namespace OTO.Player
         }
         private void Shoot()
         {
-            if (Input.GetMouseButton(0) && IsShot == false)
+            if (Input.GetButton("Fire1") && IsShot == false)
             {
 
                 StartCoroutine(Shooting());

@@ -8,7 +8,7 @@ namespace OTO.Charactor.Monster
     //UnityEngine
     using UnityEngine;
 
-    public class Bat : Monster
+    public class Bat : MonoBehaviour
     {
 
     }

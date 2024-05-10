@@ -9,26 +9,15 @@ namespace OTO.Charactor
 
     public class Charactor : MonoBehaviour
     {
-        public float MaxHp;
-        public float CurrentHp { get; protected set; }
-        public bool IsDie { get; protected set; }
-
-        protected virtual void OnEnable()
+        private void Start()
         {
-            IsDie = false;
-
-            CurrentHp = MaxHp;
+            
         }
 
-        public virtual void GetDamage(float Damage)
+        private void Update()
         {
-            CurrentHp -= Damage;
-
-            if (CurrentHp <= 0 && !IsDie)
-            {
-                IsDie = true;
-            }
+            
         }
     }
-}
 
+}

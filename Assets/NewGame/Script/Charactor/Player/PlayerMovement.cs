@@ -75,8 +75,9 @@ namespace OTO.Player
 
         private void PlayerJump()
         {
-            if (Input.GetButtonDown("Jump") && IsGround())
+            if (Input.GetButton("Jump") && IsGround())
             {
+                rb.velocity = Vector2.zero;
                 rb.velocity = Vector2.up * jumpPower;
             }
         }
@@ -104,7 +105,7 @@ namespace OTO.Player
 
         private void Dash()
         {
-            if(Input.GetMouseButtonDown(1) && CanDash && Horizontal != 0)
+            if(Input.GetMouseButtonDown(1) && CanDash && Horizontal != 0 && IsGround() == true)
             {
                 StartCoroutine(Dashing());
             }
@@ -112,6 +113,7 @@ namespace OTO.Player
 
         private IEnumerator Dashing()
         {
+            rb.velocity = Vector2.zero;
             CanDash = false;
             IsDash = true;
             float orginGravity = rb.gravityScale;
@@ -122,6 +124,7 @@ namespace OTO.Player
             IsDash = false;
             yield return new WaitForSeconds(DashingCoolTime);
             CanDash = true;
+            
         }
     }
 }

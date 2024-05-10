@@ -10,7 +10,11 @@ namespace OTO.Charactor.Monster
 
     public class Slime : Monster
     {
-
+        private void OnEnable()
+        {
+            base.Start();
+            base.MonsterMovement();
+        }
     }
 }
 
