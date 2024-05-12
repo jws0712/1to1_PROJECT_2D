@@ -32,6 +32,8 @@ namespace OTO.Player
         [Header("Script")]
         [SerializeField] private PlayerShot ShotScript;
 
+        //private v//private variables
+        private bool IsJump = false;
         private bool Isflip = true;
         private Rigidbody2D rb;
         private Vector2 Direction;
@@ -75,10 +77,21 @@ namespace OTO.Player
 
         private void PlayerJump()
         {
-            if (Input.GetButtonDown("Jump") && IsGround() && !IsDash)
+            if (Input.GetButtonDown("Jump"))
+            {
+                IsJump = true;
+
+                if(IsGround() == false)
+                {
+                    IsJump = false;
+                }
+            }
+
+            if (IsJump == true && IsGround() && IsDash == false)
             {
                 rb.velocity = Vector2.zero;
                 rb.velocity = Vector2.up * jumpPower;
+                IsJump = false;
             }
         }
 

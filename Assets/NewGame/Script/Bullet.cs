@@ -6,6 +6,7 @@ namespace OTO.Bullet
     //System
     using System.Collections;
     using System.Collections.Generic;
+    using Unity.VisualScripting;
 
     //UnityEngine
     using UnityEngine;
@@ -31,5 +32,11 @@ namespace OTO.Bullet
         {
             Destroy(gameObject);
         }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            DestoryBullet();
+        }
+
     }
 }

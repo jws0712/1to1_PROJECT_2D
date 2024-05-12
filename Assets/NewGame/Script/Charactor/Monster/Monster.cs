@@ -10,9 +10,6 @@ namespace OTO.Charactor.Monster
 
     public class Monster : Charactor
     {
-
-        
-
         //Protected variables
         protected int MonsterBehavior;
         protected Rigidbody2D rb;
@@ -28,13 +25,11 @@ namespace OTO.Charactor.Monster
         /// Behavior값을 return해주는 함수
         /// </summary>
         /// <returns></returns>
-        protected int MonsterMovement()
+        protected virtual int MonsterMovement()
         {
-            //오른쪽, 왼쪽, 아이들 움직임 구현
             StartCoroutine(Co_SelectMovement());
 
             return MonsterBehavior;
-            
         }
 
         // 특정시간마다 -1, 0, 1 중에서 한게의 값을 Behavior변수에 넣어주는 코루틴
@@ -61,6 +56,7 @@ namespace OTO.Charactor.Monster
         protected virtual void FindPlayer()
         {
             //플래이어를 감지하는 코드를 구현
+
         }
 
         protected virtual void DropEx()

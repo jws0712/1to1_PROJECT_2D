@@ -40,6 +40,16 @@ namespace OTO.Charactor.Monster
         {
             rb.velocity = new Vector2(MonsterBehavior * MoveSpeed, rb.velocity.y);
         }
+
+        protected override void FlipX()
+        {
+            base.FlipX();
+        }
+
+        protected override int MonsterMovement()
+        {
+            return base.MonsterMovement();
+        }
     }
 }
 
