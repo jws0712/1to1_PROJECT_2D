@@ -13,12 +13,14 @@ namespace OTO.Charactor.Monster
         //Protected variables
         protected int MonsterBehavior;
         protected Rigidbody2D rb;
+        protected Animator anim;
 
         //private variables
 
         protected void Init()
         {
             rb = GetComponent<Rigidbody2D>();
+            anim = GetComponent<Animator>();
         }
 
         /// <summary>
@@ -56,7 +58,12 @@ namespace OTO.Charactor.Monster
         protected virtual void FindPlayer()
         {
             //플래이어를 감지하는 코드를 구현
-
+            RaycastHit2D rayHit = Physics2D.Raycast(rb.position, Vector3.left, 30f, LayerMask.GetMask("Player"));
+            Debug.DrawRay(rb.position, Vector3.left, new Color(0, 1, 0));
+            if(rayHit.collider != null)
+            {
+                Debug.Log("너 내 누군지 아니?!");
+            }
         }
 
         protected virtual void DropEx()

@@ -35,7 +35,11 @@ namespace OTO.Bullet
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            DestoryBullet();
+            if(collision.gameObject.layer == LayerMask.NameToLayer("Wall") || collision.gameObject.layer == LayerMask.NameToLayer("Monster"))
+            {
+                DestoryBullet();
+            }
+
         }
 
     }
