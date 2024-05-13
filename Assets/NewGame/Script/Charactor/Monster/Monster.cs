@@ -11,12 +11,15 @@ namespace OTO.Charactor.Monster
     public class Monster : Charactor
     {
         //Protected variables
-        protected int MonsterBehavior;
-        protected Rigidbody2D rb;
-        protected Animator anim;
+        protected int MonsterBehavior = default;
+        protected RaycastHit2D rayHit = default;
+        protected Rigidbody2D rb = null;
+        protected Animator anim = null;
+
+
+
 
         //private variables
-
         protected void Init()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -64,6 +67,13 @@ namespace OTO.Charactor.Monster
             {
                 Debug.Log("너 내 누군지 아니?!");
             }
+        }
+
+        protected virtual void FlatformCheck(Vector2 direction ,float distance, float rayPos, LayerMask checkLayer)
+        {
+            Vector2 frontVec = new Vector2(rb.position.x + MonsterBehavior * rayPos, rb.position.y);
+            Debug.DrawRay(frontVec, direction, new Color(0, 1, 0));
+            rayHit = Physics2D.Raycast(frontVec, direction, distance, checkLayer);
         }
 
         protected virtual void DropEx()

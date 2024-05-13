@@ -14,14 +14,18 @@ namespace OTO.Charactor.Monster
     public class Slime : Monster
     {
         [Header("Move")]
-        [SerializeField] private float moveSpeed;
-        [SerializeField] private float jumpPower;
-        [SerializeField] private float jumpCooltime;
+        [SerializeField] private float moveSpeed = default;
+        [SerializeField] private float jumpPower = default;
+        [SerializeField] private float jumpCooltime = default;
+        [SerializeField] private float rayDistance = default;
+        [SerializeField] private float rayPos = default;
+        [SerializeField] private LayerMask layerMask = default;
+        [SerializeField] private Vector2 rayDirection = default;
 
 
         //private variables
-        
-        
+
+
         private void OnEnable()
         {
             Init();
@@ -32,6 +36,7 @@ namespace OTO.Charactor.Monster
         private void Update()
         {
             FlipX();
+            FlatformCheck(rayDirection ,rayDistance, rayPos, layerMask);
             anim.SetFloat("yPos", rb.velocity.y);
         }
 
@@ -67,6 +72,16 @@ namespace OTO.Charactor.Monster
             anim.SetBool("IsJump", true);
             yield return new WaitForSeconds(jumpCooltime);
             StartCoroutine(Co_Jump());
+        }
+
+        protected override void FlatformCheck(Vector2 direction, float distacne, float rayPos, LayerMask layerMask)
+        {
+            base.FlatformCheck(direction ,distacne, rayPos, layerMask);
+            if (rayHit.collider != null)
+            {
+                MonsterBehavior *= -1;
+                Debug.Log("¥Í¿Ω");
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

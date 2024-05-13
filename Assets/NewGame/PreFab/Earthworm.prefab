@@ -74,7 +74,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22785b3d6ec476d43a4bba9157a5ea55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 3
+  moveSpeed: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  rayDistance: 1.5
+  rayPos: 1
 --- !u!61 &5361257312454030374
 BoxCollider2D:
   m_ObjectHideFlags: 0

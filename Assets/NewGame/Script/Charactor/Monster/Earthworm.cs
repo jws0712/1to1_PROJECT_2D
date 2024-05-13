@@ -13,7 +13,11 @@ namespace OTO.Charactor.Monster
     public class Earthworm : Monster
     {
         [Header("Move")]
-        [SerializeField] private float MoveSpeed;
+        [SerializeField] private float moveSpeed = default;
+        [SerializeField] private LayerMask layerMask = default;
+        [SerializeField] private float rayDistance = default;
+        [SerializeField] private float rayPos = default;
+        [SerializeField] private Vector2 rayDirection = default;
 
         private void OnEnable()
         {
@@ -24,8 +28,8 @@ namespace OTO.Charactor.Monster
         private void Update()
         {
             FlipX();
-            PlatformCheck();
             FindPlayer();
+            FlatformCheck(rayDirection ,rayDistance, rayPos, layerMask);
         }
 
         private void FixedUpdate()
@@ -35,7 +39,7 @@ namespace OTO.Charactor.Monster
 
         private void Movement()
         {
-            rb.velocity = new Vector2(MonsterBehavior * MoveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(MonsterBehavior * moveSpeed, rb.velocity.y);
         }
 
         protected override void FlipX()
@@ -53,16 +57,19 @@ namespace OTO.Charactor.Monster
             base.FindPlayer();
         }
 
-        private void PlatformCheck()
+        protected override void FlatformCheck(Vector2 direction, float distance, float rayPos, LayerMask layerMask)
         {
-            Vector2 frontVec = new Vector2(rb.position.x + MonsterBehavior, rb.position.y);
-            Debug.DrawRay(frontVec, Vector3.down, new Color(0, 1, 0));
-            RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1.5f, LayerMask.GetMask("Ground"));
-            if(rayHit.collider == null)
+            base.FlatformCheck(direction, distance, rayPos, layerMask);
+            if (rayHit.collider == null)
             {
+                Debug.Log("∂•æ»¥Í¿Ω");
                 MonsterBehavior *= -1;
             }
         }
+        
+
+            
+        
     }
 
 }

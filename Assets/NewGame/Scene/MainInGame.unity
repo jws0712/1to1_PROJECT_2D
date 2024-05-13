@@ -10704,7 +10704,7 @@ CompositeCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
@@ -10758,7 +10758,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -10769,7 +10769,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!19719996 &1419921484
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -12074,6 +12074,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 2ed0d2e54a5514842885d28a122f836b, type: 2}
   - m_RefCount: 32
     m_Data: {fileID: 11400000, guid: a5ce4574cf7e1b64ea0991962ec7745f, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 46
     m_Data: {fileID: 21300000, guid: 139d388684d93904da489d4fae49dc52, type: 3}
@@ -12083,6 +12085,8 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 2c41d190def4bb844a00bd21d00cb9f2, type: 3}
   - m_RefCount: 32
     m_Data: {fileID: 615707361, guid: 2026f7cd62d750b49b3c40dbb59d94ef, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 120
     m_Data:
@@ -12109,7 +12113,7 @@ Tilemap:
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -12, y: -7, z: 0}
-  m_Size: {x: 32, y: 30, z: 1}
+  m_Size: {x: 46, y: 30, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -12314,13 +12318,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 8386659076616401104, guid: b7fc2ab2bcb06ae428ed3ed4bd3f3478, type: 3}
+      propertyPath: rayDirection.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386659076616401104, guid: b7fc2ab2bcb06ae428ed3ed4bd3f3478, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 8858423654434630752, guid: b7fc2ab2bcb06ae428ed3ed4bd3f3478, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.47
+      value: 11.73
       objectReference: {fileID: 0}
     - target: {fileID: 8858423654434630752, guid: b7fc2ab2bcb06ae428ed3ed4bd3f3478, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.68
+      value: -1.29
       objectReference: {fileID: 0}
     - target: {fileID: 8858423654434630752, guid: b7fc2ab2bcb06ae428ed3ed4bd3f3478, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12649,6 +12661,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 879600491335926911, guid: 402999839e523b04fb35e79a6ff69cde, type: 3}
+      propertyPath: rayDirection.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 3612460341577413682, guid: 402999839e523b04fb35e79a6ff69cde, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.09
