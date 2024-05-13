@@ -17,27 +17,28 @@ namespace OTO.Player
 
         [Header("Jump")]
         [SerializeField] private float jumpPower;
-        [SerializeField] private Transform GroundCheckPos;
-        [SerializeField] private LayerMask GroundLayer;
+        [SerializeField] private Transform groundCheckPos;
+        [SerializeField] private LayerMask groundLayer;
 
         [Header("Dash")]
-        [SerializeField] private float DashTrailNumber;
-        [SerializeField] private float DashPower;
-        [SerializeField] private float DashingTime;
-        [SerializeField] private float DashingCoolTime;
-        [SerializeField] GameObject DashTrail;
-        private bool IsDash;
-        private bool CanDash = true;
+        [SerializeField] private float dashPower;
+        [SerializeField] private float dashingTime;
+        [SerializeField] private float dashingTimeCoolTime;
+        private bool isDash;
+        private bool canDash = true;
 
         [Header("Script")]
-        [SerializeField] private PlayerShot ShotScript;
+        [SerializeField] private PlayerShot shotScript;
 
-        //private v//private variables
-        private bool IsJump = false;
-        private bool Isflip = true;
+        [Header("GhostEffect")]
+        [SerializeField] private PlayerGhost playerGhost;
+        
+        //private variables
+        private bool isJump = false;
+        private bool isFilp = true;
         private Rigidbody2D rb;
-        private Vector2 Direction;
-        private float Horizontal;
+        private Vector2 dir;
+        private float horizontal;
 
 
         private void Awake()
@@ -56,7 +57,7 @@ namespace OTO.Player
 
         private void FixedUpdate()
         {
-            if (IsDash)
+            if (isDash)
             {
                 return;
             }
@@ -66,59 +67,59 @@ namespace OTO.Player
 
         private void PlayerInput()
         {
-            Horizontal = Input.GetAxisRaw("Horizontal") * moveSpeed;
+            horizontal = Input.GetAxisRaw("Horizontal") * moveSpeed;
 
-            Direction = new Vector2(Horizontal, rb.velocity.y);
+            dir = new Vector2(horizontal, rb.velocity.y);
         }
         private void PlayerMove()
         {
-            rb.velocity = Direction;
+            rb.velocity = dir;
         }
 
         private void PlayerJump()
         {
             if (Input.GetButtonDown("Jump"))
             {
-                IsJump = true;
+                isJump = true;
 
                 if(IsGround() == false)
                 {
-                    IsJump = false;
+                    isJump = false;
                 }
             }
 
-            if (IsJump == true && IsGround() && IsDash == false)
+            if (isJump == true && IsGround() && isDash == false)
             {
                 rb.velocity = Vector2.zero;
                 rb.velocity = Vector2.up * jumpPower;
-                IsJump = false;
+                isJump = false;
             }
         }
 
         private bool IsGround()
         {
-            return Physics2D.OverlapCircle(GroundCheckPos.position, 0.1f, GroundLayer);
+            return Physics2D.OverlapCircle(groundCheckPos.position, 0.1f, groundLayer);
         }
 
         private void Filp()
         {
-            if (Mathf.Abs(ShotScript.RotZ) >= 100f && Isflip)
+            if (Mathf.Abs(shotScript.RotZ) >= 100f && isFilp)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
-                ShotScript.HandPos.localScale = new Vector3(-1, -1, 1);
-                Isflip = false;
+                shotScript.HandPos.localScale = new Vector3(-1, -1, 1);
+                isFilp = false;
             }
-            if (Mathf.Abs(ShotScript.RotZ) <= 80f && !Isflip)
+            if (Mathf.Abs(shotScript.RotZ) <= 80f && !isFilp)
             {
                 transform.localScale = new Vector3(1, 1, 1);
-                ShotScript.HandPos.localScale = new Vector3(1, 1, 1);
-                Isflip = true;
+                shotScript.HandPos.localScale = new Vector3(1, 1, 1);
+                isFilp = true;
             }
         }
 
         private void Dash()
         {
-            if(Input.GetMouseButtonDown(1) && CanDash && Horizontal != 0 && IsGround() == true)
+            if(Input.GetMouseButtonDown(1) && canDash && horizontal != 0 && IsGround() == true)
             {
                 StartCoroutine(Dashing());
             }
@@ -127,17 +128,18 @@ namespace OTO.Player
         private IEnumerator Dashing()
         {
             rb.velocity = Vector2.zero;
-            CanDash = false;
-            IsDash = true;
+            canDash = false;
+            isDash = true;
             float orginGravity = rb.gravityScale;
             rb.gravityScale = 0f;
-            rb.AddForce(Vector2.right * Horizontal * DashPower, ForceMode2D.Impulse);
-            yield return new WaitForSeconds(DashingTime);
+            rb.AddForce(Vector2.right * horizontal * dashPower, ForceMode2D.Impulse);
+            playerGhost.makeGhost = true;
+            yield return new WaitForSeconds(dashingTime);
             rb.gravityScale = orginGravity;
-            IsDash = false;
-            yield return new WaitForSeconds(DashingCoolTime);
-            CanDash = true;
-            
+            isDash = false;
+            yield return new WaitForSeconds(dashingTimeCoolTime);
+            playerGhost.makeGhost = false;
+            canDash = true;
         }
     }
 }

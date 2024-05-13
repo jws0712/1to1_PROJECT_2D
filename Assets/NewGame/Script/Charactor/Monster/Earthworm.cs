@@ -62,7 +62,6 @@ namespace OTO.Charactor.Monster
             base.FlatformCheck(direction, distance, rayPos, layerMask);
             if (rayHit.collider == null)
             {
-                Debug.Log("∂•æ»¥Í¿Ω");
                 MonsterBehavior *= -1;
             }
         }

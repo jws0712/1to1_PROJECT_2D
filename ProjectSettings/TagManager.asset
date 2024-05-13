@@ -9,6 +9,7 @@ TagManager:
   - SpinPos
   - FirePos
   - Monster
+  - Gun
   layers:
   - Default
   - TransparentFX

@@ -65,7 +65,7 @@ namespace OTO.Charactor.Monster
             Debug.DrawRay(rb.position, Vector3.left, new Color(0, 1, 0));
             if(rayHit.collider != null)
             {
-                Debug.Log("너 내 누군지 아니?!");
+                return;
             }
         }
 

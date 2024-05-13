@@ -80,7 +80,6 @@ namespace OTO.Charactor.Monster
             if (rayHit.collider != null)
             {
                 MonsterBehavior *= -1;
-                Debug.Log("¥Í¿Ω");
             }
         }
 
