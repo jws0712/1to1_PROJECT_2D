@@ -8299,17 +8299,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   jumpPower: 15
-  groundCheckPos: {fileID: 0}
+  groundCheckPos: {fileID: 998602350}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
-  dashTrailNumber: 0
-  dashPower: 0
-  dashingTime: 0
-  dashingTimeCoolTime: 0
-  dashTrail: {fileID: 0}
-  shotScript: {fileID: 0}
-  playerGhost: {fileID: 0}
+    m_Bits: 64
+  dashPower: 2
+  dashingTime: 0.2
+  dashingTimeCoolTime: 0.2
+  shotScript: {fileID: 734675146}
+  playerGhost: {fileID: 1655139135}
 --- !u!50 &734675142
 Rigidbody2D:
   serializedVersion: 4

@@ -24,8 +24,7 @@ namespace OTO.Player
         [SerializeField] private float dashPower;
         [SerializeField] private float dashingTime;
         [SerializeField] private float dashingTimeCoolTime;
-        private bool isDash;
-        private bool canDash = true;
+
 
         [Header("Script")]
         [SerializeField] private PlayerShot shotScript;
@@ -39,11 +38,18 @@ namespace OTO.Player
         private Rigidbody2D rb;
         private Vector2 dir;
         private float horizontal;
-
+        private bool isDash;
+        private bool canDash = true;
+        private GameObject GunObject;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+        }
+
+        private void Start()
+        {
+            GunObject = GameObject.FindGameObjectWithTag("Gun");
         }
 
 
@@ -103,18 +109,37 @@ namespace OTO.Player
 
         private void Filp()
         {
-            if (Mathf.Abs(shotScript.RotZ) >= 100f && isFilp)
+            if(!isDash)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
-                shotScript.HandPos.localScale = new Vector3(-1, -1, 1);
-                isFilp = false;
+                if (Mathf.Abs(shotScript.RotZ) >= 100f && isFilp)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                    shotScript.HandPos.localScale = new Vector3(-1, -1, 1);
+                    isFilp = false;
+                }
+                if (Mathf.Abs(shotScript.RotZ) <= 80f && !isFilp)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                    shotScript.HandPos.localScale = new Vector3(1, 1, 1);
+                    isFilp = true;
+                }
             }
-            if (Mathf.Abs(shotScript.RotZ) <= 80f && !isFilp)
+            else if (isDash)
             {
-                transform.localScale = new Vector3(1, 1, 1);
-                shotScript.HandPos.localScale = new Vector3(1, 1, 1);
-                isFilp = true;
+                if(horizontal < 0)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                    isFilp = false;
+                    Debug.Log("¿ÞÂÊ");
+                }
+                else if(horizontal > 0)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                    isFilp = true;
+                    Debug.Log("¿À¸¥ÂÊ");
+                }
             }
+
         }
 
         private void Dash()
@@ -128,6 +153,7 @@ namespace OTO.Player
         private IEnumerator Dashing()
         {
             rb.velocity = Vector2.zero;
+            GunObject.SetActive(false);
             canDash = false;
             isDash = true;
             float orginGravity = rb.gravityScale;
@@ -140,6 +166,8 @@ namespace OTO.Player
             yield return new WaitForSeconds(dashingTimeCoolTime);
             playerGhost.makeGhost = false;
             canDash = true;
+            GunObject.SetActive(true);
+
         }
     }
 }
