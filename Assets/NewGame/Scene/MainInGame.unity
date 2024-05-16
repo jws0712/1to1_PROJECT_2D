@@ -7593,7 +7593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163474976}
   m_Layer: 0
-  m_Name: =========TileMap=========
+  m_Name: TileMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8304,8 +8304,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   dashPower: 2
-  dashingTime: 0.2
-  dashingTimeCoolTime: 0.2
+  dashingTime: 0.15
+  dashingTimeCoolTime: 0.15
   shotScript: {fileID: 734675146}
   playerGhost: {fileID: 1655139135}
 --- !u!50 &734675142
@@ -8372,6 +8372,7 @@ MonoBehaviour:
   FirePos: {fileID: 0}
   SpinPos: {fileID: 0}
   Bullet: {fileID: 6183457796777578699, guid: d437f2ed53d3c3b489d7109c523def0b, type: 3}
+  damage: 0
   coolTime: 0.2
   maxSpreadAngle: 5
   minSpreadAngle: -5

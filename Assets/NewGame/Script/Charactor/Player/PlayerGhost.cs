@@ -1,4 +1,4 @@
-namespace OTO.Player
+namespace OTO.Charactor.Player
 {
 
     //System

@@ -15,15 +15,25 @@ namespace OTO.Charactor.Monster
         protected RaycastHit2D rayHit = default;
         protected Rigidbody2D rb = null;
         protected Animator anim = null;
-
-
+        protected new SpriteRenderer renderer = null;
 
 
         //private variables
+
+        //public variables
+        public float damage = default;
+
+
+
+
+        /// <summary>
+        /// 컴포넌트를 초기화하는 함수
+        /// </summary>
         protected void Init()
         {
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
+            renderer = GetComponent<SpriteRenderer>();
         }
 
         /// <summary>
@@ -40,7 +50,6 @@ namespace OTO.Charactor.Monster
         // 특정시간마다 -1, 0, 1 중에서 한게의 값을 Behavior변수에 넣어주는 코루틴
         private IEnumerator Co_SelectMovement()
         {
-            if (IsDead) yield break; //Dead 상태라면 코루틴을 멈춤
             MonsterBehavior = Random.Range(-1, 2); //-1, 0, 1 사이의 값을 랜덤으로 MonsterBehavior에 할당함
             yield return new WaitForSeconds(1.2f); //1.2초 동안 대기함
             StartCoroutine(Co_SelectMovement()); //다시 코루틴을 호출해서 무한반복함
@@ -69,7 +78,14 @@ namespace OTO.Charactor.Monster
             }
         }
 
-        protected virtual void FlatformCheck(Vector2 direction ,float distance, float rayPos, LayerMask checkLayer)
+        /// <summary>
+        /// 플렛폼을 체크하는 함수
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <param name="distance"></param>
+        /// <param name="rayPos"></param>
+        /// <param name="checkLayer"></param>
+        protected virtual void CheckGround(Vector2 direction ,float distance, float rayPos, LayerMask checkLayer)
         {
             Vector2 frontVec = new Vector2(rb.position.x + MonsterBehavior * rayPos, rb.position.y);
             Debug.DrawRay(frontVec, direction, new Color(0, 1, 0));
@@ -84,6 +100,21 @@ namespace OTO.Charactor.Monster
         protected virtual void DropCoin()
         {
             //돈을 드롭하는 코드를 구현
+        }
+
+        public override void TakeDamage(float damage)
+        {
+            base.TakeDamage(damage);
+
+            Debug.Log("앗 몬스터가 맞았다!");
+        }
+
+        protected override void Die()
+        {
+            base.Die();
+
+            Destroy(gameObject);
+            Debug.Log("앗 죽었다");
         }
     }
 }

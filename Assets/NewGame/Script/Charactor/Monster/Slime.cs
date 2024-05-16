@@ -22,6 +22,9 @@ namespace OTO.Charactor.Monster
         [SerializeField] private LayerMask layerMask = default;
         [SerializeField] private Vector2 rayDirection = default;
 
+        [Header("Info")]
+        [SerializeField] private float slimeHp = default;
+
 
         //private variables
 
@@ -31,12 +34,14 @@ namespace OTO.Charactor.Monster
             Init();
             Jump();
             MonsterMovement();
+
+            maxHp = slimeHp;
         }
 
         private void Update()
         {
             FlipX();
-            FlatformCheck(rayDirection ,rayDistance, rayPos, layerMask);
+            CheckGround(rayDirection ,rayDistance, rayPos, layerMask);
             anim.SetFloat("yPos", rb.velocity.y);
         }
 
@@ -74,15 +79,14 @@ namespace OTO.Charactor.Monster
             StartCoroutine(Co_Jump());
         }
 
-        protected override void FlatformCheck(Vector2 direction, float distacne, float rayPos, LayerMask layerMask)
+        protected override void CheckGround(Vector2 direction, float distacne, float rayPos, LayerMask layerMask)
         {
-            base.FlatformCheck(direction ,distacne, rayPos, layerMask);
+            base.CheckGround(direction ,distacne, rayPos, layerMask);
             if (rayHit.collider != null)
             {
                 MonsterBehavior *= -1;
             }
         }
-
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))

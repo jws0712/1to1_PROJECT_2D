@@ -29,7 +29,7 @@ namespace OTO.Charactor.Monster
         {
             FlipX();
             FindPlayer();
-            FlatformCheck(rayDirection ,rayDistance, rayPos, layerMask);
+            CheckGround(rayDirection ,rayDistance, rayPos, layerMask);
         }
 
         private void FixedUpdate()
@@ -57,9 +57,9 @@ namespace OTO.Charactor.Monster
             base.FindPlayer();
         }
 
-        protected override void FlatformCheck(Vector2 direction, float distance, float rayPos, LayerMask layerMask)
+        protected override void CheckGround(Vector2 direction, float distance, float rayPos, LayerMask layerMask)
         {
-            base.FlatformCheck(direction, distance, rayPos, layerMask);
+            base.CheckGround(direction, distance, rayPos, layerMask);
             if (rayHit.collider == null)
             {
                 MonsterBehavior *= -1;

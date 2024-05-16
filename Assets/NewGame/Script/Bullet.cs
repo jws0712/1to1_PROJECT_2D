@@ -6,24 +6,31 @@ namespace OTO.Bullet
     //System
     using System.Collections;
     using System.Collections.Generic;
+
+    //Unity
     using Unity.VisualScripting;
 
     //UnityEngine
     using UnityEngine;
 
+    //Project
+    using OTO.Charactor.Monster;
+
     public class Bullet : MonoBehaviour
     {
         [Header("Bullet")]
-        [SerializeField] private float BulletSpeed;
-        [SerializeField] private float BulletDestroyTime;
-        // Start is called before the first frame update
+        [SerializeField] private float BulletSpeed = default;
+        [SerializeField] private float BulletDestroyTime = default;
+
+        //private variables
+
         void Start()
         {
             Invoke("DestoryBullet", BulletDestroyTime);
         }
 
         // Update is called once per frame
-        private void Update()
+        private void FixedUpdate()
         {
             transform.Translate(Vector2.right * BulletSpeed * Time.deltaTime); ;
         }
@@ -35,12 +42,21 @@ namespace OTO.Bullet
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if(collision.gameObject.layer == LayerMask.NameToLayer("Wall") || collision.gameObject.layer == LayerMask.NameToLayer("Monster"))
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Wall") || collision.gameObject.layer == LayerMask.NameToLayer("Monster"))
             {
                 DestoryBullet();
             }
-
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Monster"))
+            {
+                collision.GetComponent<Monster>().TakeDamage(1f);
+                
+            }
+            if (collision.CompareTag("Player"))
+            {
+                return;
+            }
+           
         }
-
     }
 }
+

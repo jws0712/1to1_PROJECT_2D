@@ -1,4 +1,4 @@
-namespace OTO.Player
+namespace OTO.Charactor.Player
 {
     //System
     using System.Collections;
@@ -109,7 +109,7 @@ namespace OTO.Player
 
         private void Filp()
         {
-            if(!isDash)
+            if (!isDash)
             {
                 if (Mathf.Abs(shotScript.RotZ) >= 100f && isFilp)
                 {
@@ -124,19 +124,17 @@ namespace OTO.Player
                     isFilp = true;
                 }
             }
-            else if (isDash)
+            else
             {
-                if(horizontal < 0)
+                if (horizontal < 0)
                 {
                     transform.localScale = new Vector3(-1, 1, 1);
                     isFilp = false;
-                    Debug.Log("¿ÞÂÊ");
                 }
-                else if(horizontal > 0)
+                else if (horizontal > 0)
                 {
                     transform.localScale = new Vector3(1, 1, 1);
                     isFilp = true;
-                    Debug.Log("¿À¸¥ÂÊ");
                 }
             }
 
