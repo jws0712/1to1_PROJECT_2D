@@ -17,11 +17,21 @@ namespace OTO.Charactor.Player
 
         private GameObject gunObject = null;
         private SpriteRenderer gunRenderer = null;
+        private LayerMask monsterLayer = default;
+        private LayerMask playerLayer = default;
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
 
             gunObject = GameObject.FindWithTag("Gun");
+
+            monsterLayer = LayerMask.NameToLayer("Monster");
+            playerLayer = LayerMask.NameToLayer("Player");
+
+            if (gunObject != null)
+            {
+                gunRenderer = gunObject.GetComponentInChildren<SpriteRenderer>();
+            }
 
             StartCoroutine(PlayerSpriteFlash(playerFlashNumber));
         }
@@ -32,6 +42,7 @@ namespace OTO.Charactor.Player
 
             for(int i = 0; i < number; i++)
             {
+                Physics2D.IgnoreLayerCollision(playerLayer, monsterLayer, true);
                 yield return new WaitForSeconds(0.05f);
                 _playerAlhpa.a = 0f;
                 renderer.color = _playerAlhpa;
@@ -42,8 +53,7 @@ namespace OTO.Charactor.Player
                 gunRenderer.color = _playerAlhpa;
                 yield return new WaitForSeconds(duration);
             }
-
-
+            Physics2D.IgnoreLayerCollision(playerLayer, monsterLayer, false);
         }
 
         protected override void Die()
