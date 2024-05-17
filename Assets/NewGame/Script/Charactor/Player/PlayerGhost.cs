@@ -39,7 +39,7 @@ namespace OTO.Charactor.Player
                 {
                     GameObject currentGhost = Instantiate(ghost, transform.position, transform.rotation);
                     Sprite currentSprite = GetComponent<SpriteRenderer>().sprite;
-                    currentGhost.transform.localScale = transform.parent.localScale;
+                    currentGhost.transform.localScale = transform.localScale;
                     currentGhost.GetComponent<SpriteRenderer>().sprite = currentSprite;
                     ghostDelaySeconds = ghostDelay;
                     Destroy(currentGhost, destoryTime);

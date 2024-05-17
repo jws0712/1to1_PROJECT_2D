@@ -15,6 +15,7 @@ namespace OTO.Bullet
 
     //Project
     using OTO.Charactor.Monster;
+    using OTO.Charactor.Player;
 
     public class Bullet : MonoBehaviour
     {
@@ -32,7 +33,7 @@ namespace OTO.Bullet
         // Update is called once per frame
         private void FixedUpdate()
         {
-            transform.Translate(Vector2.right * BulletSpeed * Time.deltaTime); ;
+            transform.Translate(Vector2.right * BulletSpeed * Time.deltaTime);
         }
 
         private void DestoryBullet()
@@ -42,7 +43,7 @@ namespace OTO.Bullet
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Wall") || collision.gameObject.layer == LayerMask.NameToLayer("Monster"))
+            if (collision.CompareTag("Wall") || collision.CompareTag("Monster"))
             {
                 DestoryBullet();
             }
@@ -53,7 +54,7 @@ namespace OTO.Bullet
             }
             if (collision.CompareTag("Player"))
             {
-                return;
+                collision.GetComponent<PlayerHp>().TakeDamage(1f);
             }
            
         }
