@@ -6,6 +6,7 @@ namespace OTO.Charactor.Player
 
     //Unity
     using Unity.VisualScripting;
+    using UnityEditor.U2D.Aseprite;
 
     //UnityEngine
     using UnityEngine;
@@ -41,6 +42,8 @@ namespace OTO.Charactor.Player
         private bool isDash;
         private bool canDash = true;
         private GameObject GunObject;
+        private LayerMask monsterLayer = default;
+        private LayerMask playerLayer = default;
 
         private void Awake()
         {
@@ -50,6 +53,9 @@ namespace OTO.Charactor.Player
         private void Start()
         {
             GunObject = GameObject.FindGameObjectWithTag("Gun");
+
+            monsterLayer = LayerMask.NameToLayer("Monster");
+            playerLayer = LayerMask.NameToLayer("Player");
         }
 
 
@@ -151,17 +157,30 @@ namespace OTO.Charactor.Player
         private IEnumerator Dashing()
         {
             rb.velocity = Vector2.zero;
+
             GunObject.SetActive(false);
+
             canDash = false;
             isDash = true;
+
             float orginGravity = rb.gravityScale;
+
             rb.gravityScale = 0f;
             rb.AddForce(Vector2.right * horizontal * dashPower, ForceMode2D.Impulse);
+
             playerGhost.makeGhost = true;
+
+            Physics2D.IgnoreLayerCollision(playerLayer, monsterLayer, true);
+
             yield return new WaitForSeconds(dashingTime);
+
             rb.gravityScale = orginGravity;
             isDash = false;
+
             yield return new WaitForSeconds(dashingTimeCoolTime);
+
+            Physics2D.IgnoreLayerCollision(playerLayer, monsterLayer, false);
+
             playerGhost.makeGhost = false;
             canDash = true;
             GunObject.SetActive(true);

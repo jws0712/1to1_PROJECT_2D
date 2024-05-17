@@ -47,7 +47,7 @@ namespace OTO.Bullet
             {
                 DestoryBullet();
             }
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Monster"))
+            if (collision.CompareTag("Monster"))
             {
                 collision.GetComponent<Monster>().TakeDamage(1f);
                 
@@ -56,7 +56,6 @@ namespace OTO.Bullet
             {
                 collision.GetComponent<PlayerHp>().TakeDamage(1f);
             }
-           
         }
     }
 }

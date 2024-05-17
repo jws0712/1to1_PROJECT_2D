@@ -13,8 +13,8 @@ namespace OTO.Charactor.Monster
         //Protected variables
         protected int MonsterBehavior = default;
         protected RaycastHit2D rayHit = default;
-        protected Rigidbody2D rb = null;
         protected Animator anim = null;
+        protected Rigidbody2D rb;
 
 
         protected GameObject expDiamond = null;
@@ -34,8 +34,8 @@ namespace OTO.Charactor.Monster
         /// </summary>
         protected void Init()
         {
-            rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
+            rb = GetComponent<Rigidbody2D>();
 
         }
 
@@ -111,8 +111,6 @@ namespace OTO.Charactor.Monster
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
-
-
 
             Debug.Log("앗 몬스터가 맞았다!");
         }
