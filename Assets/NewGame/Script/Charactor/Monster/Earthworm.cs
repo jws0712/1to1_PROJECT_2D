@@ -65,10 +65,6 @@ namespace OTO.Charactor.Monster
                 MonsterBehavior *= -1;
             }
         }
-        
-
-            
-        
     }
 
 }

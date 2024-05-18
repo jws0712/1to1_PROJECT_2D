@@ -35,15 +35,17 @@ namespace OTO.Charactor.Player
         
         //private variables
         private bool isJump = false;
-        private bool isFilp = true;
-        private Rigidbody2D rb;
         private Vector2 dir;
-        private float horizontal;
         private bool isDash;
         private bool canDash = true;
         private GameObject GunObject;
         private LayerMask monsterLayer = default;
         private LayerMask playerLayer = default;
+
+        //public variables
+        public Rigidbody2D rb;
+        public float horizontal;
+        public bool isFilp = true;
 
         private void Awake()
         {

@@ -73,7 +73,9 @@ namespace OTO.Charactor.Monster
         private IEnumerator Co_Jump()
         {
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            rb.AddForce(Vector2.right * MonsterBehavior * jumpPower, ForceMode2D.Impulse);
+            
+            
+
             anim.SetBool("IsJump", true);
             yield return new WaitForSeconds(jumpCooltime);
             StartCoroutine(Co_Jump());

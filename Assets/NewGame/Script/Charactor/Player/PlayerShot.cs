@@ -28,6 +28,8 @@ namespace OTO.Charactor.Player
         [SerializeField] private float minSpreadAngle = default;
         [Header("Spin")]
         public float RotZ = default;
+        [Header("CameraShake")]
+        [SerializeField] private float shakePower = default;
 
         private Quaternion bulletAngle = default;
         private Vector3 mousePos = default;
@@ -70,9 +72,17 @@ namespace OTO.Charactor.Player
             float SpreadAngle = RotZ + Random.Range(minSpreadAngle, maxSpreadAngle);
             bulletAngle = Quaternion.Euler(0, 0, SpreadAngle);
             Instantiate(Bullet, FirePos.transform.position, bulletAngle);
+            StartCoroutine(Co_CameraShake(shakePower));
             isShot = true;
             yield return new WaitForSeconds(coolTime);
             isShot = false;
+        }
+
+        private IEnumerator Co_CameraShake(float ShakeIntensity)
+        {
+            CameraShakeManager.instance.ShakeCamera(ShakeIntensity);
+            yield return new WaitForSeconds(0.1f);
+            CameraShakeManager.instance.StopShake();
         }
     }
 }

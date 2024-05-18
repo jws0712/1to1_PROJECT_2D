@@ -15,19 +15,13 @@ namespace OTO.Charactor.Monster
         protected RaycastHit2D rayHit = default;
         protected Animator anim = null;
         protected Rigidbody2D rb;
-
-
         protected GameObject expDiamond = null;
         protected GameObject coinDiamond = null;
-
 
         //private variables
 
         //public variables
         public float damage = default;
-
-
-
 
         /// <summary>
         /// 컴포넌트를 초기화하는 함수
@@ -80,7 +74,6 @@ namespace OTO.Charactor.Monster
                 return;
             }
         }
-
         /// <summary>
         /// 플렛폼을 체크하는 함수
         /// </summary>
@@ -94,33 +87,17 @@ namespace OTO.Charactor.Monster
             Debug.DrawRay(frontVec, direction, new Color(0, 1, 0));
             rayHit = Physics2D.Raycast(frontVec, direction, distance, checkLayer);
         }
-
-        //private void DropItem(float minPower, float maxPower, float number, GameObject obj)
-        //{
-        //    for(int i = 0; i < number; i++)
-        //    {
-        //        float _power = Random.Range(minPower, maxPower);
-
-        //        Instantiate(obj, transform.position, Quaternion.identity);
-                
-        //        obj.GetComponent<Rigidbody2D>().AddForce(Vector2.up * _power, ForceMode2D.Impulse);
-        //        obj.GetComponent<Rigidbody2D>().AddForce(Vector2.right * _power, ForceMode2D.Impulse);
-        //    }
-        //}
-
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
 
-            Debug.Log("앗 몬스터가 맞았다!");
+            rb.velocity = new Vector2(transform.rotation.y == 0 ? -100 : 100, rb.velocity.y);
         }
-
         protected override void Die()
         {
             base.Die();
 
             Destroy(gameObject);
-            Debug.Log("앗 죽었다");
         }
     }
 }

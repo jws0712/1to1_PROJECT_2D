@@ -15,13 +15,21 @@ namespace OTO.Charactor.Player
         [SerializeField] private float playerFlashNumber = default;
         [SerializeField] private float duration = default;
 
+        [Header("CameraShake")]
+        [SerializeField] private float shakePower = default;
+
         private GameObject gunObject = null;
         private SpriteRenderer gunRenderer = null;
         private LayerMask monsterLayer = default;
         private LayerMask playerLayer = default;
+
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
+
+            StartCoroutine(Co_CameraShake(shakePower));
+
+            Debug.Log("Æ¨°Ü³ª°¨!");
 
             gunObject = GameObject.FindWithTag("Gun");
 
@@ -54,6 +62,13 @@ namespace OTO.Charactor.Player
                 yield return new WaitForSeconds(duration);
             }
             Physics2D.IgnoreLayerCollision(playerLayer, monsterLayer, false);
+        }
+
+        private IEnumerator Co_CameraShake(float ShakeIntensity)
+        {
+            CameraShakeManager.instance.ShakeCamera(ShakeIntensity);
+            yield return new WaitForSeconds(0.5f);
+            CameraShakeManager.instance.StopShake();
         }
 
         protected override void Die()

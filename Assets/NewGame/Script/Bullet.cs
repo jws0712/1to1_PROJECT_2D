@@ -50,7 +50,6 @@ namespace OTO.Bullet
             if (collision.CompareTag("Monster"))
             {
                 collision.GetComponent<Monster>().TakeDamage(1f);
-                
             }
             if (collision.CompareTag("Player"))
             {
