@@ -29,8 +29,6 @@ namespace OTO.Charactor.Player
 
             StartCoroutine(Co_CameraShake(shakePower));
 
-            Debug.Log("Æ¨°Ü³ª°¨!");
-
             gunObject = GameObject.FindWithTag("Gun");
 
             monsterLayer = LayerMask.NameToLayer("Monster");
@@ -74,8 +72,6 @@ namespace OTO.Charactor.Player
         protected override void Die()
         {
             base.Die();
-
-            Debug.Log("ÇÃ·¹ÀÌ¾î »ç¸Á");
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

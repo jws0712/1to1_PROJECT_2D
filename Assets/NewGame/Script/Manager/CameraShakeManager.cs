@@ -22,7 +22,6 @@ public class CameraShakeManager : MonoBehaviour
     {
         CinemachineBasicMultiChannelPerlin _cbmcp = CinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         _cbmcp.m_AmplitudeGain = ShakeIntensity;
-        Debug.Log("½ÇÇà");
     }
 
     public void StopShake()

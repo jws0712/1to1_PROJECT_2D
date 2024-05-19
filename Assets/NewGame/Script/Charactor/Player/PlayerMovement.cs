@@ -36,20 +36,22 @@ namespace OTO.Charactor.Player
         //private variables
         private bool isJump = false;
         private Vector2 dir;
-        private bool isDash;
         private bool canDash = true;
         private GameObject GunObject;
         private LayerMask monsterLayer = default;
         private LayerMask playerLayer = default;
+        private Animator animator = null;
 
         //public variables
         public Rigidbody2D rb;
         public float horizontal;
+        public bool isDash;
         public bool isFilp = true;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
         }
 
         private void Start()
@@ -67,6 +69,7 @@ namespace OTO.Charactor.Player
             PlayerJump();
             Filp();
             Dash();
+            PlayerAnimation();
         }
 
         private void FixedUpdate()
@@ -185,8 +188,23 @@ namespace OTO.Charactor.Player
 
             playerGhost.makeGhost = false;
             canDash = true;
+
             GunObject.SetActive(true);
 
+        }
+
+        private void PlayerAnimation()
+        {
+            if(horizontal != 0)
+            {
+                animator.SetBool("isWalk", true);
+            }
+            else
+            {
+                animator.SetBool("isWalk", false);
+            }
+
+            animator.SetBool("isDash", isDash);
         }
     }
 }

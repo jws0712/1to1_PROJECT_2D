@@ -30,6 +30,8 @@ namespace OTO.Charactor.Player
         public float RotZ = default;
         [Header("CameraShake")]
         [SerializeField] private float shakePower = default;
+        [Header("Script")]
+        [SerializeField] private PlayerMovement playerMovement = null;
 
         private Quaternion bulletAngle = default;
         private Vector3 mousePos = default;
@@ -61,6 +63,11 @@ namespace OTO.Charactor.Player
         }
         private void Shoot()
         {
+            if (playerMovement.isDash)
+            {
+                return;
+            }
+
             if (Input.GetButton("Fire1") && isShot == false)
             {
                 StartCoroutine(Co_Shooting());

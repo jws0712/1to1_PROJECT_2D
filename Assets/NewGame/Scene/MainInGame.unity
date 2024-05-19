@@ -8326,6 +8326,7 @@ MonoBehaviour:
   playerGhost: {fileID: 734675149}
   rb: {fileID: 0}
   horizontal: 0
+  isDash: 0
   isFilp: 1
 --- !u!50 &734675142
 Rigidbody2D:
@@ -8391,11 +8392,12 @@ MonoBehaviour:
   SpinPos: {fileID: 0}
   Bullet: {fileID: 6183457796777578699, guid: d437f2ed53d3c3b489d7109c523def0b, type: 3}
   damage: 0
-  coolTime: 0.2
+  coolTime: 0
   maxSpreadAngle: 8
   minSpreadAngle: -8
   RotZ: 0
   shakePower: 3
+  playerMovement: {fileID: 734675141}
 --- !u!114 &734675148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8538,7 +8540,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 2134507066321394c9b3a1757afd68de, type: 3}
+  m_Sprite: {fileID: 275890875, guid: d504fc7f8dfac294fba902ad0c8522b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13673,7 +13675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8858423654434630752, guid: b7fc2ab2bcb06ae428ed3ed4bd3f3478, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.29
+      value: -0.85
       objectReference: {fileID: 0}
     - target: {fileID: 8858423654434630752, guid: b7fc2ab2bcb06ae428ed3ed4bd3f3478, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13861,11 +13863,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: fc5839795288f184c9b4a7f35534f809, type: 2}
     - target: {fileID: 3612460341577413682, guid: 402999839e523b04fb35e79a6ff69cde, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.9
+      value: 5.88
       objectReference: {fileID: 0}
     - target: {fileID: 3612460341577413682, guid: 402999839e523b04fb35e79a6ff69cde, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.2
+      value: -1.17
       objectReference: {fileID: 0}
     - target: {fileID: 3612460341577413682, guid: 402999839e523b04fb35e79a6ff69cde, type: 3}
       propertyPath: m_LocalPosition.z
