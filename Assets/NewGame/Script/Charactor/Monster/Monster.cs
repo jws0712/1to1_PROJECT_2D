@@ -90,8 +90,6 @@ namespace OTO.Charactor.Monster
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
-
-            rb.velocity = new Vector2(transform.rotation.y == 0 ? -100 : 100, rb.velocity.y);
         }
         protected override void Die()
         {

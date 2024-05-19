@@ -8289,6 +8289,7 @@ GameObject:
   - component: {fileID: 734675152}
   - component: {fileID: 734675151}
   - component: {fileID: 734675142}
+  - component: {fileID: 734675153}
   - component: {fileID: 734675150}
   - component: {fileID: 734675141}
   - component: {fileID: 734675146}
@@ -8392,7 +8393,7 @@ MonoBehaviour:
   SpinPos: {fileID: 0}
   Bullet: {fileID: 6183457796777578699, guid: d437f2ed53d3c3b489d7109c523def0b, type: 3}
   damage: 0
-  coolTime: 0
+  coolTime: 0.2
   maxSpreadAngle: 8
   minSpreadAngle: -8
   RotZ: 0
@@ -8551,6 +8552,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &734675153
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734675140}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -1.23}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &747465487
 GameObject:
   m_ObjectHideFlags: 0
@@ -8568,7 +8604,7 @@ GameObject:
   - component: {fileID: 747465494}
   m_Layer: 6
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

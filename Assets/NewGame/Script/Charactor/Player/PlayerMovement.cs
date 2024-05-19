@@ -41,6 +41,7 @@ namespace OTO.Charactor.Player
         private LayerMask monsterLayer = default;
         private LayerMask playerLayer = default;
         private Animator animator = null;
+        private bool isGround = default;
 
         //public variables
         public Rigidbody2D rb;
@@ -70,6 +71,7 @@ namespace OTO.Charactor.Player
             Filp();
             Dash();
             PlayerAnimation();
+            IsGround();
         }
 
         private void FixedUpdate()
@@ -115,7 +117,7 @@ namespace OTO.Charactor.Player
 
         private bool IsGround()
         {
-            return Physics2D.OverlapCircle(groundCheckPos.position, 0.1f, groundLayer);
+            return isGround;
         }
 
         private void Filp()
@@ -205,6 +207,19 @@ namespace OTO.Charactor.Player
             }
 
             animator.SetBool("isDash", isDash);
+        }
+
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Ground"))
+            {
+                isGround = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            isGround = false;
         }
     }
 }
