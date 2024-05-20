@@ -8324,6 +8324,7 @@ MonoBehaviour:
   dashingTime: 0.15
   dashingTimeCoolTime: 0.15
   shotScript: {fileID: 734675146}
+  playerHp: {fileID: 0}
   playerGhost: {fileID: 734675149}
   rb: {fileID: 0}
   horizontal: 0

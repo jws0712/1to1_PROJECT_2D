@@ -4,6 +4,7 @@ namespace OTO.Charactor.Player
     //System
     using System.Collections;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using Unity.VisualScripting;
 
     //UnityEngine
@@ -22,6 +23,7 @@ namespace OTO.Charactor.Player
         private SpriteRenderer gunRenderer = null;
         private LayerMask monsterLayer = default;
         private LayerMask playerLayer = default;
+
 
         public override void TakeDamage(float damage)
         {

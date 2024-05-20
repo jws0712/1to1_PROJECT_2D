@@ -3,6 +3,7 @@ namespace OTO.Charactor.Player
     //System
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq.Expressions;
 
     //Unity
     using Unity.VisualScripting;
@@ -29,6 +30,8 @@ namespace OTO.Charactor.Player
 
         [Header("Script")]
         [SerializeField] private PlayerShot shotScript;
+        [SerializeField] private PlayerHp playerHp;
+
 
         [Header("GhostEffect")]
         [SerializeField] private PlayerGhost playerGhost;
@@ -42,6 +45,7 @@ namespace OTO.Charactor.Player
         private LayerMask playerLayer = default;
         private Animator animator = null;
         private bool isGround = default;
+        private bool isHit = default;
 
         //public variables
         public Rigidbody2D rb;
@@ -207,6 +211,13 @@ namespace OTO.Charactor.Player
             }
 
             animator.SetBool("isDash", isDash);
+        }
+        public void KnockBack()
+        {   
+            if(isHit == true)
+            {
+                rb.AddForce(Vector2.right * 1000f , ForceMode2D.Impulse);
+            }
         }
 
         private void OnTriggerStay2D(Collider2D collision)
