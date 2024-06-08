@@ -19,17 +19,15 @@ namespace OTO.Charactor.Monster
         [SerializeField] private float rayPos = default;
         [SerializeField] private Vector2 rayDirection = default;
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
-            Init();
+            base.OnEnable();
             MonsterMovement();
         }
 
-        private void Update()
+        protected override void Update()
         {
-            FlipX();
-            FindPlayer();
-            CheckGround(rayDirection ,rayDistance, rayPos, layerMask);
+            base.Update();
         }
 
         private void FixedUpdate()
@@ -42,28 +40,9 @@ namespace OTO.Charactor.Monster
             rb.velocity = new Vector2(MonsterBehavior * moveSpeed, rb.velocity.y);
         }
 
-        protected override void FlipX()
-        {
-            base.FlipX();
-        }
-
         protected override int MonsterMovement()
         {
             return base.MonsterMovement();
-        }
-
-        protected override void FindPlayer()
-        {
-            base.FindPlayer();
-        }
-
-        protected override void CheckGround(Vector2 direction, float distance, float rayPos, LayerMask layerMask)
-        {
-            base.CheckGround(direction, distance, rayPos, layerMask);
-            if (rayHit.collider == null)
-            {
-                MonsterBehavior *= -1;
-            }
         }
     }
 

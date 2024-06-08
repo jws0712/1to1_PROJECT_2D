@@ -75,7 +75,6 @@ namespace OTO.Charactor.Player
             Filp();
             Dash();
             PlayerAnimation();
-            IsGround();
         }
 
         private void FixedUpdate()
@@ -105,23 +104,18 @@ namespace OTO.Charactor.Player
             {
                 isJump = true;
 
-                if(IsGround() == false)
+                if(isGround == false)
                 {
                     isJump = false;
                 }
             }
 
-            if (isJump == true && IsGround() && isDash == false)
+            if (isJump == true && isGround && isDash == false)
             {
                 rb.velocity = Vector2.zero;
                 rb.velocity = Vector2.up * jumpPower;
                 isJump = false;
             }
-        }
-
-        private bool IsGround()
-        {
-            return isGround;
         }
 
         private void Filp()
@@ -159,7 +153,7 @@ namespace OTO.Charactor.Player
 
         private void Dash()
         {
-            if(Input.GetMouseButtonDown(1) && canDash && horizontal != 0 && IsGround() == true)
+            if(Input.GetMouseButtonDown(1) && canDash && horizontal != 0 && isGround == true)
             {
                 StartCoroutine(Dashing());
             }
@@ -196,7 +190,6 @@ namespace OTO.Charactor.Player
             canDash = true;
 
             GunObject.SetActive(true);
-
         }
 
         private void PlayerAnimation()
@@ -211,13 +204,6 @@ namespace OTO.Charactor.Player
             }
 
             animator.SetBool("isDash", isDash);
-        }
-        public void KnockBack()
-        {   
-            if(isHit == true)
-            {
-                rb.AddForce(Vector2.right * 1000f , ForceMode2D.Impulse);
-            }
         }
 
         private void OnTriggerStay2D(Collider2D collision)

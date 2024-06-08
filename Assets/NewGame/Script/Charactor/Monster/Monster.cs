@@ -23,14 +23,23 @@ namespace OTO.Charactor.Monster
         //public variables
         public float damage = default;
 
+        protected virtual void OnEnable()
+        {
+            Init();
+        }
+
+        protected virtual void Update()
+        {
+            FlipX();
+        }
+
         /// <summary>
         /// 컴포넌트를 초기화하는 함수
         /// </summary>
-        protected void Init()
+        private void Init()
         {
             anim = GetComponent<Animator>();
             rb = GetComponent<Rigidbody2D>();
-
         }
 
         /// <summary>
@@ -40,7 +49,6 @@ namespace OTO.Charactor.Monster
         protected virtual int MonsterMovement()
         {
             StartCoroutine(Co_SelectMovement());
-
             return MonsterBehavior;
         }
 
@@ -52,7 +60,7 @@ namespace OTO.Charactor.Monster
             StartCoroutine(Co_SelectMovement()); //다시 코루틴을 호출해서 무한반복함
         }
 
-        protected virtual void FlipX()
+        private void FlipX()
         {
             if (MonsterBehavior == -1)
             {
@@ -62,30 +70,20 @@ namespace OTO.Charactor.Monster
             {
                 transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
-        }
-
-        protected virtual void FindPlayer()
-        {   
-
-        }
+        }        
 
         /// <summary>
-        /// 플렛폼을 체크하는 함수
+        /// 대미지를 받을때 실행되는 함수
         /// </summary>
-        /// <param name="direction"></param>
-        /// <param name="distance"></param>
-        /// <param name="rayPos"></param>
-        /// <param name="checkLayer"></param>
-        protected virtual void CheckGround(Vector2 direction ,float distance, float rayPos, LayerMask checkLayer)
-        {
-            Vector2 frontVec = new Vector2(rb.position.x + MonsterBehavior * rayPos, rb.position.y);
-            Debug.DrawRay(frontVec, direction, new Color(0, 1, 0));
-            rayHit = Physics2D.Raycast(frontVec, direction, distance, checkLayer);
-        }
+        /// <param name="damage"></param>
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
         }
+
+        /// <summary>
+        /// 죽을때 실행되는 함수
+        /// </summary>
         protected override void Die()
         {
             base.Die();

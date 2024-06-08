@@ -29,19 +29,20 @@ namespace OTO.Charactor.Monster
         //private variables
 
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
-            Init();
+
+            base.OnEnable();
             Jump();
             MonsterMovement();
 
             maxHp = slimeHp;
         }
 
-        private void Update()
+        protected override void Update()
         {
-            FlipX();
-            CheckGround(rayDirection ,rayDistance, rayPos, layerMask);
+            base.Update();
+
             anim.SetFloat("yPos", rb.velocity.y);
         }
 
@@ -53,11 +54,6 @@ namespace OTO.Charactor.Monster
         private void Movement()
         {
             rb.velocity = new Vector2(MonsterBehavior * moveSpeed, rb.velocity.y);
-        }
-
-        protected override void FlipX()
-        {
-            base.FlipX();
         }
 
         protected override int MonsterMovement()
@@ -72,23 +68,14 @@ namespace OTO.Charactor.Monster
 
         private IEnumerator Co_Jump()
         {
-            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            
-            
-
-            anim.SetBool("IsJump", true);
-            yield return new WaitForSeconds(jumpCooltime);
-            StartCoroutine(Co_Jump());
-        }
-
-        protected override void CheckGround(Vector2 direction, float distacne, float rayPos, LayerMask layerMask)
-        {
-            base.CheckGround(direction ,distacne, rayPos, layerMask);
-            if (rayHit.collider != null)
+            while(!isDead) 
             {
-                MonsterBehavior *= -1;
+                anim.SetBool("IsJump", true);
+                rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+                yield return new WaitForSeconds(jumpCooltime);
             }
         }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
