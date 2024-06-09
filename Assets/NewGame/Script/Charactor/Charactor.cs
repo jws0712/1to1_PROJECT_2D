@@ -25,11 +25,9 @@ namespace OTO.Charactor
 
         private void Start()
         {
-            maxHp = startHp;
-
             renderer = GetComponent<SpriteRenderer>();
-
             originMaterial = renderer.material;
+            maxHp = startHp;
         }
 
         //데미지를 받았을때 처리할 매서드

@@ -19,30 +19,23 @@ namespace OTO.Charactor.Monster
         [SerializeField] private float jumpCooltime = default;
         [SerializeField] private float rayDistance = default;
         [SerializeField] private float rayPos = default;
-        [SerializeField] private LayerMask layerMask = default;
-        [SerializeField] private Vector2 rayDirection = default;
+        //[SerializeField] private LayerMask layerMask = default;
+        //[SerializeField] private Vector2 rayDirection = default;
 
         [Header("Info")]
         [SerializeField] private float slimeHp = default;
 
 
-        //private variables
-
-
         protected override void OnEnable()
         {
-
             base.OnEnable();
             Jump();
-            MonsterMovement();
-
             maxHp = slimeHp;
         }
 
         protected override void Update()
         {
             base.Update();
-
             anim.SetFloat("yPos", rb.velocity.y);
         }
 
@@ -54,11 +47,6 @@ namespace OTO.Charactor.Monster
         private void Movement()
         {
             rb.velocity = new Vector2(MonsterBehavior * moveSpeed, rb.velocity.y);
-        }
-
-        protected override int MonsterMovement()
-        {
-            return base.MonsterMovement();
         }
 
         private void Jump()
