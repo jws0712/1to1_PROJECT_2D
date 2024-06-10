@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fb2746a9059b7ec4784072b6d8f3c494
+guid: 48f1a8a364a82254bb0403c7cb19ade8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -46,8 +46,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0, y: -1}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ShopOpen_0
+      name: Car_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 184
-        height: 110
+        x: 9
+        y: 2
+        width: 118
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,113 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed7b9eef381646b4ea1a151379263302
-      internalID: -1724512140
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ShopOpen_1
-      rect:
-        serializedVersion: 2
-        x: 184
-        y: 0
-        width: 184
-        height: 110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 696526e0b5b9a3a4c851a9a6c7467f3d
-      internalID: -424287403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ShopOpen_2
-      rect:
-        serializedVersion: 2
-        x: 368
-        y: 0
-        width: 184
-        height: 110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 47f8540f56584d54da0999e6096f855d
-      internalID: 221105584
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ShopOpen_3
-      rect:
-        serializedVersion: 2
-        x: 552
-        y: 0
-        width: 184
-        height: 110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 08deb02b4dbfea94dad32e336e6af15f
-      internalID: 1490054835
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ShopOpen_4
-      rect:
-        serializedVersion: 2
-        x: 736
-        y: 0
-        width: 184
-        height: 110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 90f031eb721f05f4fac0613e479c5267
-      internalID: 1388455093
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ShopOpen_5
-      rect:
-        serializedVersion: 2
-        x: 920
-        y: 0
-        width: 184
-        height: 110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f6d776a12d7d33e48bcadb6f1ecf4766
-      internalID: 1953161760
+      spriteID: 7af4bb78c2871d14ead7b3a34bbf5213
+      internalID: 962472757
       vertices: []
       indices: 
       edges: []
@@ -233,12 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ShopOpen_0: -1724512140
-      ShopOpen_1: -424287403
-      ShopOpen_2: 221105584
-      ShopOpen_3: 1490054835
-      ShopOpen_4: 1388455093
-      ShopOpen_5: 1953161760
+      Car_0: 962472757
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

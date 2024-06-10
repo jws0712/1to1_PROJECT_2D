@@ -11,48 +11,102 @@ namespace OTO.Charactor.Monster
     public class Monster : Charactor
     {
         [SerializeField]
-        private Transform playerTransform;
-        [SerializeField]
-        private float agroRange;
+        private float chaseRange;
         [SerializeField]
         private float moveSpeed;
         [SerializeField]
         private GameObject expDiamond = null;
         [SerializeField]
         private GameObject coinDiamond = null;
+        [SerializeField]
+        private LayerMask target = default;
+        [SerializeField]
+        private float monsterSacle = default;
+
+
 
         //Protected variables
         protected Animator anim = null;
-        protected Rigidbody2D rb;
+        protected Rigidbody2D rb = null;
+
+        //Private variables
+        private Transform houseTransform = null;
+        private Transform playerTrasnform = null;
+        private bool isChasePlayer = false;
+        private const float stopDistance = 1;
 
 
         protected virtual void OnEnable()
         {
             Init();
+
+            houseTransform = GameObject.FindGameObjectWithTag("House").transform;
         }
         protected virtual void Update()
         {
-            float playerDistance = Vector2.Distance(transform.position, playerTransform.position);
+            CheckRange(chaseRange);
 
-            if (playerDistance < agroRange)
+            
+
+            if (isChasePlayer == true)
             {
-                if (playerDistance < 0.5f)
-                {
-                    StopPlayerChase();
-                    Debug.Log("╫╨е╬га");
-                }
-                else
-                {
-                    PlayerChase();
-                }
+                ChaseLogic(playerTrasnform);
             }
-
             else
             {
-                StopPlayerChase();
-                
+                ChaseLogic(houseTransform);
             }
         }
+
+        private void ChaseLogic(Transform chaseTransform)
+        {
+            float objectDistance = Mathf.Abs(chaseTransform.position.x - transform.position.x);
+
+            if (objectDistance < stopDistance)
+            {
+                StopChase();
+            }
+            else
+            {
+                Chase(chaseTransform);
+            }
+        }
+
+        private void CheckRange(float range)
+        {
+            Collider2D collider = Physics2D.OverlapCircle(transform.position, range, target);
+
+            if (collider != null)
+            {
+                playerTrasnform = collider.transform;
+                isChasePlayer = true;
+            }
+            else
+            {
+                isChasePlayer = false;
+            }
+
+        }
+
+        private void Chase(Transform chaseTransform)
+        {
+            if (transform.position.x < chaseTransform.position.x)
+            {
+                rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+                transform.localScale = new Vector2(-monsterSacle, monsterSacle);
+            }
+            else
+            {
+                rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+                transform.localScale = new Vector2(monsterSacle, monsterSacle);
+            }
+        }
+
+        private void StopChase()
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+
         private void Init()
         {
             anim = GetComponent<Animator>();
@@ -71,23 +125,10 @@ namespace OTO.Charactor.Monster
             base.TakeDamage(damage);
         }
 
-        private void PlayerChase()
+        private void OnDrawGizmos()
         {
-            if (transform.position.x < playerTransform.position.x)
-            {
-                rb.velocity = Vector2.right * moveSpeed;
-                transform.localScale = new Vector2(-0.8f, 0.8f);
-            }
-            else
-            {
-                rb.velocity = Vector2.left * moveSpeed;
-                transform.localScale = new Vector2(0.8f, 0.8f);
-            }
-        }
-
-        private void StopPlayerChase()
-        {
-            rb.velocity = Vector2.zero;
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, chaseRange);
         }
     }
 }

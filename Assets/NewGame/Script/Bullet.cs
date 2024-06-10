@@ -33,7 +33,7 @@ namespace OTO.Bullet
         // Update is called once per frame
         private void FixedUpdate()
         {
-            transform.Translate(Vector2.right * BulletSpeed * Time.deltaTime);
+            transform.Translate(Vector2.right * BulletSpeed * Time.fixedDeltaTime);
         }
 
         private void DestoryBullet()

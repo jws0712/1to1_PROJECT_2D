@@ -10,6 +10,9 @@ namespace OTO.Charactor.Player
     //UnityEngine
     using UnityEngine;
 
+    //Project
+    using OTO.Charactor.Monster;
+
     public class PlayerHp : Charactor
     {
         [Header("Flash")]
@@ -78,9 +81,9 @@ namespace OTO.Charactor.Player
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if(collision.gameObject.layer == LayerMask.NameToLayer("Monster"))
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Monster"))
             {
-                TakeDamage(1f);
+                TakeDamage(collision.gameObject.GetComponent<Monster>().damage);
             }
         }
     }

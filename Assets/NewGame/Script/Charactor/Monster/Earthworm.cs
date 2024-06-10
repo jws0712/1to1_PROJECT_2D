@@ -10,14 +10,9 @@ namespace OTO.Charactor.Monster
     public class Earthworm : Monster
     {
 
-        [Header("Info")]
-        [SerializeField] private float hp = default;
-
-
         protected override void OnEnable()
         {
             base.OnEnable();
-            maxHp = hp;
         }
 
         protected override void Update()
@@ -29,7 +24,6 @@ namespace OTO.Charactor.Monster
         {
             
         }
-
     }
 
 }
