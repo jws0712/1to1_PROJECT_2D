@@ -10,76 +10,84 @@ namespace OTO.Charactor.Monster
 
     public class Monster : Charactor
     {
+        [SerializeField]
+        private Transform playerTransform;
+        [SerializeField]
+        private float agroRange;
+        [SerializeField]
+        private float moveSpeed;
+        [SerializeField]
+        private GameObject expDiamond = null;
+        [SerializeField]
+        private GameObject coinDiamond = null;
+
         //Protected variables
-        protected int MonsterBehavior = default;
-        protected RaycastHit2D rayHit = default;
         protected Animator anim = null;
         protected Rigidbody2D rb;
-        protected GameObject expDiamond = null;
-        protected GameObject coinDiamond = null;
 
-        public float damage = default;
 
         protected virtual void OnEnable()
         {
             Init();
-            MonsterMovement();
         }
         protected virtual void Update()
         {
-            FlipX();
+            float playerDistance = Vector2.Distance(transform.position, playerTransform.position);
+
+            if (playerDistance < agroRange)
+            {
+                if (playerDistance < 0.5f)
+                {
+                    StopPlayerChase();
+                    Debug.Log("스탑프");
+                }
+                else
+                {
+                    PlayerChase();
+                }
+            }
+
+            else
+            {
+                StopPlayerChase();
+                
+            }
         }
-        /// <summary>
-        /// 컴포넌트를 초기화하는 함수
-        /// </summary>
         private void Init()
         {
             anim = GetComponent<Animator>();
             rb = GetComponent<Rigidbody2D>();
         }
-        /// <summary>
-        /// Behavior값을 return해주는 함수
-        /// </summary>
-        /// <returns></returns>
-        private int MonsterMovement()
-        {
-            StartCoroutine(Co_SelectMovement());
-            return MonsterBehavior;
-        }
-        private IEnumerator Co_SelectMovement()
-        {
-            MonsterBehavior = Random.Range(-1, 2);
-            yield return new WaitForSeconds(1.2f);
-            StartCoroutine(Co_SelectMovement());
-        }
-        private void FlipX()
-        {
-            if (MonsterBehavior == -1)
-            {
-                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            }
-            else if (MonsterBehavior == 1)
-            {
-                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            }
-        }        
-        /// <summary>
-        /// 대미지를 받을때 실행되는 함수
-        /// </summary>
-        /// <param name="damage"></param>
-        public override void TakeDamage(float damage)
-        {
-            base.TakeDamage(damage);
-        }
 
-        /// <summary>
-        /// 죽을때 실행되는 함수
-        /// </summary>
         protected override void Die()
         {
             base.Die();
 
             Destroy(gameObject);
+        }
+
+        public override void TakeDamage(float damage)
+        {
+            base.TakeDamage(damage);
+        }
+
+        private void PlayerChase()
+        {
+            if (transform.position.x < playerTransform.position.x)
+            {
+                rb.velocity = Vector2.right * moveSpeed;
+                transform.localScale = new Vector2(-0.8f, 0.8f);
+            }
+            else
+            {
+                rb.velocity = Vector2.left * moveSpeed;
+                transform.localScale = new Vector2(0.8f, 0.8f);
+            }
+        }
+
+        private void StopPlayerChase()
+        {
+            rb.velocity = Vector2.zero;
         }
     }
 }

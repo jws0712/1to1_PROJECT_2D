@@ -3,23 +3,21 @@ namespace OTO.Charactor.Monster
     //System
     using System.Collections;
     using System.Collections.Generic;
-    
 
     //UnityEngine
     using UnityEngine;
 
     public class Earthworm : Monster
     {
-        [Header("Move")]
-        [SerializeField] private float moveSpeed = default;
-        [SerializeField] private float rayDistance = default;
-        [SerializeField] private float rayPos = default;
-        //[SerializeField] private Vector2 rayDirection = default;
-        //[SerializeField] private LayerMask layerMask = default;
+
+        [Header("Info")]
+        [SerializeField] private float hp = default;
+
 
         protected override void OnEnable()
         {
             base.OnEnable();
+            maxHp = hp;
         }
 
         protected override void Update()
@@ -29,13 +27,9 @@ namespace OTO.Charactor.Monster
 
         private void FixedUpdate()
         {
-            Movement();
+            
         }
 
-        private void Movement()
-        {
-            rb.velocity = new Vector2(MonsterBehavior * moveSpeed, rb.velocity.y);
-        }
     }
 
 }

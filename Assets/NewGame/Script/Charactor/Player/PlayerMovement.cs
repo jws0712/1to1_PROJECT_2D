@@ -45,7 +45,6 @@ namespace OTO.Charactor.Player
         private LayerMask playerLayer = default;
         private Animator animator = null;
         private bool isGround = default;
-        private bool isHit = default;
 
         //public variables
         public Rigidbody2D rb;

@@ -17,6 +17,7 @@ namespace OTO.Charactor
         public bool isDead = default;
         public float maxHp = default;
         public float startHp = default;
+        public float damage = default;
 
         protected new SpriteRenderer renderer = null;
         protected Material originMaterial = null;
