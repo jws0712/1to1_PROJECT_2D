@@ -18,8 +18,7 @@ namespace OTO.Charactor.Player
         [Header("GetHitFlash")]
         [SerializeField] private float playerFlashNumber = default;
         [SerializeField] private float duration = default;
-        [SerializeField] private LayerMask monsterLayer = default;
-        [SerializeField] private LayerMask playerLayer = default;
+
 
         [Header("CameraShake")]
         [SerializeField] private float shakePower = default;
@@ -27,6 +26,8 @@ namespace OTO.Charactor.Player
         //Private variables
         private GameObject gunObject = null;
         private SpriteRenderer gunRenderer = null;
+        private LayerMask monsterLayer = default;
+        private LayerMask playerLayer = default;
 
         public override void TakeDamage(float damage)
         {
@@ -46,6 +47,9 @@ namespace OTO.Charactor.Player
 
         private IEnumerator PlayerSpriteFlash(float number)
         {
+            monsterLayer = LayerMask.NameToLayer("Monster");
+            playerLayer = LayerMask.NameToLayer("Player");
+
             Color _playerAlhpa = renderer.color;
 
             for(int i = 0; i < number; i++)

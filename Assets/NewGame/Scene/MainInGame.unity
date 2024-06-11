@@ -13373,6 +13373,7 @@ GameObject:
   - component: {fileID: 734675145}
   - component: {fileID: 734675152}
   - component: {fileID: 734675142}
+  - component: {fileID: 734675153}
   - component: {fileID: 734675150}
   - component: {fileID: 734675141}
   - component: {fileID: 734675146}
@@ -13398,7 +13399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpPower: 7
+  jumpPower: 1
   groundCheckPos: {fileID: 998602350}
   groundLayer:
     serializedVersion: 2
@@ -13407,12 +13408,8 @@ MonoBehaviour:
   dashingTime: 0.15
   dashingTimeCoolTime: 0.15
   shotScript: {fileID: 734675146}
-  playerHp: {fileID: 0}
   playerGhost: {fileID: 734675149}
-  rb: {fileID: 0}
-  horizontal: 0
   isDash: 0
-  isFilp: 1
 --- !u!50 &734675142
 Rigidbody2D:
   serializedVersion: 4
@@ -13497,8 +13494,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: fc5839795288f184c9b4a7f35534f809, type: 2}
   isDead: 0
-  currentHp: 0
-  maxHp: 0
   playerFlashNumber: 4
   duration: 0.1
   shakePower: 8
@@ -13591,6 +13586,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &734675153
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734675140}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.27}
+  m_Size: {x: 0.85, y: 1.95}
+  m_Direction: 0
 --- !u!1 &773174474
 GameObject:
   m_ObjectHideFlags: 3
@@ -13942,7 +13972,7 @@ Transform:
   m_GameObject: {fileID: 998602349}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.069, y: -1.201, z: 0}
+  m_LocalPosition: {x: 0, y: -1.201, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14583,19 +14613,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: fc5839795288f184c9b4a7f35534f809, type: 2}
   isDead: 0
-  currentHp: 0
-  maxHp: 0
-  chaseRange: 10
   moveSpeed: 5
+  chaseRange: 10
+  attackRange: 0
+  attackCoolTime: 0
+  monsterSacle: 1
+  chaseTarget:
+    serializedVersion: 2
+    m_Bits: 0
+  bulletDamage: 0
+  bodyDamage: 0
   expDiamond: {fileID: 0}
   coinDiamond: {fileID: 0}
-  target:
-    serializedVersion: 2
-    m_Bits: 256
-  monsterSacle: 1
-  bulletDamage: 0
-  isChasePlayer: 0
-  isChaseShop: 0
 --- !u!58 &1307294355
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -15768,7 +15797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1826429968818477614
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16049,29 +16078,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: fc5839795288f184c9b4a7f35534f809, type: 2}
   isDead: 0
-  currentHp: 0
-  maxHp: 0
+  moveSpeed: 3
   chaseRange: 5
-  moveSpeed: 5
-  expDiamond: {fileID: 0}
-  coinDiamond: {fileID: 0}
-  target:
+  attackRange: 3.43
+  attackCoolTime: 1.5
+  monsterSacle: 0.8
+  chaseTarget:
     serializedVersion: 2
     m_Bits: 256
-  monsterSacle: 0.8
   bulletDamage: 0
-  isChasePlayer: 0
-  isChaseShop: 0
-  attackDistance: 2.5
-  attackCoolTime: 1.5
+  bodyDamage: 1
+  expDiamond: {fileID: 0}
+  coinDiamond: {fileID: 0}
   jumpPower: 5
   gorundLayer:
     serializedVersion: 2
     m_Bits: 64
   groundCheckPos: {fileID: 1506019325}
-  damage: 1
-  isAttack: 0
-  currentCoolTime: 0
 --- !u!4 &8858423654995429597
 Transform:
   m_ObjectHideFlags: 0
@@ -16137,24 +16160,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: fc5839795288f184c9b4a7f35534f809, type: 2}
   isDead: 0
-  currentHp: 0
-  maxHp: 0
-  chaseRange: 10
   moveSpeed: 2
+  chaseRange: 10
+  attackRange: 0
+  attackCoolTime: 2
+  monsterSacle: 1
+  chaseTarget:
+    serializedVersion: 2
+    m_Bits: 0
+  bulletDamage: 1
+  bodyDamage: 0
   expDiamond: {fileID: 0}
   coinDiamond: {fileID: 0}
-  target:
-    serializedVersion: 2
-    m_Bits: 256
-  monsterSacle: 1
-  bulletDamage: 1
-  isChasePlayer: 0
-  isChaseShop: 0
-  attackCoolTime: 2
   bulletObject: {fileID: 6183457796777578699, guid: 4d47ac50ee78b284c946c3db9b0337be, type: 3}
   firePos: {fileID: 1610822549}
-  attackDistance: 10
-  currentCoolTime: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

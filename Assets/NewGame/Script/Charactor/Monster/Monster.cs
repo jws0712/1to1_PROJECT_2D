@@ -41,7 +41,7 @@ namespace OTO.Charactor.Monster
         protected float currentCoolTime = default;
 
         //Private variables
-        private const float stopDistance = 1;
+        private const float stopDistance = 0.5f;
 
 
         protected virtual void OnEnable()
