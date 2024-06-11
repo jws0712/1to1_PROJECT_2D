@@ -14,13 +14,16 @@ namespace OTO.Charactor.Player
 
         [Header("Camera")]
         [SerializeField] private Camera MainCamera = default;
+
         [Header("Positions")]
         public Transform HandPos;
         [SerializeField] private Transform FirePos = default;
         [SerializeField] private Transform SpinPos = default;
+
         [Header("Bullet")]
         [SerializeField] private GameObject Bullet = default;
-        public float damage = default;
+        public float bulletDamage = default;
+
         [Header("CoolTime")]
         [SerializeField] private float coolTime = default;
         [Header("Bullet Spread")]

@@ -13,15 +13,13 @@ namespace OTO.Charactor.Monster
 
     public class Slime : Monster
     {
-        [SerializeField]
-        private float attackDistance = default;
-        [SerializeField]
-        private float attackCoolTime = default;
+        [Header("SlimeJump")]
         [SerializeField]
         private float jumpPower = default;
-
-        public bool isAttack = false;
-        public float currentCoolTime = default;
+        [SerializeField]
+        private LayerMask gorundLayer = default;
+        [SerializeField]
+        private Transform groundCheckPos = default;
 
 
         
@@ -35,48 +33,34 @@ namespace OTO.Charactor.Monster
         protected override void Update()
         {
             base.Update();
-            CheackAttackDistance();
         }
-
-        private void CheackAttackDistance()
+        protected override void Attack()
         {
-
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackDistance);
-
-            foreach (Collider2D collider in colliders)
+            base.Attack();
+            if (isAttack == true)
             {
-                if (collider.CompareTag("Shop") || collider.CompareTag("Player"))
+                Debug.Log("공격실행");
+                if (CheckGround() == true)
                 {
-                    isAttack = true;
-                    Debug.Log("감지!");
-                    Attack();
+                    rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
                 }
-            }
-        }
-        private void Attack()
-        {
-            currentCoolTime += Time.deltaTime;
-            if(currentCoolTime >= attackCoolTime)
-            {
-                rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-                Debug.Log("점프!");
+                isAttack = false;
                 currentCoolTime = 0;
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private bool CheckGround()
         {
-            if(collision.CompareTag("Shop") && isAttack == true)
-            {
-                collision.gameObject.GetComponent<Shop>().TakeDamage(damage);
-                Debug.Log("건물 공격!");
-            }
+            return Physics2D.OverlapCircle(groundCheckPos.position, 0.1f, gorundLayer);
         }
 
-        private void OnDrawGizmos()
+        private void OnTriggerStay2D(Collider2D collision)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, attackDistance);
+            if(collision.CompareTag("House") && isAttack == true)
+            {
+                collision.gameObject.GetComponent<Shop>().TakeDamage(bodyDamage);
+                isAttack = false;
+            }
         }
     }
 }

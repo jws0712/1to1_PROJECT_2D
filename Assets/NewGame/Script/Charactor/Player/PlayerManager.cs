@@ -13,20 +13,20 @@ namespace OTO.Charactor.Player
     //Project
     using OTO.Charactor.Monster;
 
-    public class PlayerHp : Charactor
+    public class PlayerManager : Charactor
     {
-        [Header("Flash")]
+        [Header("GetHitFlash")]
         [SerializeField] private float playerFlashNumber = default;
         [SerializeField] private float duration = default;
+        [SerializeField] private LayerMask monsterLayer = default;
+        [SerializeField] private LayerMask playerLayer = default;
 
         [Header("CameraShake")]
         [SerializeField] private float shakePower = default;
 
+        //Private variables
         private GameObject gunObject = null;
         private SpriteRenderer gunRenderer = null;
-        private LayerMask monsterLayer = default;
-        private LayerMask playerLayer = default;
-
 
         public override void TakeDamage(float damage)
         {
@@ -35,9 +35,6 @@ namespace OTO.Charactor.Player
             StartCoroutine(Co_CameraShake(shakePower));
 
             gunObject = GameObject.FindWithTag("Gun");
-
-            monsterLayer = LayerMask.NameToLayer("Monster");
-            playerLayer = LayerMask.NameToLayer("Player");
 
             if (gunObject != null)
             {
@@ -77,14 +74,6 @@ namespace OTO.Charactor.Player
         protected override void Die()
         {
             base.Die();
-        }
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Monster"))
-            {
-                TakeDamage(collision.gameObject.GetComponent<Monster>().damage);
-            }
         }
     }
 }

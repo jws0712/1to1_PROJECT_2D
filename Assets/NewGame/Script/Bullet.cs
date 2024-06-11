@@ -23,14 +23,11 @@ namespace OTO.Bullet
         [SerializeField] private float BulletSpeed = default;
         [SerializeField] private float BulletDestroyTime = default;
 
-        //private variables
-
         void Start()
         {
             Invoke("DestoryBullet", BulletDestroyTime);
         }
 
-        // Update is called once per frame
         private void FixedUpdate()
         {
             transform.Translate(Vector2.right * BulletSpeed * Time.fixedDeltaTime);
@@ -43,17 +40,31 @@ namespace OTO.Bullet
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("Wall") || collision.CompareTag("Monster"))
+            if (collision.CompareTag("Wall") || collision.CompareTag("Monster") || collision.CompareTag("Player"))
             {
                 DestoryBullet();
             }
+
+            if(gameObject.layer == LayerMask.NameToLayer("MonsterBullet"))
+            {
+                if (collision.CompareTag("House"))
+                {
+                    DestoryBullet();
+                }
+            }
+
+
             if (collision.CompareTag("Monster"))
             {
-                collision.GetComponent<Monster>().TakeDamage(1f);
+                collision.GetComponent<Monster>().TakeDamage(1f); //플레이어
             }
             if (collision.CompareTag("Player"))
             {
-                collision.GetComponent<PlayerHp>().TakeDamage(1f);
+                collision.GetComponent<PlayerManager>().TakeDamage(1f); //몬스터
+            }
+            if (collision.CompareTag("House"))
+            {
+                collision.GetComponent<Shop>().TakeDamage(1f); //몬스터
             }
         }
     }

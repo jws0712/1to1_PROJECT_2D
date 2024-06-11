@@ -14,13 +14,14 @@ namespace OTO.Charactor
         [Header("Material")]
         [SerializeField] protected Material flashMaterial = null;
 
+        [Header("CharactorInfo")]
         public bool isDead = default;
-        public float maxHp = default;
-        public float startHp = default;
-        public float damage = default;
+
 
         protected new SpriteRenderer renderer = null;
         protected Material originMaterial = null;
+        protected float currentHp = default;
+        protected float maxHp = default;
 
         private const float duration = 0.05f;
 
@@ -28,17 +29,15 @@ namespace OTO.Charactor
         {
             renderer = GetComponent<SpriteRenderer>();
             originMaterial = renderer.material;
-            maxHp = startHp;
         }
 
-        //데미지를 받았을때 처리할 매서드
         public virtual void TakeDamage(float damage)
         {
-            maxHp -= damage;
+            currentHp -= damage;
 
             SpriteFlash();
 
-            if ((!isDead && maxHp <= 0))
+            if ((!isDead && currentHp <= 0))
             {
                 Die();
             }

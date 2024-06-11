@@ -7,7 +7,7 @@ public class Shop : MonoBehaviour
     [SerializeField]
     private float maxHp = default;
 
-    private float currentHp = default;
+    public float currentHp = default;
 
     private void Start()
     {

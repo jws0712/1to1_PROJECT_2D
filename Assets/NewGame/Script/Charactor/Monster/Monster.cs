@@ -1,5 +1,6 @@
 namespace OTO.Charactor.Monster
 {
+    using OTO.Charactor.Player;
     //System
     using System.Collections;
     using System.Collections.Generic;
@@ -10,51 +11,85 @@ namespace OTO.Charactor.Monster
 
     public class Monster : Charactor
     {
-        [SerializeField]
-        private float chaseRange;
-        [SerializeField]
-        private float moveSpeed;
-        [SerializeField]
-        private GameObject expDiamond = null;
-        [SerializeField]
-        private GameObject coinDiamond = null;
-        [SerializeField]
-        private LayerMask target = default;
-        [SerializeField]
-        private float monsterSacle = default;
+        [Header("MonsterInfo")]
+        [SerializeField] private float moveSpeed = default;
+        [SerializeField] private float chaseRange = default;
+        [SerializeField] private float attackRange = default;
+        [SerializeField] private float attackCoolTime = default;
+        [SerializeField] private float monsterSacle = default;
+        [SerializeField] private LayerMask chaseTarget = default;
+
+
+        [Header("Damage")]
+        [SerializeField] public float bulletDamage = default;
+        [SerializeField] public float bodyDamage = default;
+
+        [Header("DropItem")]
+        [SerializeField] private GameObject expDiamond = null;
+        [SerializeField] private GameObject coinDiamond = null;
 
 
 
         //Protected variables
         protected Animator anim = null;
         protected Rigidbody2D rb = null;
+        protected Transform playerTrasnform = null;
+        protected Transform houseTransform = null;
+        protected bool isChasePlayer = false;
+        //protected bool isChaseShop = false;
+        protected bool isAttack = default;
+        protected float currentCoolTime = default;
 
         //Private variables
-        private Transform houseTransform = null;
-        private Transform playerTrasnform = null;
-        private bool isChasePlayer = false;
         private const float stopDistance = 1;
 
 
         protected virtual void OnEnable()
         {
             Init();
-
             houseTransform = GameObject.FindGameObjectWithTag("House").transform;
+            currentCoolTime = 0f;
+
+
         }
         protected virtual void Update()
         {
             CheckRange(chaseRange);
-
-            
+            CheackAttackDistance();
 
             if (isChasePlayer == true)
             {
+                //isChaseShop = false;
                 ChaseLogic(playerTrasnform);
             }
             else
             {
+                //isChaseShop = true;
                 ChaseLogic(houseTransform);
+            }
+        }
+
+        private void CheackAttackDistance()
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
+
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("House") || collider.CompareTag("Player"))
+                {
+                    Attack();
+                }
+            }
+        }
+
+        protected virtual void Attack()
+        {
+            currentCoolTime += Time.deltaTime;
+            Debug.Log("쿨타임시작!");
+
+            if (currentCoolTime >= attackCoolTime)
+            {
+                isAttack = true;
             }
         }
 
@@ -74,7 +109,7 @@ namespace OTO.Charactor.Monster
 
         private void CheckRange(float range)
         {
-            Collider2D collider = Physics2D.OverlapCircle(transform.position, range, target);
+            Collider2D collider = Physics2D.OverlapCircle(transform.position, range, chaseTarget);
 
             if (collider != null)
             {
@@ -85,7 +120,6 @@ namespace OTO.Charactor.Monster
             {
                 isChasePlayer = false;
             }
-
         }
 
         private void Chase(Transform chaseTransform)
@@ -129,6 +163,18 @@ namespace OTO.Charactor.Monster
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, chaseRange);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackRange);
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                collision.gameObject.GetComponent<PlayerManager>().TakeDamage(bodyDamage);
+                Debug.Log("실행");
+            }
         }
     }
 }
