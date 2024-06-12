@@ -13399,12 +13399,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpPower: 1
+  jumpPower: 10
   groundCheckPos: {fileID: 998602350}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  dashPower: 2
+  dashPower: 15
   dashingTime: 0.15
   dashingTimeCoolTime: 0.15
   shotScript: {fileID: 734675146}

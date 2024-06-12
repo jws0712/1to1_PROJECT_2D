@@ -21,6 +21,8 @@ namespace OTO.Charactor.Player
         [SerializeField] private float jumpPower;
         [SerializeField] private Transform groundCheckPos;
         [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private float oringGravitySacle = default;
+        [SerializeField] private float fallGravitySacle = default;
 
         [Header("Dash")]
         [SerializeField] private float dashPower;
@@ -86,19 +88,28 @@ namespace OTO.Charactor.Player
         private void PlayerInput()
         {
             horizontal = Input.GetAxisRaw("Horizontal");
-
-            dir = new Vector2(horizontal, rb.velocity.y);
         }
         private void PlayerMove()
         {
-            rb.velocity = dir * moveSpeed;
+            rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
         }
 
         private void PlayerJump()
         {
+            if (rb.velocity.y < 0)
+            {
+                rb.gravityScale = fallGravitySacle;
+            }
+            else
+            {
+                rb.gravityScale = oringGravitySacle;
+            }
+
             if (Input.GetButtonDown("Jump") && CheckGround() == true && !isDash)
             {
                 rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+
+
             }
         }
 
