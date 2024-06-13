@@ -36,12 +36,12 @@ namespace OTO.Charactor.Monster
         protected Transform playerTrasnform = null;
         protected Transform houseTransform = null;
         protected bool isChasePlayer = false;
-        //protected bool isChaseShop = false;
-        protected bool isAttack = default;
+        protected bool isAttack = false;
         protected float currentCoolTime = default;
 
         //Private variables
         private const float stopDistance = 0.5f;
+        private bool isCooltiming = false;
 
 
         protected virtual void OnEnable()
@@ -59,12 +59,10 @@ namespace OTO.Charactor.Monster
 
             if (isChasePlayer == true)
             {
-                //isChaseShop = false;
                 ChaseLogic(playerTrasnform);
             }
             else
             {
-                //isChaseShop = true;
                 ChaseLogic(houseTransform);
             }
         }
@@ -75,7 +73,11 @@ namespace OTO.Charactor.Monster
 
             foreach (Collider2D collider in colliders)
             {
-                if (collider.CompareTag("House") || collider.CompareTag("Player"))
+                if (collider.CompareTag("Player") && isChasePlayer == true)
+                {
+                    Attack();
+                }
+                else if(collider.CompareTag("House") && isChasePlayer == false)
                 {
                     Attack();
                 }
@@ -85,7 +87,6 @@ namespace OTO.Charactor.Monster
         protected virtual void Attack()
         {
             currentCoolTime += Time.deltaTime;
-            Debug.Log("ÄðÅ¸ÀÓ½ÃÀÛ!");
 
             if (currentCoolTime >= attackCoolTime)
             {
@@ -150,6 +151,15 @@ namespace OTO.Charactor.Monster
         protected override void Die()
         {
             base.Die();
+
+            GameObject exp = Instantiate(expDiamond, transform.position, Quaternion.identity);
+
+            exp.GetComponent<Rigidbody2D>().AddForce(Vector2.one * 2f, ForceMode2D.Impulse);
+
+            GameObject coin = Instantiate(coinDiamond, transform.position, Quaternion.identity);
+
+            coin.GetComponent<Rigidbody2D>().AddForce(Vector2.one * -2f, ForceMode2D.Impulse);
+
 
             Destroy(gameObject);
         }

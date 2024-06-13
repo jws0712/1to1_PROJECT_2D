@@ -13404,6 +13404,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  oringGravitySacle: 2
+  fallGravitySacle: 2.5
   dashPower: 15
   dashingTime: 0.15
   dashingTimeCoolTime: 0.15
@@ -15797,7 +15799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1826429968818477614
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15954,8 +15956,8 @@ GameObject:
   - component: {fileID: 8858423654995429597}
   - component: {fileID: 1826429968818477614}
   - component: {fileID: 7963041856886011312}
-  - component: {fileID: 4949827803642664338}
   - component: {fileID: 8858423654995429598}
+  - component: {fileID: 4949827803642664338}
   - component: {fileID: 8386659075031782509}
   m_Layer: 7
   m_Name: Slime
@@ -15963,7 +15965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &7672526940349440815
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16088,8 +16090,8 @@ MonoBehaviour:
     m_Bits: 256
   bulletDamage: 0
   bodyDamage: 1
-  expDiamond: {fileID: 0}
-  coinDiamond: {fileID: 0}
+  expDiamond: {fileID: 8359279979153482042, guid: 6478ba801994a5c468f9eda4b55f30d9, type: 3}
+  coinDiamond: {fileID: 4255152517591710561, guid: ca0c85f5d8dff554badff21bd0f8be1a, type: 3}
   jumpPower: 5
   gorundLayer:
     serializedVersion: 2
@@ -16162,18 +16164,21 @@ MonoBehaviour:
   isDead: 0
   moveSpeed: 2
   chaseRange: 10
-  attackRange: 0
-  attackCoolTime: 2
+  attackRange: 7.73
+  attackCoolTime: 1.5
   monsterSacle: 1
   chaseTarget:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   bulletDamage: 1
   bodyDamage: 0
   expDiamond: {fileID: 0}
   coinDiamond: {fileID: 0}
   bulletObject: {fileID: 6183457796777578699, guid: 4d47ac50ee78b284c946c3db9b0337be, type: 3}
   firePos: {fileID: 1610822549}
+  bulletNumber: 3
+  bulletSpeadAngle: 30
+  startBulletSpreadAngle: 30
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

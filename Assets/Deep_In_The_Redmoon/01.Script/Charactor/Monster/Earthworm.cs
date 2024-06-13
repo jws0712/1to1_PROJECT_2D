@@ -14,7 +14,12 @@ namespace OTO.Charactor.Monster
         private GameObject bulletObject = null;
         [SerializeField]
         private Transform firePos = null;
-
+        [SerializeField]
+        private int bulletNumber = default;
+        [SerializeField]
+        private int bulletSpeadAngle = default;
+        [SerializeField]
+        private int startBulletSpreadAngle = default;
 
 
         private float rotZ = default;
@@ -43,8 +48,17 @@ namespace OTO.Charactor.Monster
             base.Attack();
             if (isAttack == true)
             {
-                Quaternion bulletAngle = Quaternion.Euler(0, 0, rotZ);
-                Instantiate(bulletObject, firePos.position, bulletAngle);
+                float bulletSpread = rotZ + startBulletSpreadAngle;
+                for(int i = 0; i < bulletNumber; i++)
+                {
+                    Quaternion bulletAngle = Quaternion.Euler(0, 0, bulletSpread);
+                    Instantiate(bulletObject, firePos.position, bulletAngle);
+                    bulletSpread -= bulletSpeadAngle;
+
+                }
+                bulletSpread = rotZ + startBulletSpreadAngle * 2;
+                
+
                 isAttack = false;
                 currentCoolTime = 0;
             }
