@@ -45,7 +45,7 @@ namespace OTO.Bullet
                 DestoryBullet();
             }
 
-            if(gameObject.layer == LayerMask.NameToLayer("MonsterBullet"))
+            if(gameObject.layer == LayerMask.NameToLayer("Monster"))
             {
                 if (collision.CompareTag("House"))
                 {

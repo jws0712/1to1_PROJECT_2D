@@ -48,7 +48,6 @@ namespace OTO.Charactor.Monster
                 }
                 bulletSpread = transform.rotation.z + startBulletSpreadAngle * 2;
 
-
                 isAttack = false;
                 currentCoolTime = 0;
             }

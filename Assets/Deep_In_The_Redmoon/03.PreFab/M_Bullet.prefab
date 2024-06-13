@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8141983909492588454}
   - component: {fileID: 2002990693474266747}
   - component: {fileID: 7283576429301631079}
-  m_Layer: 11
+  m_Layer: 7
   m_Name: M_Bullet
-  m_TagString: Monster
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,5 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a070267fa7325499b95dd4c2b4be31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpeed: 30
+  BulletSpeed: 15
   BulletDestroyTime: 2
