@@ -14512,7 +14512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1307294351
 Animator:
   serializedVersion: 5
@@ -14617,16 +14617,21 @@ MonoBehaviour:
   isDead: 0
   moveSpeed: 5
   chaseRange: 10
-  attackRange: 0
-  attackCoolTime: 0
+  attackRange: 8.77
+  stopDistance: 3
+  attackCoolTime: 2
   monsterSacle: 1
   chaseTarget:
     serializedVersion: 2
-    m_Bits: 0
-  bulletDamage: 0
-  bodyDamage: 0
-  expDiamond: {fileID: 0}
-  coinDiamond: {fileID: 0}
+    m_Bits: 256
+  bulletDamage: 1
+  bodyDamage: 1
+  expDiamond: {fileID: 4255152517591710561, guid: ca0c85f5d8dff554badff21bd0f8be1a, type: 3}
+  coinDiamond: {fileID: 8359279979153482042, guid: 6478ba801994a5c468f9eda4b55f30d9, type: 3}
+  bulletObject: {fileID: 6183457796777578699, guid: 4d47ac50ee78b284c946c3db9b0337be, type: 3}
+  bulletNumber: 12
+  bulletSpeadAngle: 30
+  startBulletSpreadAngle: 30
 --- !u!58 &1307294355
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -15799,7 +15804,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1826429968818477614
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16083,6 +16088,7 @@ MonoBehaviour:
   moveSpeed: 3
   chaseRange: 5
   attackRange: 3.43
+  stopDistance: 0.5
   attackCoolTime: 1.5
   monsterSacle: 0.8
   chaseTarget:
@@ -16165,6 +16171,7 @@ MonoBehaviour:
   moveSpeed: 2
   chaseRange: 10
   attackRange: 7.73
+  stopDistance: 0.5
   attackCoolTime: 1.5
   monsterSacle: 1
   chaseTarget:
@@ -16172,8 +16179,8 @@ MonoBehaviour:
     m_Bits: 256
   bulletDamage: 1
   bodyDamage: 0
-  expDiamond: {fileID: 0}
-  coinDiamond: {fileID: 0}
+  expDiamond: {fileID: 4255152517591710561, guid: ca0c85f5d8dff554badff21bd0f8be1a, type: 3}
+  coinDiamond: {fileID: 8359279979153482042, guid: 6478ba801994a5c468f9eda4b55f30d9, type: 3}
   bulletObject: {fileID: 6183457796777578699, guid: 4d47ac50ee78b284c946c3db9b0337be, type: 3}
   firePos: {fileID: 1610822549}
   bulletNumber: 3

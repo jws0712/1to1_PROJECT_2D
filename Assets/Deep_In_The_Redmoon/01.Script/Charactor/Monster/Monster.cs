@@ -15,6 +15,7 @@ namespace OTO.Charactor.Monster
         [SerializeField] private float moveSpeed = default;
         [SerializeField] private float chaseRange = default;
         [SerializeField] private float attackRange = default;
+        [SerializeField] private float stopDistance = default;
         [SerializeField] private float attackCoolTime = default;
         [SerializeField] private float monsterSacle = default;
         [SerializeField] private LayerMask chaseTarget = default;
@@ -40,8 +41,6 @@ namespace OTO.Charactor.Monster
         protected float currentCoolTime = default;
 
         //Private variables
-        private const float stopDistance = 0.5f;
-        private bool isCooltiming = false;
 
 
         protected virtual void OnEnable()
@@ -152,16 +151,20 @@ namespace OTO.Charactor.Monster
         {
             base.Die();
 
-            GameObject exp = Instantiate(expDiamond, transform.position, Quaternion.identity);
+            DropItem(expDiamond, coinDiamond);
+
+            Destroy(gameObject);
+        }
+
+        private void DropItem(params GameObject[] dropItem)
+        {
+            GameObject exp = Instantiate(dropItem[0], transform.position, Quaternion.identity);
 
             exp.GetComponent<Rigidbody2D>().AddForce(Vector2.one * 2f, ForceMode2D.Impulse);
 
-            GameObject coin = Instantiate(coinDiamond, transform.position, Quaternion.identity);
+            GameObject coin = Instantiate(dropItem[1], transform.position, Quaternion.identity);
 
             coin.GetComponent<Rigidbody2D>().AddForce(Vector2.one * -2f, ForceMode2D.Impulse);
-
-
-            Destroy(gameObject);
         }
 
         public override void TakeDamage(float damage)
