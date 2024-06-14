@@ -71,8 +71,6 @@ namespace OTO.Charactor.Player
             Filp();
             Dash();
             PlayerAnimation();
-
-            Debug.Log(CheckGround());
         }
 
         private void FixedUpdate()
