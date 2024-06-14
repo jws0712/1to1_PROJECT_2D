@@ -1,6 +1,5 @@
 namespace OTO.Charactor.Monster
 {
-    using OTO.Charactor.Player;
     //System
     using System.Collections;
     using System.Collections.Generic;
@@ -8,6 +7,10 @@ namespace OTO.Charactor.Monster
 
     //UnityEngine
     using UnityEngine;
+
+    //Project
+    using OTO.Charactor.Player;
+    using OTO.Manager;
 
     public class Monster : Charactor
     {
@@ -150,6 +153,8 @@ namespace OTO.Charactor.Monster
         protected override void Die()
         {
             base.Die();
+
+            GameManager.instance.fieldMonsterCount -= 1;
 
             DropItem(expDiamond, coinDiamond);
 
