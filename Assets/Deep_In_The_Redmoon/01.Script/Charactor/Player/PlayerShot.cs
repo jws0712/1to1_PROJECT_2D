@@ -9,6 +9,9 @@ namespace OTO.Charactor.Player
     using UnityEngine;
     using UnityEngine.XR;
 
+    //Project
+    using OTO.Bullet;
+
     public class PlayerShot : MonoBehaviour
     {
 
@@ -22,7 +25,7 @@ namespace OTO.Charactor.Player
 
         [Header("Bullet")]
         [SerializeField] private GameObject Bullet = default;
-        public float bulletDamage = default;
+        [SerializeField] private float bulletDamage = default;
 
         [Header("CoolTime")]
         [SerializeField] private float coolTime = default;
@@ -42,14 +45,14 @@ namespace OTO.Charactor.Player
 
         private void Start()
         {
-            HandPos = GameObject.FindWithTag("HandPos").transform;
-            FirePos = GameObject.FindWithTag("FirePos").transform;
-            SpinPos = GameObject.FindWithTag("SpinPos").transform;
-
             isShot = false;
         }
         private void Update()
         {
+            HandPos = GameObject.FindWithTag("HandPos").transform;
+            FirePos = GameObject.FindWithTag("FirePos").transform;
+            SpinPos = GameObject.FindWithTag("SpinPos").transform;
+
             Spin();
             Shoot();
         }
@@ -81,7 +84,8 @@ namespace OTO.Charactor.Player
         {
             float SpreadAngle = RotZ + Random.Range(minSpreadAngle, maxSpreadAngle);
             bulletAngle = Quaternion.Euler(0, 0, SpreadAngle);
-            Instantiate(Bullet, FirePos.transform.position, bulletAngle);
+            GameObject _bullet = Instantiate(Bullet, FirePos.transform.position, bulletAngle);
+            _bullet.GetComponent<Bullet>().bulletDamage = bulletDamage;
             StartCoroutine(Co_CameraShake(shakePower));
             isShot = true;
             yield return new WaitForSeconds(coolTime);

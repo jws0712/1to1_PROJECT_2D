@@ -11,6 +11,9 @@ namespace OTO.Charactor.Monster
     //UnityEngine
     using UnityEngine;
 
+    //Project
+    using OTO.Bullet;
+
     public class Slime : Monster
     {
         [Header("SlimeJump")]

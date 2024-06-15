@@ -25,6 +25,7 @@ namespace OTO.Charactor.Player
 
         //Private variables
         private GameObject gunObject = null;
+        private GameObject handPos = null;
         private SpriteRenderer gunRenderer = null;
         private LayerMask monsterLayer = default;
         private LayerMask playerLayer = default;
@@ -35,7 +36,10 @@ namespace OTO.Charactor.Player
 
             StartCoroutine(Co_CameraShake(shakePower));
 
-            gunObject = GameObject.FindWithTag("Gun");
+            handPos = GameObject.FindWithTag("HandPos");
+
+            gunObject = handPos.transform.GetChild(0).gameObject;
+            
 
             if (gunObject != null)
             {

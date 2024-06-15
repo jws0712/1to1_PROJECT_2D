@@ -23,6 +23,8 @@ namespace OTO.Bullet
         [SerializeField] private float BulletSpeed = default;
         [SerializeField] private float BulletDestroyTime = default;
 
+        public float bulletDamage = default;
+
         void Start()
         {
             Invoke("DestoryBullet", BulletDestroyTime);
@@ -56,15 +58,16 @@ namespace OTO.Bullet
 
             if (collision.CompareTag("Monster"))
             {
-                collision.GetComponent<Monster>().TakeDamage(1f); //플레이어
+                collision.GetComponent<Monster>().TakeDamage(bulletDamage); //플레이어
             }
             if (collision.CompareTag("Player"))
             {
-                collision.GetComponent<PlayerManager>().TakeDamage(1f); //몬스터
+                collision.GetComponent<PlayerManager>().TakeDamage(bulletDamage); //몬스터
             }
             if (collision.CompareTag("House"))
             {
-                collision.GetComponent<Shop>().TakeDamage(1f); //몬스터
+                collision.GetComponent<Shop>().TakeDamage(bulletDamage); //몬스터
+
             }
         }
     }

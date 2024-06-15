@@ -41,6 +41,7 @@ namespace OTO.Charactor.Player
         private Vector2 dir;
         private LayerMask monsterLayer = default;
         private LayerMask playerLayer = default;
+        private GameObject handPos = default;
         private GameObject GunObject;
         private Animator animator = null;
         private Rigidbody2D rb;
@@ -59,7 +60,7 @@ namespace OTO.Charactor.Player
 
         private void Start()
         {
-            GunObject = GameObject.FindGameObjectWithTag("Gun");
+
             monsterLayer = LayerMask.NameToLayer("Monster");
             playerLayer = LayerMask.NameToLayer("Player");
         }
@@ -71,6 +72,10 @@ namespace OTO.Charactor.Player
             Filp();
             Dash();
             PlayerAnimation();
+
+            handPos = GameObject.FindGameObjectWithTag("HandPos");
+
+            GunObject = handPos.transform.GetChild(0).gameObject;
         }
 
         private void FixedUpdate()

@@ -7,6 +7,9 @@ namespace OTO.Charactor.Monster
     //UnityEngine
     using UnityEngine;
 
+    //Project
+    using OTO.Bullet;
+
     public class Earthworm : Monster
     {
         [Header("BulletInfo")]
@@ -52,7 +55,8 @@ namespace OTO.Charactor.Monster
                 for(int i = 0; i < bulletNumber; i++)
                 {
                     Quaternion bulletAngle = Quaternion.Euler(0, 0, bulletSpread);
-                    Instantiate(bulletObject, firePos.position, bulletAngle);
+                    GameObject _bullet = Instantiate(bulletObject, firePos.position, bulletAngle);
+                    _bullet.GetComponent<Bullet>().bulletDamage = bulletDamage;
                     bulletSpread -= bulletSpeadAngle;
 
                 }

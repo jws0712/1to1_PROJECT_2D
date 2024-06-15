@@ -15,6 +15,7 @@ namespace OTO.Charactor.Monster
     public class Monster : Charactor
     {
         [Header("MonsterInfo")]
+        [SerializeField] private MonsterData monsterData = null;
         [SerializeField] private float moveSpeed = default;
         [SerializeField] private float chaseRange = default;
         [SerializeField] private float attackRange = default;
@@ -22,11 +23,6 @@ namespace OTO.Charactor.Monster
         [SerializeField] private float attackCoolTime = default;
         [SerializeField] private float monsterSacle = default;
         [SerializeField] private LayerMask chaseTarget = default;
-
-
-        [Header("Damage")]
-        [SerializeField] public float bulletDamage = default;
-        [SerializeField] public float bodyDamage = default;
 
         [Header("DropItem")]
         [SerializeField] private GameObject expDiamond = null;
@@ -42,6 +38,8 @@ namespace OTO.Charactor.Monster
         protected bool isChasePlayer = false;
         protected bool isAttack = false;
         protected float currentCoolTime = default;
+        protected float bulletDamage = default;
+        protected float bodyDamage = default;
 
         //Private variables
 
@@ -51,8 +49,6 @@ namespace OTO.Charactor.Monster
             Init();
             houseTransform = GameObject.FindGameObjectWithTag("House").transform;
             currentCoolTime = 0f;
-
-
         }
         protected virtual void Update()
         {
@@ -148,6 +144,10 @@ namespace OTO.Charactor.Monster
         {
             anim = GetComponent<Animator>();
             rb = GetComponent<Rigidbody2D>();
+
+            bulletDamage = monsterData.BulletDamage;
+            bodyDamage = monsterData.BodyDamage;
+            maxHp = monsterData.MaxHp;
         }
 
         protected override void Die()

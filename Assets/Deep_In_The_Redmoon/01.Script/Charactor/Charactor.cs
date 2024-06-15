@@ -21,7 +21,7 @@ namespace OTO.Charactor
         protected new SpriteRenderer renderer = null;
         protected Material originMaterial = null;
         protected float currentHp = default;
-        protected float maxHp = default;
+        public float maxHp = default;
 
         private const float duration = 0.05f;
 
@@ -29,6 +29,8 @@ namespace OTO.Charactor
         {
             renderer = GetComponent<SpriteRenderer>();
             originMaterial = renderer.material;
+
+            currentHp = maxHp;
         }
 
         public virtual void TakeDamage(float damage)
@@ -39,6 +41,7 @@ namespace OTO.Charactor
 
             if ((!isDead && currentHp <= 0))
             {
+                Debug.Log(damage + "°ø°Ý·Â");
                 Die();
             }
         }

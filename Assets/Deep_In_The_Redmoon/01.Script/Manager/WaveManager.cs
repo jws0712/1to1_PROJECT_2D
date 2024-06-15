@@ -46,10 +46,6 @@ namespace OTO.Manager
 
         private void Update()
         {
-            if(waveCount >= waveList.Count)
-            {
-                Debug.Log("1라운드 완료");
-            }
             Debug.Log(waveCount);
         }
 
@@ -64,6 +60,7 @@ namespace OTO.Manager
             {
                 if (GameManager.instance.isFieldClear == true)
                 {
+                    waveText.SetActive(false);
                     GameManager.instance.isStoreOpen = true;
                     yield return waitForSeconds;
                     GameManager.instance.isStoreOpen = false;

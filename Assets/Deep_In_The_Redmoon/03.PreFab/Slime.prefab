@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -97523706, guid: a3e047bbf1f14e340955119dc2456004, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -186,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: fc5839795288f184c9b4a7f35534f809, type: 2}
   isDead: 0
+  monsterData: {fileID: 11400000, guid: 17fc807f1bbc95b408f0f37518d1cb47, type: 2}
   moveSpeed: 3
   chaseRange: 5
   attackRange: 3.43
@@ -195,8 +196,6 @@ MonoBehaviour:
   chaseTarget:
     serializedVersion: 2
     m_Bits: 256
-  bulletDamage: 0
-  bodyDamage: 1
   expDiamond: {fileID: 8359279979153482042, guid: 6478ba801994a5c468f9eda4b55f30d9, type: 3}
   coinDiamond: {fileID: 4255152517591710561, guid: ca0c85f5d8dff554badff21bd0f8be1a, type: 3}
   jumpPower: 5
