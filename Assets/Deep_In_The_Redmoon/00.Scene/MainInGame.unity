@@ -22157,7 +22157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: fc5839795288f184c9b4a7f35534f809, type: 2}
   isDead: 0
-  maxHp: 0
+  maxHp: 10
   playerFlashNumber: 4
   duration: 0.1
   shakePower: 8

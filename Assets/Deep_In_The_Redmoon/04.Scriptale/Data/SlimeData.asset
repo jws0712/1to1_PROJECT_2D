@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SlimeData
   m_EditorClassIdentifier: 
   bulletDamage: 1
-  bodyDamage: 0
+  bodyDamage: 1
   maxHp: 3

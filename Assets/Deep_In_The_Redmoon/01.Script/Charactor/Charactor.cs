@@ -20,7 +20,7 @@ namespace OTO.Charactor
 
         protected new SpriteRenderer renderer = null;
         protected Material originMaterial = null;
-        protected float currentHp = default;
+        public float currentHp = default;
         public float maxHp = default;
 
         private const float duration = 0.05f;
@@ -50,6 +50,8 @@ namespace OTO.Charactor
         protected virtual void Die() 
         {
             isDead = true;
+
+            Destroy(gameObject);
         }
 
         private void SpriteFlash()

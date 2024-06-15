@@ -34,6 +34,11 @@ namespace OTO.Charactor.Player
         {
             base.TakeDamage(damage);
 
+            if (isDead)
+            {
+                StopAllCoroutines();
+            }
+
             StartCoroutine(Co_CameraShake(shakePower));
 
             handPos = GameObject.FindWithTag("HandPos");
@@ -82,6 +87,7 @@ namespace OTO.Charactor.Player
         protected override void Die()
         {
             base.Die();
+            Debug.Log("당신은 사망한!");
         }
     }
 }

@@ -18,7 +18,6 @@ namespace OTO.Manager
         {
             public GameObject[] monsterArray;
         }
-
         public List<WaveMonster> waveList = new List<WaveMonster>();
         [SerializeField] private Transform[] spawnPosArray = null;
 

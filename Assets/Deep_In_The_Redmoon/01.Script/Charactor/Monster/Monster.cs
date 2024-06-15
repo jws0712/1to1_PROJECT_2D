@@ -158,7 +158,7 @@ namespace OTO.Charactor.Monster
 
             DropItem(expDiamond, coinDiamond);
 
-            Destroy(gameObject);
+
         }
 
         private void DropItem(params GameObject[] dropItem)
