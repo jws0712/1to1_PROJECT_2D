@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: db2c30db48f92814fb67e9294d33ae43
+guid: 04406d447d5a43d4a882505aa880f1f1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,85 +97,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TESTUI_0
+      name: TESTUI 1_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 87
-        width: 129
-        height: 44
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b714c17144ca63440809bbfced720af3
-      internalID: 2132434925
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TESTUI_1
-      rect:
-        serializedVersion: 2
-        x: 152
+        x: 11
         y: 86
         width: 131
         height: 46
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 809ba12c526d52646bae391252467561
-      internalID: 1601959414
+      spriteID: baff226fa8c63d44180bffa52d12755b
+      internalID: 21079602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TESTUI_2
+      name: TESTUI 1_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 67
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7950491e93d505c498261d344dd95f12
-      internalID: -278379181
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TESTUI_3
-      rect:
-        serializedVersion: 2
-        x: 191
-        y: 0
-        width: 98
+        width: 97
         height: 68
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77d76c452aaddb24688c5be76e97e741
-      internalID: -1628777839
+      spriteID: 275253a9598f86a479aef535b21fef5b
+      internalID: -931546913
       vertices: []
       indices: 
       edges: []
@@ -191,10 +149,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TESTUI_0: 2132434925
-      TESTUI_1: 1601959414
-      TESTUI_2: -278379181
-      TESTUI_3: -1628777839
+      TESTUI 1_0: 21079602
+      TESTUI 1_1: -931546913
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

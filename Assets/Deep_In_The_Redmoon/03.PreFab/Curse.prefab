@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3768830582981229393}
   - component: {fileID: 2899830786045622902}
   - component: {fileID: 4500050234187871412}
-  m_Layer: 12
-  m_Name: Exp
+  m_Layer: 14
+  m_Name: Curse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2115694782, guid: aac41b964f132354a81b91f6287851cc, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8679245, g: 0, b: 0.75216204, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

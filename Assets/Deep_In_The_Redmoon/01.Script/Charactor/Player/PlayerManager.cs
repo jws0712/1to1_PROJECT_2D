@@ -12,6 +12,7 @@ namespace OTO.Charactor.Player
 
     //Project
     using OTO.Charactor.Monster;
+    using OTO.Manager;
 
     public class PlayerManager : Charactor
     {
@@ -29,6 +30,13 @@ namespace OTO.Charactor.Player
         private SpriteRenderer gunRenderer = null;
         private LayerMask monsterLayer = default;
         private LayerMask playerLayer = default;
+        private float maxCursePoint = default;
+        private float currentCursePoint = default;
+
+        private void Update()
+        {
+            GameManager.instance.hpSlider.value = currentHp/maxHp;
+        }
 
         public override void TakeDamage(float damage)
         {
@@ -87,6 +95,20 @@ namespace OTO.Charactor.Player
         protected override void Die()
         {
             base.Die();
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if(collision.gameObject.layer == LayerMask.NameToLayer("Coin"))
+            {
+                GameManager.instance.GetCoin();
+                Destroy(collision.gameObject);
+            }
+            if (collision.gameObject.layer == LayerMask.NameToLayer("CursePoint"))
+            {
+                GameManager.instance.GetCursePoint();
+                Destroy(collision.gameObject);
+            }
         }
     }
 }
