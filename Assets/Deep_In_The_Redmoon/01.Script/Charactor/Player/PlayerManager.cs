@@ -87,7 +87,6 @@ namespace OTO.Charactor.Player
         protected override void Die()
         {
             base.Die();
-            Debug.Log("당신은 사망한!");
         }
     }
 }

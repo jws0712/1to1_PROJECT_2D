@@ -186,10 +186,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: fc5839795288f184c9b4a7f35534f809, type: 2}
   isDead: 0
+  currentHp: 0
+  maxHp: 0
   monsterData: {fileID: 11400000, guid: 17fc807f1bbc95b408f0f37518d1cb47, type: 2}
   moveSpeed: 3
   chaseRange: 5
-  attackRange: 3.43
+  attackRange: 3
   stopDistance: 0.5
   attackCoolTime: 1.5
   monsterSacle: 0.8

@@ -4,6 +4,7 @@ namespace OTO.Manager
     using System.Collections;
     using System.Collections.Generic;
     using Unity.VisualScripting;
+    using UnityEngine.UI
 
     //UnityEngine
     using UnityEngine;
@@ -14,6 +15,11 @@ namespace OTO.Manager
         public bool isStoreOpen = false;
         public bool isFieldClear = true;
         public float fieldMonsterCount = default;
+        public float cursePointCount = default;
+        public float coin = default;
+
+
+        
         private void Awake()
         {
             instance = this;
