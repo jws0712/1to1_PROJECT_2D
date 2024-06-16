@@ -26,7 +26,7 @@ namespace OTO.Manager
 
         private void StartButton()
         {
-            SceneManager.LoadScene("MainInGame");
+            LoadingScreenManager.LoadScene("MainInGame");    
         }
 
         private void SettingButton()

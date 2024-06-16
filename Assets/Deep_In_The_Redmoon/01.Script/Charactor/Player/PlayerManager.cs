@@ -17,7 +17,7 @@ namespace OTO.Charactor.Player
     public class PlayerManager : Charactor
     {
         [Header("GetHitFlash")]
-        [SerializeField] private float playerFlashNumber = default;
+        [SerializeField] private float playerFlashCount = default;
         [SerializeField] private float duration = default;
 
 
@@ -30,12 +30,15 @@ namespace OTO.Charactor.Player
         private SpriteRenderer gunRenderer = null;
         private LayerMask monsterLayer = default;
         private LayerMask playerLayer = default;
-        private float maxCursePoint = default;
-        private float currentCursePoint = default;
 
         private void Update()
         {
             GameManager.instance.hpSlider.value = currentHp/maxHp;
+
+            if(isDead == true)
+            {
+                StopCoroutine(Co_PlayerSpriteFlash(playerFlashCount));
+            }
         }
 
         public override void TakeDamage(float damage)
@@ -59,17 +62,17 @@ namespace OTO.Charactor.Player
                 gunRenderer = gunObject.GetComponentInChildren<SpriteRenderer>();
             }
 
-            StartCoroutine(PlayerSpriteFlash(playerFlashNumber));
+            StartCoroutine(Co_PlayerSpriteFlash(playerFlashCount));
         }
 
-        private IEnumerator PlayerSpriteFlash(float number)
+        private IEnumerator Co_PlayerSpriteFlash(float Count)
         {
             monsterLayer = LayerMask.NameToLayer("Monster");
             playerLayer = LayerMask.NameToLayer("Player");
 
             Color _playerAlhpa = renderer.color;
 
-            for(int i = 0; i < number; i++)
+            for(int i = 0; i < Count; i++)
             {
                 Physics2D.IgnoreLayerCollision(playerLayer, monsterLayer, true);
                 yield return new WaitForSeconds(0.05f);
@@ -87,14 +90,21 @@ namespace OTO.Charactor.Player
 
         private IEnumerator Co_CameraShake(float ShakeIntensity)
         {
-            CameraShakeManager.instance.ShakeCamera(ShakeIntensity);
-            yield return new WaitForSeconds(0.5f);
-            CameraShakeManager.instance.StopShake();
+            if (isDead == false)
+            {
+                CameraShakeManager.instance.ShakeCamera(ShakeIntensity);
+                yield return new WaitForSeconds(0.5f);
+                CameraShakeManager.instance.StopShake();
+            }
+
         }
 
         protected override void Die()
         {
-            base.Die();
+            if(GameManager.instance.hpSlider.value == 0)
+            {
+                base.Die();
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

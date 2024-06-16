@@ -32,7 +32,7 @@ namespace OTO.Charactor.Player
 
         [Header("CoolTime")]
         [SerializeField] private float fireCoolTime = default;
-        [SerializeField] private float reroadCoolTime = default;
+        [SerializeField] private float reloadCoolTime = default;
         [Header("Bullet Spread")]
         [SerializeField] private float maxSpreadAngle = default;
         [SerializeField] private float minSpreadAngle = default;
@@ -69,30 +69,30 @@ namespace OTO.Charactor.Player
 
             reroadTimeSlider.gameObject.SetActive(false);
             ammoText.text = currentAmmo.ToString() + " / ¡Ä";
-            reroadTimeSlider.value = currentReroadCoolTIme / reroadCoolTime;
+            reroadTimeSlider.value = currentReroadCoolTIme / reloadCoolTime;
 
             Spin();
             Shoot();
-            Reroad();
+            Reload();
         }
 
-        private void Reroad()
+        private void Reload()
         {
             if (!isShot && currentAmmo != maxAmmo && Input.GetKeyDown(KeyCode.R))
             {
 
-                StartCoroutine(Co_Reroad());
+                StartCoroutine(Co_Reload());
             }
         }
 
-        private IEnumerator Co_Reroad()
+        private IEnumerator Co_Reload()
         {
             while(true)
             {
                 reroadTimeSlider.gameObject.SetActive(true);
                 currentReroadCoolTIme += Time.deltaTime;
                 Debug.Log(currentReroadCoolTIme);
-                if (currentReroadCoolTIme >= reroadCoolTime)
+                if (currentReroadCoolTIme >= reloadCoolTime)
                 {
                     currentAmmo = maxAmmo;
                     currentReroadCoolTIme = 0;
