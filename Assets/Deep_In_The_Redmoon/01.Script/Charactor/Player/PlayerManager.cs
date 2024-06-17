@@ -1,6 +1,5 @@
 namespace OTO.Charactor.Player
 {
-
     //System
     using System.Collections;
     using System.Collections.Generic;
@@ -20,7 +19,6 @@ namespace OTO.Charactor.Player
         [SerializeField] private float playerFlashCount = default;
         [SerializeField] private float duration = default;
 
-
         [Header("CameraShake")]
         [SerializeField] private float shakePower = default;
 
@@ -31,13 +29,16 @@ namespace OTO.Charactor.Player
         private LayerMask monsterLayer = default;
         private LayerMask playerLayer = default;
 
+        private Coroutine cameraShakeCoroutine = null; // 코루틴 참조 변수
+
         private void Update()
         {
-            GameManager.instance.hpSlider.value = currentHp/maxHp;
+            GameManager.instance.hpSlider.value = currentHp / maxHp;
 
-            if(isDead == true)
+            if (isDead && cameraShakeCoroutine != null)
             {
-                StopCoroutine(Co_PlayerSpriteFlash(playerFlashCount));
+                StopCoroutine(cameraShakeCoroutine);
+                cameraShakeCoroutine = null;
             }
         }
 
@@ -47,7 +48,15 @@ namespace OTO.Charactor.Player
 
             if (isDead)
             {
-                StopAllCoroutines();
+                StopCoroutine("Co_CameraShake");
+                StopCoroutine("Co_PlayerSpriteFlash");
+                Debug.Log("작동");
+                return; // 사망 시 더 이상 실행하지 않도록 반환
+            }
+
+            if (cameraShakeCoroutine != null)
+            {
+                
             }
 
             StartCoroutine(Co_CameraShake(shakePower));
@@ -55,7 +64,6 @@ namespace OTO.Charactor.Player
             handPos = GameObject.FindWithTag("HandPos");
 
             gunObject = handPos.transform.GetChild(0).gameObject;
-            
 
             if (gunObject != null)
             {
@@ -70,19 +78,18 @@ namespace OTO.Charactor.Player
             monsterLayer = LayerMask.NameToLayer("Monster");
             playerLayer = LayerMask.NameToLayer("Player");
 
-            Color _playerAlhpa = renderer.color;
-
-            for(int i = 0; i < Count; i++)
+            Color _playerAlpha = renderer.color;
+            for (int i = 0; i < Count; i++)
             {
                 Physics2D.IgnoreLayerCollision(playerLayer, monsterLayer, true);
                 yield return new WaitForSeconds(0.05f);
-                _playerAlhpa.a = 0f;
-                renderer.color = _playerAlhpa;
-                gunRenderer.color = _playerAlhpa;
+                _playerAlpha.a = 0f;
+                renderer.color = _playerAlpha;
+                gunRenderer.color = _playerAlpha;
                 yield return new WaitForSeconds(duration);
-                _playerAlhpa.a = 1f;
-                renderer.color = _playerAlhpa;
-                gunRenderer.color = _playerAlhpa;
+                _playerAlpha.a = 1f;
+                renderer.color = _playerAlpha;
+                gunRenderer.color = _playerAlpha;
                 yield return new WaitForSeconds(duration);
             }
             Physics2D.IgnoreLayerCollision(playerLayer, monsterLayer, false);
@@ -90,26 +97,21 @@ namespace OTO.Charactor.Player
 
         private IEnumerator Co_CameraShake(float ShakeIntensity)
         {
-            if (isDead == false)
-            {
-                CameraShakeManager.instance.ShakeCamera(ShakeIntensity);
-                yield return new WaitForSeconds(0.5f);
-                CameraShakeManager.instance.StopShake();
-            }
-
+            CameraShakeManager.instance.ShakeCamera(ShakeIntensity);
+            yield return new WaitForSeconds(0.5f);
+            CameraShakeManager.instance.StopShake();
         }
 
         protected override void Die()
         {
-            if(GameManager.instance.hpSlider.value == 0)
-            {
-                base.Die();
-            }
+            base.Die();
+            isDead = true; // 사망 상태 설정
+            GameManager.instance.hpSlider.value = 0f;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if(collision.gameObject.layer == LayerMask.NameToLayer("Coin"))
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Coin"))
             {
                 GameManager.instance.GetCoin();
                 Destroy(collision.gameObject);

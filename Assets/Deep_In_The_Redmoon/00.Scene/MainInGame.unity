@@ -22465,8 +22465,8 @@ MonoBehaviour:
   - {fileID: 2026016592}
   - {fileID: 1960900958}
   - {fileID: 601913076}
-  delayTime: 0.5
-  waveDelayTime: 5
+  delayTime: 0.1
+  waveDelayTime: 0.1
   waveText: {fileID: 1456320017}
   waveNumber: {fileID: 1928286909}
 --- !u!4 &638145618
@@ -22707,7 +22707,7 @@ MonoBehaviour:
   bulletDamage: 1
   maxAmmo: 10
   fireCoolTime: 0.2
-  reroadCoolTime: 0.5
+  reloadCoolTime: 0.5
   maxSpreadAngle: 8
   minSpreadAngle: -8
   RotZ: 0
@@ -22731,7 +22731,7 @@ MonoBehaviour:
   isDead: 0
   currentHp: 0
   maxHp: 10
-  playerFlashNumber: 4
+  playerFlashCount: 4
   duration: 0.1
   shakePower: 8
 --- !u!114 &734675149

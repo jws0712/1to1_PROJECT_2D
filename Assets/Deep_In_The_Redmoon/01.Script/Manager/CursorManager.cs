@@ -21,7 +21,7 @@ namespace OTO.Cursor
         }
 
         // Update is called once per frame
-        void Update()
+        void LateUpdate()
         {
             mousePos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
             CursorObject.transform.position = mousePos;
