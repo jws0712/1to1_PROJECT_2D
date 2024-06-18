@@ -13,6 +13,7 @@ namespace OTO.Charactor.Player
     //Project
     using OTO.Bullet;
     using TMPro;
+    using OTO.Manager;
 
     public class PlayerShot : MonoBehaviour
     {
@@ -61,6 +62,11 @@ namespace OTO.Charactor.Player
         }
         private void Update()
         {
+            if(GameManager.instance.isGameOver == true)
+            {
+                return;
+            }
+
             HandPos = GameObject.FindWithTag("HandPos").transform;
             FirePos = GameObject.FindWithTag("FirePos").transform;
             SpinPos = GameObject.FindWithTag("SpinPos").transform;

@@ -26,43 +26,21 @@ namespace OTO.Charactor.Player
         private LayerMask monsterLayer = default;
         private LayerMask playerLayer = default;
 
-        private Coroutine cameraShakeCoroutine = null; // 코루틴 참조 변수
-
         private void Update()
         {
             GameManager.instance.hpSlider.value = currentHp / maxHp;
-
-            if (isDead && cameraShakeCoroutine != null)
-            {
-                StopCoroutine(cameraShakeCoroutine);
-                cameraShakeCoroutine = null;
-            }
         }
 
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
 
-            if (isDead)
-            {
-                StopCoroutine(Co_PlayerSpriteFlash(playerFlashCount));
-                if (cameraShakeCoroutine != null)
-                {
-                    StopCoroutine(cameraShakeCoroutine);
-                    cameraShakeCoroutine = null;
-                }
-                Debug.Log("작동");
-                return; // 사망 시 더 이상 실행하지 않도록 반환
-            }
-
-            if (cameraShakeCoroutine != null)
-            {
-                StopCoroutine(cameraShakeCoroutine);
-            }
-
             handPos = GameObject.FindWithTag("HandPos");
 
-            gunObject = handPos.transform.GetChild(0).gameObject;
+            if(handPos != null)
+            {
+                gunObject = handPos.transform.GetChild(0).gameObject;
+            }
 
             if (gunObject != null)
             {
@@ -96,10 +74,9 @@ namespace OTO.Charactor.Player
         protected override void Die()
         {
             base.Die();
-            isDead = true; // 사망 상태 설정
             GameManager.instance.hpSlider.value = 0f;
             GameManager.instance.GameOver();
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -111,7 +88,6 @@ namespace OTO.Charactor.Player
             }
             if (collision.gameObject.layer == LayerMask.NameToLayer("CursePoint"))
             {
-                GameManager.instance.GetCursePoint();
                 Destroy(collision.gameObject);
             }
         }

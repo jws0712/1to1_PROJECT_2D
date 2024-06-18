@@ -1,5 +1,6 @@
 namespace OTO.Charactor.Player
 {
+    using OTO.Manager;
     //System
     using System.Collections;
     using System.Collections.Generic;
@@ -67,6 +68,11 @@ namespace OTO.Charactor.Player
 
         private void Update()
         {
+            if(GameManager.instance.isGameOver == true)
+            {
+                return;
+            }
+
             PlayerInput();
             PlayerJump();
             Filp();

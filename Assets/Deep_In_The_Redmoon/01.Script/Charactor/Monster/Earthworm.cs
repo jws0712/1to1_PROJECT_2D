@@ -34,6 +34,7 @@ namespace OTO.Charactor.Monster
 
         protected override void Update()
         {
+
             base.Update();
 
             if(isChasePlayer == true)

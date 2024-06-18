@@ -20,16 +20,14 @@ namespace OTO.Manager
         public float fieldMonsterCount = default;
         public bool isStoreOpen = false;
         public bool isFieldClear = true;
+        public bool isGameOver = false;
 
         [Header("UI")]
         public TextMeshProUGUI coinText = null;
-        public Slider cursePointSlider = null;
         public Slider hpSlider = null;
         [SerializeField] GameObject gameOverPanel = null;
 
         [Header("UI_Info")]
-        public float maxCursePointCount = default;
-        public float cursePointCount = default;
         public float coinCount = default;
 
         private void Awake()
@@ -42,15 +40,6 @@ namespace OTO.Manager
             CheckFieldMonster();
 
             coinText.text = coinCount.ToString();
-
-            cursePointSlider.value = cursePointCount / maxCursePointCount;
-
-            if(cursePointCount >= maxCursePointCount)
-            {
-                cursePointCount = 0;
-            }
-
-            
         }
 
         private void CheckFieldMonster()
@@ -70,14 +59,11 @@ namespace OTO.Manager
             coinCount += coinVel;
         }
 
-        public void GetCursePoint()
-        {
-            cursePointCount += 1;
-        }
-
         public void GameOver()
         {
             gameOverPanel.SetActive(true);
+            isGameOver = true;
+            Time.timeScale = 0;
         }
     }
 }

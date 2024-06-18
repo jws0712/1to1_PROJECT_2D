@@ -50,8 +50,6 @@ namespace OTO.Charactor
         protected virtual void Die() 
         {
             isDead = true;
-
-            //Destroy(gameObject);
         }
 
         private void SpriteFlash()

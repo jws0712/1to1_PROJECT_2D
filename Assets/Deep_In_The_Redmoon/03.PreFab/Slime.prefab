@@ -198,8 +198,7 @@ MonoBehaviour:
   chaseTarget:
     serializedVersion: 2
     m_Bits: 256
-  expDiamond: {fileID: 8359279979153482042, guid: 6478ba801994a5c468f9eda4b55f30d9, type: 3}
-  coinDiamond: {fileID: 4255152517591710561, guid: ca0c85f5d8dff554badff21bd0f8be1a, type: 3}
+  coinDiamond: {fileID: 8359279979153482042, guid: 6478ba801994a5c468f9eda4b55f30d9, type: 3}
   jumpPower: 5
   gorundLayer:
     serializedVersion: 2

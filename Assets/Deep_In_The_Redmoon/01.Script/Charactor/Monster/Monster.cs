@@ -25,7 +25,6 @@ namespace OTO.Charactor.Monster
         [SerializeField] private LayerMask chaseTarget = default;
 
         [Header("DropItem")]
-        [SerializeField] private GameObject expDiamond = null;
         [SerializeField] private GameObject coinDiamond = null;
 
 
@@ -52,6 +51,7 @@ namespace OTO.Charactor.Monster
         }
         protected virtual void Update()
         {
+
             CheckRange(chaseRange);
             CheackAttackDistance();
 
@@ -156,7 +156,7 @@ namespace OTO.Charactor.Monster
 
             GameManager.instance.fieldMonsterCount -= 1;
 
-            DropItem(expDiamond, coinDiamond);
+            DropItem(coinDiamond);
 
             Destroy(gameObject);
 
@@ -165,13 +165,12 @@ namespace OTO.Charactor.Monster
 
         private void DropItem(params GameObject[] dropItem)
         {
-            GameObject exp = Instantiate(dropItem[0], transform.position, Quaternion.identity);
+            for(int i = 0; i < dropItem.Length; i++)
+            {
+                GameObject item = Instantiate(dropItem[i], transform.position, Quaternion.identity);
 
-            exp.GetComponent<Rigidbody2D>().AddForce(Vector2.one * 2f, ForceMode2D.Impulse);
-
-            GameObject coin = Instantiate(dropItem[1], transform.position, Quaternion.identity);
-
-            coin.GetComponent<Rigidbody2D>().AddForce(Vector2.one * -2f, ForceMode2D.Impulse);
+                item.GetComponent<Rigidbody2D>().AddForce(Vector2.one * -2f, ForceMode2D.Impulse);
+            }
         }
 
         public override void TakeDamage(float damage)
@@ -193,7 +192,6 @@ namespace OTO.Charactor.Monster
             if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 collision.gameObject.GetComponent<PlayerManager>().TakeDamage(bodyDamage);
-                Debug.Log("½ÇÇà");
             }
         }
     }
