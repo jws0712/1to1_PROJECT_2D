@@ -202,7 +202,7 @@ MonoBehaviour:
   moveSpeed: 0.8
   chaseRange: 20
   attackRange: 20
-  stopDistance: 0.5
+  stopDistance: 5
   attackCoolTime: 1.5
   monsterSacle: 1
   chaseTarget:

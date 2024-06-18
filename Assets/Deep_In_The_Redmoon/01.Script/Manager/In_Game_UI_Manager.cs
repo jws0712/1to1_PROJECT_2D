@@ -7,6 +7,8 @@ using UnityEngine;
 public class In_Game_UI_Manager : MonoBehaviour
 {
     [SerializeField] private GameObject settingPanel = null;
+    [SerializeField] private GameObject audioPanel = null;
+    [SerializeField] private GameObject videoPanel = null;
 
     private bool isON = default;
 
@@ -22,6 +24,11 @@ public class In_Game_UI_Manager : MonoBehaviour
             return;
         }
 
+        SettingPanelOnOff();
+    }
+
+    private void SettingPanelOnOff()
+    {
         if (Input.GetKeyDown(KeyCode.Escape) && isON == false)
         {
             settingPanel.SetActive(true);
@@ -35,5 +42,25 @@ public class In_Game_UI_Manager : MonoBehaviour
             Time.timeScale = 1;
             isON = false;
         }
+    }
+
+    public void AudioPanelOnOff()
+    {
+
+    }
+
+    public void VideoPanelOnOff()
+    {
+
+    }
+
+    public void RePlayButton()
+    {
+
+    }
+
+    public void TitleButton()
+    {
+
     }
 }
