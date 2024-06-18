@@ -24,8 +24,7 @@ namespace OTO.Charactor.Monster
         [SerializeField]
         private Transform groundCheckPos = default;
 
-
-        
+        private bool isHouseAttack = default;
 
         protected override void OnEnable()
         {
@@ -42,10 +41,11 @@ namespace OTO.Charactor.Monster
             base.Attack();
             if (isAttack == true)
             {
-                Debug.Log("공격실행");
+
                 if (CheckGround() == true)
                 {
                     rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+                    isHouseAttack = true;
                 }
                 isAttack = false;
                 currentCoolTime = 0;
@@ -59,10 +59,15 @@ namespace OTO.Charactor.Monster
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if(collision.CompareTag("House") && isAttack == true)
+            if (collision.CompareTag("House"))
+            {
+                Debug.Log("부딛침");
+            }
+            
+            if(collision.CompareTag("House") && isHouseAttack == true)
             {
                 collision.gameObject.GetComponent<Shop>().TakeDamage(bodyDamage);
-                isAttack = false;
+                isHouseAttack = false;
             }
         }
     }

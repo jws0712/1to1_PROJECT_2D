@@ -51,7 +51,7 @@ namespace OTO.Charactor
         {
             isDead = true;
 
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
         private void SpriteFlash()

@@ -13,7 +13,7 @@ namespace OTO.Cursor
 
         private Vector2 mousePos;
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
@@ -21,7 +21,7 @@ namespace OTO.Cursor
         }
 
         // Update is called once per frame
-        void LateUpdate()
+        private void LateUpdate()
         {
             mousePos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
             CursorObject.transform.position = mousePos;

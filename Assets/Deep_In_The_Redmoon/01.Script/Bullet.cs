@@ -22,17 +22,27 @@ namespace OTO.Bullet
         [Header("Bullet")]
         [SerializeField] private float BulletSpeed = default;
         [SerializeField] private float BulletDestroyTime = default;
+        [SerializeField] private GameObject hitEffect = default;
 
         public float bulletDamage = default;
 
         void Start()
         {
-            Invoke("DestoryBullet", BulletDestroyTime);
+            Co_BulletDestory();
         }
 
         private void FixedUpdate()
         {
             transform.Translate(Vector2.right * BulletSpeed * Time.fixedDeltaTime);
+        }
+
+        private IEnumerator Co_BulletDestory()
+        {
+            yield return new WaitForSeconds(BulletDestroyTime);
+
+            Instantiate(hitEffect, transform.position, transform.rotation);
+            DestoryBullet();
+
         }
 
         private void DestoryBullet()
@@ -44,6 +54,7 @@ namespace OTO.Bullet
         {
             if (collision.CompareTag("Wall") || collision.CompareTag("Monster") || collision.CompareTag("Player"))
             {
+                Instantiate(hitEffect, transform.position, transform.rotation);
                 DestoryBullet();
             }
 
@@ -51,6 +62,8 @@ namespace OTO.Bullet
             {
                 if (collision.CompareTag("House"))
                 {
+                    collision.GetComponent<Shop>().TakeDamage(bulletDamage); //몬스터
+                    Instantiate(hitEffect, transform.position, transform.rotation);
                     DestoryBullet();
                 }
             }
@@ -63,11 +76,6 @@ namespace OTO.Bullet
             if (collision.CompareTag("Player"))
             {
                 collision.GetComponent<PlayerManager>().TakeDamage(bulletDamage); //몬스터
-            }
-            if (collision.CompareTag("House"))
-            {
-                collision.GetComponent<Shop>().TakeDamage(bulletDamage); //몬스터
-
             }
         }
     }

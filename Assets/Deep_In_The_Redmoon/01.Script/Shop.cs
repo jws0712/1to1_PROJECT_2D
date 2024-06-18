@@ -2,11 +2,13 @@ using OTO.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
     [SerializeField]
     private float maxHp = default;
+    [SerializeField] private Slider houseHpSlider = null;
 
     public float currentHp = default;
 
@@ -24,7 +26,13 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
+        houseHpSlider.value = currentHp/maxHp;
         animator.SetBool("isOpen", GameManager.instance.isStoreOpen);
+
+        if(currentHp <= 0 )
+        {
+            GameManager.instance.GameOver();
+        }
     }
 
     public void TakeDamage(float damage)

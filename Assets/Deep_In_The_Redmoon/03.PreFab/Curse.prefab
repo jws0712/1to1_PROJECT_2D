@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3768830582981229393}
   - component: {fileID: 2899830786045622902}
   - component: {fileID: 4500050234187871412}
+  - component: {fileID: -6142647759006965351}
   m_Layer: 14
   m_Name: Curse
   m_TagString: Untagged
@@ -180,3 +181,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 1.4}
   m_EdgeRadius: 0
+--- !u!114 &-6142647759006965351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255152517591710561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f57c35401489a43ab36ae2e4a6a33a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

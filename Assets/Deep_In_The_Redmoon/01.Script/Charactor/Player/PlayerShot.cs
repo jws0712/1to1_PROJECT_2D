@@ -38,8 +38,6 @@ namespace OTO.Charactor.Player
         [SerializeField] private float minSpreadAngle = default;
         [Header("Spin")]
         public float RotZ = default;
-        [Header("CameraShake")]
-        [SerializeField] private float shakePower = default;
         [Header("Script")]
         [SerializeField] private PlayerMovement playerMovement = null;
         [Header("UI")]
@@ -91,7 +89,6 @@ namespace OTO.Charactor.Player
             {
                 reroadTimeSlider.gameObject.SetActive(true);
                 currentReroadCoolTIme += Time.deltaTime;
-                Debug.Log(currentReroadCoolTIme);
                 if (currentReroadCoolTIme >= reloadCoolTime)
                 {
                     currentAmmo = maxAmmo;
@@ -133,17 +130,9 @@ namespace OTO.Charactor.Player
             GameObject _bullet = Instantiate(Bullet, FirePos.transform.position, bulletAngle);
             _bullet.GetComponent<Bullet>().bulletDamage = bulletDamage;
             currentAmmo -= 1;
-            StartCoroutine(Co_CameraShake(shakePower));
             isShot = true;
             yield return new WaitForSeconds(fireCoolTime);
             isShot = false;
-        }
-
-        private IEnumerator Co_CameraShake(float ShakeIntensity)
-        {
-            CameraShakeManager.instance.ShakeCamera(ShakeIntensity);
-            yield return new WaitForSeconds(0.1f);
-            CameraShakeManager.instance.StopShake();
         }
     }
 }

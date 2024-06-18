@@ -189,7 +189,7 @@ MonoBehaviour:
   currentHp: 0
   maxHp: 0
   monsterData: {fileID: 11400000, guid: 17fc807f1bbc95b408f0f37518d1cb47, type: 2}
-  moveSpeed: 3
+  moveSpeed: 10
   chaseRange: 5
   attackRange: 3
   stopDistance: 0.5

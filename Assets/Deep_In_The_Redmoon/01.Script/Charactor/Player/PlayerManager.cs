@@ -19,9 +19,6 @@ namespace OTO.Charactor.Player
         [SerializeField] private float playerFlashCount = default;
         [SerializeField] private float duration = default;
 
-        [Header("CameraShake")]
-        [SerializeField] private float shakePower = default;
-
         //Private variables
         private GameObject gunObject = null;
         private GameObject handPos = null;
@@ -48,18 +45,20 @@ namespace OTO.Charactor.Player
 
             if (isDead)
             {
-                StopCoroutine("Co_CameraShake");
-                StopCoroutine("Co_PlayerSpriteFlash");
+                StopCoroutine(Co_PlayerSpriteFlash(playerFlashCount));
+                if (cameraShakeCoroutine != null)
+                {
+                    StopCoroutine(cameraShakeCoroutine);
+                    cameraShakeCoroutine = null;
+                }
                 Debug.Log("작동");
                 return; // 사망 시 더 이상 실행하지 않도록 반환
             }
 
             if (cameraShakeCoroutine != null)
             {
-                
+                StopCoroutine(cameraShakeCoroutine);
             }
-
-            StartCoroutine(Co_CameraShake(shakePower));
 
             handPos = GameObject.FindWithTag("HandPos");
 
@@ -94,19 +93,13 @@ namespace OTO.Charactor.Player
             }
             Physics2D.IgnoreLayerCollision(playerLayer, monsterLayer, false);
         }
-
-        private IEnumerator Co_CameraShake(float ShakeIntensity)
-        {
-            CameraShakeManager.instance.ShakeCamera(ShakeIntensity);
-            yield return new WaitForSeconds(0.5f);
-            CameraShakeManager.instance.StopShake();
-        }
-
         protected override void Die()
         {
             base.Die();
             isDead = true; // 사망 상태 설정
             GameManager.instance.hpSlider.value = 0f;
+            GameManager.instance.GameOver();
+            gameObject.SetActive(false);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

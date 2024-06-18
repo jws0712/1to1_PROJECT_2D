@@ -25,6 +25,7 @@ namespace OTO.Manager
         public TextMeshProUGUI coinText = null;
         public Slider cursePointSlider = null;
         public Slider hpSlider = null;
+        [SerializeField] GameObject gameOverPanel = null;
 
         [Header("UI_Info")]
         public float maxCursePointCount = default;
@@ -48,6 +49,8 @@ namespace OTO.Manager
             {
                 cursePointCount = 0;
             }
+
+            
         }
 
         private void CheckFieldMonster()
@@ -65,12 +68,16 @@ namespace OTO.Manager
         public void GetCoin()
         {
             coinCount += coinVel;
-
         }
 
         public void GetCursePoint()
         {
             cursePointCount += 1;
+        }
+
+        public void GameOver()
+        {
+            gameOverPanel.SetActive(true);
         }
     }
 }

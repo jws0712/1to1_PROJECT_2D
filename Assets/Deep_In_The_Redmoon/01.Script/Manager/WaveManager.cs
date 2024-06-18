@@ -43,11 +43,6 @@ namespace OTO.Manager
             waveCount = 0;
         }
 
-        private void Update()
-        {
-            Debug.Log(waveCount);
-        }
-
         public void WaveStart(float delayTime)
         {
             StartCoroutine(WaveLogic(delayTime));
