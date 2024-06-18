@@ -50,13 +50,11 @@ namespace OTO.Charactor.Player
         private bool isShot = default;
         private float currentAmmo = default;
         private float currentReroadCoolTIme = default;
+        private bool isReload = default;
 
         private void Start()
         {
             isShot = false;
-
-
-
             currentReroadCoolTIme = 0;
             currentAmmo = maxAmmo;
         }
@@ -82,9 +80,9 @@ namespace OTO.Charactor.Player
 
         private void Reload()
         {
-            if (!isShot && currentAmmo != maxAmmo && Input.GetKeyDown(KeyCode.R))
+            if (!isShot && currentAmmo != maxAmmo && Input.GetKeyDown(KeyCode.R) && isReload == false && playerMovement.isDash == false)
             {
-
+                isReload = true;
                 StartCoroutine(Co_Reload());
             }
         }
@@ -99,6 +97,7 @@ namespace OTO.Charactor.Player
                 {
                     currentAmmo = maxAmmo;
                     currentReroadCoolTIme = 0;
+                    isReload = false;
 
                     yield break;
                 }

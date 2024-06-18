@@ -199,16 +199,15 @@ MonoBehaviour:
   currentHp: 0
   maxHp: 0
   monsterData: {fileID: 11400000, guid: 8d8c278d1ffc68e4da4bf60d25edd4ae, type: 2}
-  moveSpeed: 2
-  chaseRange: 10
-  attackRange: 10
+  moveSpeed: 0.8
+  chaseRange: 20
+  attackRange: 20
   stopDistance: 0.5
   attackCoolTime: 1.5
   monsterSacle: 1
   chaseTarget:
     serializedVersion: 2
     m_Bits: 256
-  expDiamond: {fileID: 4255152517591710561, guid: ca0c85f5d8dff554badff21bd0f8be1a, type: 3}
   coinDiamond: {fileID: 8359279979153482042, guid: 6478ba801994a5c468f9eda4b55f30d9, type: 3}
   bulletObject: {fileID: 6183457796777578699, guid: 4d47ac50ee78b284c946c3db9b0337be, type: 3}
   firePos: {fileID: 7596674000107254229}
