@@ -26,6 +26,15 @@ namespace OTO.Charactor.Player
         private LayerMask monsterLayer = default;
         private LayerMask playerLayer = default;
 
+        protected override void Start()
+        {
+            base.Start();
+            monsterLayer = LayerMask.NameToLayer("Monster");
+            playerLayer = LayerMask.NameToLayer("Player");
+
+            Physics2D.IgnoreLayerCollision(playerLayer, monsterLayer, false);
+        }
+
         private void Update()
         {
             GameManager.instance.hpSlider.value = currentHp / maxHp;
@@ -52,8 +61,7 @@ namespace OTO.Charactor.Player
 
         private IEnumerator Co_PlayerSpriteFlash(float Count)
         {
-            monsterLayer = LayerMask.NameToLayer("Monster");
-            playerLayer = LayerMask.NameToLayer("Player");
+
 
             Color _playerAlpha = renderer.color;
             for (int i = 0; i < Count; i++)

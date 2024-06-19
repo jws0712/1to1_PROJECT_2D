@@ -19,6 +19,8 @@ namespace OTO.Manager
 
         private void Start()
         {
+            Cursor.visible = true;
+
             startButton.onClick.AddListener(StartButton);
             settingButton.onClick.AddListener(SettingButton);
             quitButton.onClick.AddListener(QuitButtonButton);

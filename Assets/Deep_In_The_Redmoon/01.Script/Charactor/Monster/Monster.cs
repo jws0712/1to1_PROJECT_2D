@@ -191,6 +191,7 @@ namespace OTO.Charactor.Monster
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
+                Debug.Log("플레이어 공격");
                 collision.gameObject.GetComponent<PlayerManager>().TakeDamage(bodyDamage);
             }
         }

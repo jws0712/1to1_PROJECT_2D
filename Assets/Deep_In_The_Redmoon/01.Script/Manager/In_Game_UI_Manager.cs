@@ -3,14 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class In_Game_UI_Manager : MonoBehaviour
 {
+    [SerializeField] private GameObject settingBackGround = null;
     [SerializeField] private GameObject settingPanel = null;
     [SerializeField] private GameObject audioPanel = null;
-    [SerializeField] private GameObject videoPanel = null;
+    //[SerializeField] private GameObject videoPanel = null;
+    [SerializeField] private Slider musicSlider = null;
+    [SerializeField] private Slider sfxSlider = null;
 
     private bool isON = default;
+    private bool isAudioPanelOn = default;
 
     private void Start()
     {
@@ -20,7 +27,9 @@ public class In_Game_UI_Manager : MonoBehaviour
     {
         if(GameManager.instance.isGameOver == true)
         {
+            settingBackGround.SetActive(false);
             settingPanel.SetActive(false);
+            audioPanel.SetActive(false);
             return;
         }
 
@@ -31,36 +40,63 @@ public class In_Game_UI_Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && isON == false)
         {
+            settingBackGround.SetActive(true);
             settingPanel.SetActive(true);
             Time.timeScale = 0;
             isON = true;
         }
 
-        else if (Input.GetKeyDown(KeyCode.Escape) && isON == true)
+        else if (Input.GetKeyDown(KeyCode.Escape) && isON == true && isAudioPanelOn == false)
         {
+
+            settingBackGround.SetActive(false);
             settingPanel.SetActive(false);
             Time.timeScale = 1;
             isON = false;
         }
+
+        else if(Input.GetKeyDown(KeyCode.Escape) && isAudioPanelOn == true)
+        {
+            audioPanel.SetActive(false);
+            settingPanel.SetActive(true);
+            isAudioPanelOn = false;
+        }
     }
 
-    public void AudioPanelOnOff()
+    public void MusicVolume()
     {
+        AudioManager.instance.MusicVolume(musicSlider.value);
 
     }
 
-    public void VideoPanelOnOff()
+    public void SFXVolume()
     {
-
+        AudioManager.instance.SFXvolume(sfxSlider.value);
     }
+
+    public void AudioPanelOn()
+    {
+        settingPanel.SetActive(false);
+
+        audioPanel.SetActive(true);
+        isAudioPanelOn = true;
+    }
+
+    //public void VideoPanelOn()
+    //{
+
+    //}
 
     public void RePlayButton()
     {
-
+        LoadingScreenManager.LoadScene("MainInGame");
+        Time.timeScale = 1;
     }
 
     public void TitleButton()
     {
+        SceneManager.LoadScene("MainTitle");
+        Time.timeScale = 1;
 
     }
 }

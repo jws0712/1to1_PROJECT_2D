@@ -59,11 +59,6 @@ namespace OTO.Charactor.Monster
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (collision.CompareTag("House"))
-            {
-                Debug.Log("ºÎµóÄ§");
-            }
-            
             if(collision.CompareTag("House") && isHouseAttack == true)
             {
                 collision.gameObject.GetComponent<Shop>().TakeDamage(bodyDamage);

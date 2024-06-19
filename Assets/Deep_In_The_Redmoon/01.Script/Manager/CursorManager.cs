@@ -1,5 +1,6 @@
 namespace OTO.Cursor
 {
+    using OTO.Manager;
 
     //UnityEngine
     using UnityEngine;
@@ -23,6 +24,12 @@ namespace OTO.Cursor
         // Update is called once per frame
         private void LateUpdate()
         {
+            if(GameManager.instance.isGameOver == true)
+            {
+                Cursor.visible = true;
+                Destroy(CursorObject);
+            }
+
             mousePos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
             CursorObject.transform.position = mousePos;
         }

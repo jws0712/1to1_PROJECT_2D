@@ -25,7 +25,7 @@ namespace OTO.Charactor
 
         private const float duration = 0.05f;
 
-        private void Start()
+        protected virtual void Start()
         {
             renderer = GetComponent<SpriteRenderer>();
             originMaterial = renderer.material;
@@ -41,7 +41,6 @@ namespace OTO.Charactor
 
             if ((!isDead && currentHp <= 0))
             {
-                Debug.Log(damage + "°ø°Ý·Â");
                 Die();
             }
         }

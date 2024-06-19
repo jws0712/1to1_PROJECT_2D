@@ -8,7 +8,6 @@ namespace OTO.Charactor.Player
 
     //Unity
     using Unity.VisualScripting;
-    using UnityEditor.U2D.Aseprite;
 
     //UnityEngine
     using UnityEngine;
