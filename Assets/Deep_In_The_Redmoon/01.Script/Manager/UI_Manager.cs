@@ -40,5 +40,10 @@ namespace OTO.Manager
         {
             Application.Quit();
         }
+
+        public void mouseEnterEvent()
+        {
+
+        }
     }
 }

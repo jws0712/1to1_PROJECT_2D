@@ -9,10 +9,10 @@ using UnityEngine.SceneManagement;
 
 public class In_Game_UI_Manager : MonoBehaviour
 {
+    [Header("UI")]
     [SerializeField] private GameObject settingBackGround = null;
     [SerializeField] private GameObject settingPanel = null;
     [SerializeField] private GameObject audioPanel = null;
-    //[SerializeField] private GameObject videoPanel = null;
     [SerializeField] private Slider musicSlider = null;
     [SerializeField] private Slider sfxSlider = null;
 
@@ -40,6 +40,8 @@ public class In_Game_UI_Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && isON == false)
         {
+            AudioManager.instance.PlaySFX("ButtonClick");
+
             settingBackGround.SetActive(true);
             settingPanel.SetActive(true);
             Time.timeScale = 0;
@@ -48,6 +50,7 @@ public class In_Game_UI_Manager : MonoBehaviour
 
         else if (Input.GetKeyDown(KeyCode.Escape) && isON == true && isAudioPanelOn == false)
         {
+            AudioManager.instance.PlaySFX("ButtonClick");
 
             settingBackGround.SetActive(false);
             settingPanel.SetActive(false);
@@ -57,6 +60,8 @@ public class In_Game_UI_Manager : MonoBehaviour
 
         else if(Input.GetKeyDown(KeyCode.Escape) && isAudioPanelOn == true)
         {
+            AudioManager.instance.PlaySFX("ButtonClick");
+
             audioPanel.SetActive(false);
             settingPanel.SetActive(true);
             isAudioPanelOn = false;
@@ -66,12 +71,13 @@ public class In_Game_UI_Manager : MonoBehaviour
     public void MusicVolume()
     {
         AudioManager.instance.MusicVolume(musicSlider.value);
-
+        PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
     }
 
     public void SFXVolume()
     {
         AudioManager.instance.SFXvolume(sfxSlider.value);
+        PlayerPrefs.SetFloat("SFXVolume", sfxSlider.value);
     }
 
     public void AudioPanelOn()
@@ -82,21 +88,21 @@ public class In_Game_UI_Manager : MonoBehaviour
         isAudioPanelOn = true;
     }
 
-    //public void VideoPanelOn()
-    //{
-
-    //}
-
     public void RePlayButton()
     {
+        AudioManager.instance.PlaySFX("ButtonClick");
         LoadingScreenManager.LoadScene("MainInGame");
-        Time.timeScale = 1;
     }
 
     public void TitleButton()
     {
+        AudioManager.instance.PlaySFX("ButtonClick");
         SceneManager.LoadScene("MainTitle");
         Time.timeScale = 1;
+    }
 
+    public void mouseEnterEvent()
+    {
+        AudioManager.instance.PlaySFX("MouseEnter");
     }
 }

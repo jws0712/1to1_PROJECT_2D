@@ -14,6 +14,8 @@ public class LoadingScreenManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Co_LoadSceneProgrees());
+
+        Time.timeScale = 1f;
     }
     public static void LoadScene(string sceneName)
     {

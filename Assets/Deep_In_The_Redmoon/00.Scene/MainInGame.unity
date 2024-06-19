@@ -48396,6 +48396,7 @@ GameObject:
   - component: {fileID: 1198506488}
   - component: {fileID: 1198506490}
   - component: {fileID: 1198506489}
+  - component: {fileID: 1198506491}
   m_Layer: 5
   m_Name: VideoButton
   m_TagString: Untagged
@@ -48476,6 +48477,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198506487}
   m_CullTransparentMesh: 1
+--- !u!114 &1198506491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198506487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &1214106551
 GameObject:
   m_ObjectHideFlags: 0
@@ -49577,6 +49591,7 @@ GameObject:
   - component: {fileID: 1523739092}
   - component: {fileID: 1523739094}
   - component: {fileID: 1523739093}
+  - component: {fileID: 1523739095}
   m_Layer: 5
   m_Name: TitleButton
   m_TagString: Untagged
@@ -49648,7 +49663,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 914982913}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1509405095}
+        m_TargetAssemblyTypeName: In_Game_UI_Manager, Assembly-CSharp
+        m_MethodName: TitleButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1523739094
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -49657,6 +49684,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1523739091}
   m_CullTransparentMesh: 1
+--- !u!114 &1523739095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523739091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1509405095}
+          m_TargetAssemblyTypeName: In_Game_UI_Manager, Assembly-CSharp
+          m_MethodName: mouseEnterEvent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1580349679
 GameObject:
   m_ObjectHideFlags: 0
@@ -50161,9 +50217,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSounds: []
-  sfxSounds: []
+  sfxSounds:
+  - name: MouseEnter
+    clip: {fileID: 8300000, guid: ee2f835f826dc594d85ddc8d147e48d1, type: 3}
+  - name: ButtonClick
+    clip: {fileID: 8300000, guid: 1b80d24bcc1cf8046a822090663391eb, type: 3}
   musicSource: {fileID: 988111181}
-  sfxSource: {fileID: 0}
+  sfxSource: {fileID: 65428617}
 --- !u!1 &1710626287
 GameObject:
   m_ObjectHideFlags: 0
@@ -50597,6 +50657,7 @@ GameObject:
   - component: {fileID: 1888168118}
   - component: {fileID: 1888168120}
   - component: {fileID: 1888168119}
+  - component: {fileID: 1888168121}
   m_Layer: 5
   m_Name: RePlayButton
   m_TagString: Untagged
@@ -50689,6 +50750,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888168117}
   m_CullTransparentMesh: 0
+--- !u!114 &1888168121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888168117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1509405095}
+          m_TargetAssemblyTypeName: In_Game_UI_Manager, Assembly-CSharp
+          m_MethodName: mouseEnterEvent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1896552649
 GameObject:
   m_ObjectHideFlags: 0
@@ -51047,6 +51137,7 @@ GameObject:
   - component: {fileID: 1944948404}
   - component: {fileID: 1944948406}
   - component: {fileID: 1944948405}
+  - component: {fileID: 1944948407}
   m_Layer: 5
   m_Name: TitleButton
   m_TagString: Untagged
@@ -51139,6 +51230,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944948403}
   m_CullTransparentMesh: 1
+--- !u!114 &1944948407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944948403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1509405095}
+          m_TargetAssemblyTypeName: In_Game_UI_Manager, Assembly-CSharp
+          m_MethodName: mouseEnterEvent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1960900957
 GameObject:
   m_ObjectHideFlags: 0
@@ -51354,6 +51474,7 @@ GameObject:
   - component: {fileID: 2052668061}
   - component: {fileID: 2052668063}
   - component: {fileID: 2052668062}
+  - component: {fileID: 2052668064}
   m_Layer: 5
   m_Name: AudioButton
   m_TagString: Untagged
@@ -51446,6 +51567,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052668060}
   m_CullTransparentMesh: 0
+--- !u!114 &2052668064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052668060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1509405095}
+          m_TargetAssemblyTypeName: In_Game_UI_Manager, Assembly-CSharp
+          m_MethodName: mouseEnterEvent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2111656809
 GameObject:
   m_ObjectHideFlags: 0
