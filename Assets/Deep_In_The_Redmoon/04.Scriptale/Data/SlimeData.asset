@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 1
   bodyDamage: 1
-  maxHp: 550
+  maxHp: 3

@@ -21,6 +21,7 @@ namespace OTO.Manager
         public bool isStoreOpen = false;
         public bool isFieldClear = true;
         public bool isGameOver = false;
+        public bool isPlayerSpawn = false;
 
         [Header("UI")]
         public TextMeshProUGUI coinText = null;
@@ -40,6 +41,17 @@ namespace OTO.Manager
             CheckFieldMonster();
 
             coinText.text = coinCount.ToString();
+
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+
+            if (playerObject != null)
+            {
+                isPlayerSpawn = true;   
+            }
+            else
+            {
+                isPlayerSpawn = false;
+            }
         }
 
         private void CheckFieldMonster()

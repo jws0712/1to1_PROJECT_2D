@@ -29,6 +29,7 @@ namespace OTO.Manager
 
         private WaitForSeconds waitForSeconds = null;
         private int waveCount = default;
+        private bool isWaveStart = false;
 
         private void Awake()
         {
@@ -38,9 +39,17 @@ namespace OTO.Manager
 
         private void Start()
         {
-            WaveStart(delayTime);
-
             waveCount = 0;
+        }
+
+        private void Update()
+        {
+
+            if (GameManager.instance.isPlayerSpawn == true && isWaveStart == false)
+            {
+                WaveStart(delayTime);
+                isWaveStart = true;
+            }
         }
 
         public void WaveStart(float delayTime)

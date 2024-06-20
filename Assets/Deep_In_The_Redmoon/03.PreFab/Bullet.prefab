@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletSpeed: 25
   BulletDestroyTime: 0.5
-  hitEffect: {fileID: 1096352044232144, guid: 6e4b9c1925f0d3f4d8446e551a2e20d3, type: 3}
+  hitEffect: {fileID: 3716148588016365381, guid: 7ae6e72533413ff4093fd22a4de5070c, type: 3}
   bulletDamage: 0
 --- !u!95 &1630093808827924635
 Animator:

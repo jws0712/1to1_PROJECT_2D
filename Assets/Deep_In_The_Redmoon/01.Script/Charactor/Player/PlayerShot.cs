@@ -55,6 +55,10 @@ namespace OTO.Charactor.Player
             isShot = false;
             currentReroadCoolTIme = 0;
             currentAmmo = maxAmmo;
+            var canvas = GameObject.FindGameObjectWithTag("MainCanvas");
+            ammoText = canvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+
+            MainCamera = Camera.main;
         }
         private void Update()
         {
@@ -63,9 +67,9 @@ namespace OTO.Charactor.Player
                 return;
             }
 
-            HandPos = GameObject.FindWithTag("HandPos").transform;
-            FirePos = GameObject.FindWithTag("FirePos").transform;
-            SpinPos = GameObject.FindWithTag("SpinPos").transform;
+            HandPos = GameObject.FindGameObjectWithTag("HandPos").transform;
+            FirePos = GameObject.FindGameObjectWithTag("FirePos").transform;
+            SpinPos = GameObject.FindGameObjectWithTag("SpinPos").transform;
 
             reroadTimeSlider.gameObject.SetActive(false);
             ammoText.text = currentAmmo.ToString() + " / ¡Ä";

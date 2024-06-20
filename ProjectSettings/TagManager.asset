@@ -14,6 +14,9 @@ TagManager:
   - House
   - Bullet
   - Shop
+  - Car
+  - AmmoText
+  - MainCanvas
   layers:
   - Default
   - TransparentFX
