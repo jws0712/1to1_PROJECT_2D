@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+using UnityEditor.Experimental.RestService;
 
 public class In_Game_UI_Manager : MonoBehaviour
 {
@@ -13,6 +15,9 @@ public class In_Game_UI_Manager : MonoBehaviour
     [SerializeField] private GameObject settingBackGround = null;
     [SerializeField] private GameObject settingPanel = null;
     [SerializeField] private GameObject audioPanel = null;
+
+    [Header("Audio")]
+    [SerializeField] private AudioMixer audioMixer = null;
     [SerializeField] private Slider musicSlider = null;
     [SerializeField] private Slider sfxSlider = null;
 
@@ -22,6 +27,18 @@ public class In_Game_UI_Manager : MonoBehaviour
     private void Start()
     {
         isON = false;
+
+        if (PlayerPrefs.HasKey("musicVolume") || PlayerPrefs.HasKey("SFXVolume"))
+        {
+            AudioManager.instance.LoadVolume(musicSlider, sfxSlider, audioMixer);
+        }
+        else
+        {
+            AudioManager.instance.SetMusicVolume(musicSlider, audioMixer);
+            AudioManager.instance.SetSFXVolume(sfxSlider, audioMixer);
+        }
+
+        
     }
     private void Update()
     {
@@ -40,7 +57,6 @@ public class In_Game_UI_Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && isON == false)
         {
-            AudioManager.instance.PlaySFX("ButtonClick");
 
             settingBackGround.SetActive(true);
             settingPanel.SetActive(true);
@@ -50,7 +66,6 @@ public class In_Game_UI_Manager : MonoBehaviour
 
         else if (Input.GetKeyDown(KeyCode.Escape) && isON == true && isAudioPanelOn == false)
         {
-            AudioManager.instance.PlaySFX("ButtonClick");
 
             settingBackGround.SetActive(false);
             settingPanel.SetActive(false);
@@ -60,7 +75,6 @@ public class In_Game_UI_Manager : MonoBehaviour
 
         else if(Input.GetKeyDown(KeyCode.Escape) && isAudioPanelOn == true)
         {
-            AudioManager.instance.PlaySFX("ButtonClick");
 
             audioPanel.SetActive(false);
             settingPanel.SetActive(true);
@@ -68,41 +82,28 @@ public class In_Game_UI_Manager : MonoBehaviour
         }
     }
 
-    public void MusicVolume()
-    {
-        AudioManager.instance.MusicVolume(musicSlider.value);
-        PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
-    }
 
-    public void SFXVolume()
-    {
-        AudioManager.instance.SFXvolume(sfxSlider.value);
-        PlayerPrefs.SetFloat("SFXVolume", sfxSlider.value);
-    }
 
     public void AudioPanelOn()
     {
         settingPanel.SetActive(false);
-
         audioPanel.SetActive(true);
         isAudioPanelOn = true;
     }
 
     public void RePlayButton()
     {
-        AudioManager.instance.PlaySFX("ButtonClick");
         LoadingScreenManager.LoadScene("MainInGame");
     }
 
     public void TitleButton()
     {
-        AudioManager.instance.PlaySFX("ButtonClick");
         SceneManager.LoadScene("MainTitle");
         Time.timeScale = 1;
     }
 
     public void mouseEnterEvent()
     {
-        AudioManager.instance.PlaySFX("MouseEnter");
+
     }
 }

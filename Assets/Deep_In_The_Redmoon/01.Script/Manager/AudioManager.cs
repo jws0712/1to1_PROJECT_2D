@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using System;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -22,9 +24,6 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        musicSource.volume = 0f;
-        sfxSource.volume = 0f;
     }
     public void PlayMusic(string name)
     {
@@ -55,13 +54,28 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void MusicVolume(float volume)
+    public void SetMusicVolume(Slider musicSlider, AudioMixer audioMixer)
     {
-        musicSource.volume = volume;
+        float volume = musicSlider.value;
+        audioMixer.SetFloat("Music", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("musicVolume", volume);
     }
 
-    public void SFXvolume(float volume)
+
+    public void SetSFXVolume(Slider sfxSlider, AudioMixer audioMixer)
     {
-        sfxSource.volume = volume;
+        float volume = sfxSlider.value;
+        audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("SFXVolume", volume);
     }
+
+    public void LoadVolume(Slider musicSlider, Slider sfxSlider, AudioMixer audioMixer)
+    {
+        musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+
+        SetMusicVolume(musicSlider, audioMixer);
+        SetSFXVolume(sfxSlider, audioMixer);
+    }
+
 }
