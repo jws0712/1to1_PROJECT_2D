@@ -1,14 +1,9 @@
 namespace OTO.Manager
 {
 
-    //System
-    using System.Collections;
-    using System.Collections.Generic;
-
     //UnityEngine
     using UnityEngine;
     using UnityEngine.UI;
-    using UnityEngine.SceneManagement;
     using UnityEngine.Audio;
 
     public class Out_Game_UI_Manager : MonoBehaviour

@@ -117,8 +117,17 @@ namespace OTO.Charactor.Player
             {
                 rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
-
             }
+            
+            if(CheckGround() == true)
+            {
+                animator.SetBool("isJump", false);
+            }
+            else
+            {
+                animator.SetBool("isJump", true);
+            }
+
         }
 
         private void Filp()

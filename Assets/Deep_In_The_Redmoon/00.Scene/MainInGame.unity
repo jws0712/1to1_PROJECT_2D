@@ -22990,7 +22990,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &662068483
 GameObject:
@@ -23232,7 +23232,7 @@ MonoBehaviour:
   flashMaterial: {fileID: 2100000, guid: fc5839795288f184c9b4a7f35534f809, type: 2}
   isDead: 0
   currentHp: 0
-  maxHp: 10
+  maxHp: 10000
   playerFlashCount: 4
   duration: 0.1
 --- !u!114 &734675149
@@ -47496,7 +47496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a50516525aaef4cbfb336b113e3d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 50
+  maxHp: 100
   houseHpSlider: {fileID: 1660260}
   currentHp: 0
 --- !u!50 &1038539250
@@ -48227,7 +48227,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2c053ff1b15fd7b4b861858e0d3845e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 460d380ee09df5d43a2c12c33732a7f7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -49258,7 +49258,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1523739091
 GameObject:
@@ -51440,7 +51440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3313340037016913558, guid: 0dffd2d240b5ac944a3323ed96a04740, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3313340037016913558, guid: 0dffd2d240b5ac944a3323ed96a04740, type: 3}
       propertyPath: m_LocalPosition.x

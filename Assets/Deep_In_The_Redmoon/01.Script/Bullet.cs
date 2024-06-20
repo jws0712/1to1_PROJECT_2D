@@ -1,15 +1,5 @@
 namespace OTO.Bullet
 {
-    //Microsoft
-    using Microsoft.Unity.VisualStudio.Editor;
-
-    //System
-    using System.Collections;
-    using System.Collections.Generic;
-
-    //Unity
-    using Unity.VisualScripting;
-
     //UnityEngine
     using UnityEngine;
 
@@ -24,11 +14,12 @@ namespace OTO.Bullet
         [SerializeField] private float BulletDestroyTime = default;
         [SerializeField] private GameObject hitEffect = default;
 
+        [HideInInspector]
         public float bulletDamage = default;
 
         void Start()
         {
-            Co_BulletDestory();
+            Invoke("BulletDestory", BulletDestroyTime);
         }
 
         private void FixedUpdate()
@@ -36,16 +27,14 @@ namespace OTO.Bullet
             transform.Translate(Vector2.right * BulletSpeed * Time.fixedDeltaTime);
         }
 
-        private IEnumerator Co_BulletDestory()
+        private void BulletDestory()
         {
-            yield return new WaitForSeconds(BulletDestroyTime);
-
             Instantiate(hitEffect, transform.position, transform.rotation);
-            DestoryBullet();
+            DestroyObject();
 
         }
 
-        private void DestoryBullet()
+        private void DestroyObject()
         {
             Destroy(gameObject);
         }
@@ -55,27 +44,27 @@ namespace OTO.Bullet
             if (collision.CompareTag("Wall") || collision.CompareTag("Monster") || collision.CompareTag("Player"))
             {
                 Instantiate(hitEffect, transform.position, transform.rotation);
-                DestoryBullet();
+                DestroyObject();
             }
 
             if(gameObject.layer == LayerMask.NameToLayer("Monster"))
             {
                 if (collision.CompareTag("House"))
                 {
-                    collision.GetComponent<Shop>().TakeDamage(bulletDamage); //몬스터
+                    collision.GetComponent<Shop>().TakeDamage(bulletDamage);
                     Instantiate(hitEffect, transform.position, transform.rotation);
-                    DestoryBullet();
+                    DestroyObject();
                 }
             }
 
 
             if (collision.CompareTag("Monster"))
             {
-                collision.GetComponent<Monster>().TakeDamage(bulletDamage); //플레이어
+                collision.GetComponent<Monster>().TakeDamage(bulletDamage);
             }
             if (collision.CompareTag("Player"))
             {
-                collision.GetComponent<PlayerManager>().TakeDamage(bulletDamage); //몬스터
+                collision.GetComponent<PlayerManager>().TakeDamage(bulletDamage);
             }
         }
     }

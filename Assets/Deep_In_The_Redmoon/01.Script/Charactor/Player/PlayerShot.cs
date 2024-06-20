@@ -2,8 +2,6 @@ namespace OTO.Charactor.Player
 {
     //System
     using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
 
     //UnityEngine
     using UnityEngine;
