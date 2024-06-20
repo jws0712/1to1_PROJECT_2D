@@ -54,28 +54,26 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void SetMusicVolume(Slider musicSlider, AudioMixer audioMixer)
+    public void SetMusicVolume(float volume, AudioMixer audioMixer)
     {
-        float volume = musicSlider.value;
         audioMixer.SetFloat("Music", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("musicVolume", volume);
     }
 
 
-    public void SetSFXVolume(Slider sfxSlider, AudioMixer audioMixer)
+    public void SetSFXVolume(float volume, AudioMixer audioMixer)
     {
-        float volume = sfxSlider.value;
         audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
-    public void LoadVolume(Slider musicSlider, Slider sfxSlider, AudioMixer audioMixer)
+    public void LoadVolume(float musicVolume, float sfxVolume, AudioMixer audioMixer)
     {
-        musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+        musicVolume = PlayerPrefs.GetFloat("musicVolume");
+        sfxVolume = PlayerPrefs.GetFloat("SFXVolume");
 
-        SetMusicVolume(musicSlider, audioMixer);
-        SetSFXVolume(sfxSlider, audioMixer);
+        SetMusicVolume(musicVolume, audioMixer);
+        SetSFXVolume(sfxVolume, audioMixer);
     }
 
 }

@@ -28,18 +28,26 @@ public class In_Game_UI_Manager : MonoBehaviour
     {
         isON = false;
 
+        musicSlider.onValueChanged.AddListener((value) => AudioManager.instance.SetMusicVolume(value, audioMixer));
+        sfxSlider.onValueChanged.AddListener((value) => AudioManager.instance.SetSFXVolume(value, audioMixer));
+
+
         if (PlayerPrefs.HasKey("musicVolume") || PlayerPrefs.HasKey("SFXVolume"))
         {
-            AudioManager.instance.LoadVolume(musicSlider, sfxSlider, audioMixer);
+            AudioManager.instance.LoadVolume(musicSlider.value, sfxSlider.value, audioMixer);
+
+            musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
+            sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+
         }
         else
         {
-            AudioManager.instance.SetMusicVolume(musicSlider, audioMixer);
-            AudioManager.instance.SetSFXVolume(sfxSlider, audioMixer);
+            AudioManager.instance.SetMusicVolume(musicSlider.value, audioMixer);
+            AudioManager.instance.SetSFXVolume(sfxSlider.value, audioMixer);
         }
-
-        
     }
+
+
     private void Update()
     {
         if(GameManager.instance.isGameOver == true)
@@ -81,8 +89,6 @@ public class In_Game_UI_Manager : MonoBehaviour
             isAudioPanelOn = false;
         }
     }
-
-
 
     public void AudioPanelOn()
     {
