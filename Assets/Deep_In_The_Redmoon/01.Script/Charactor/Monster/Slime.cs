@@ -13,22 +13,25 @@ namespace OTO.Charactor.Monster
 
     //Project
     using OTO.Bullet;
+    using System.Linq.Expressions;
 
+    /// <summary>
+    /// 슬라임의 행동을 관리하는 함수
+    /// </summary>
     public class Slime : Monster
     {
         [Header("SlimeJump")]
-        [SerializeField]
-        private float jumpPower = default;
-        [SerializeField]
-        private LayerMask gorundLayer = default;
-        [SerializeField]
-        private Transform groundCheckPos = default;
+        [SerializeField] private float jumpPower = default;
+        [SerializeField] private LayerMask gorundLayer = default;
+        [SerializeField] private Transform groundCheckPos = default;
 
+        //public variables
         private bool isHouseAttack = default;
 
         protected override void OnEnable()
         {
             base.OnEnable();
+            chaseHouse = true;
             currentCoolTime = 0f;
         }
 
@@ -36,6 +39,10 @@ namespace OTO.Charactor.Monster
         {
             base.Update();
         }
+
+        /// <summary>
+        /// 슬라임의 공격을 실행하는 함수
+        /// </summary>
         protected override void Attack()
         {
             base.Attack();
@@ -52,6 +59,10 @@ namespace OTO.Charactor.Monster
             }
         }
 
+        /// <summary>
+        /// 슬라임이 땅에 닿았는지 검사하는 함수
+        /// </summary>
+        /// <returns></returns>
         private bool CheckGround()
         {
             return Physics2D.OverlapCircle(groundCheckPos.position, 0.1f, gorundLayer);

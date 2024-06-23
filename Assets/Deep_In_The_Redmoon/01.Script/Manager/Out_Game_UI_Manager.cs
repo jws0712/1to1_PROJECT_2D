@@ -24,6 +24,8 @@ namespace OTO.Manager
 
         private void Start()
         {
+            Time.timeScale = 1;
+
             Cursor.visible = true;
 
             musicSlider.onValueChanged.AddListener((value) => AudioManager.instance.SetMusicVolume(value, audioMixer));

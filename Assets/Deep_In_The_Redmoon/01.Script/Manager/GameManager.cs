@@ -18,9 +18,9 @@ namespace OTO.Manager
         [Header("Info")]
         [SerializeField] private float coinVel = default;
         public float fieldMonsterCount = default;
-        public bool isStoreOpen = false;
         public bool isFieldClear = true;
         public bool isGameOver = false;
+        public bool isStoreOpen = false;
         public bool isPlayerSpawn = false;
 
         [Header("UI")]

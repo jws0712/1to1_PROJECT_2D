@@ -53,7 +53,7 @@ namespace OTO.Bullet
                 {
                     collision.GetComponent<Shop>().TakeDamage(bulletDamage);
                     Instantiate(hitEffect, transform.position, transform.rotation);
-                    DestroyObject();
+                    //DestroyObject();
                 }
             }
 

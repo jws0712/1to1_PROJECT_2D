@@ -19,7 +19,6 @@ public class CanvasController : MonoBehaviour
         }
         else
         {
-            Debug.Log("¹¹°¡ ¹®Á¦¾ß");
             return;
         }
     }

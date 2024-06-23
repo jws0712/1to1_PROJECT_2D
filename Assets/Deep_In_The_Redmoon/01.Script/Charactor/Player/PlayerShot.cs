@@ -13,6 +13,9 @@ namespace OTO.Charactor.Player
     using TMPro;
     using OTO.Manager;
 
+    /// <summary>
+    /// 플레이어의 공격을 관리하는 클래스
+    /// </summary>
     public class PlayerShot : MonoBehaviour
     {
 
@@ -43,11 +46,12 @@ namespace OTO.Charactor.Player
         [SerializeField] private Slider reroadTimeSlider = null;
         [SerializeField] private TextMeshProUGUI ammoText = null;
 
+        //private variables
         private Quaternion bulletAngle = default;
         private Vector3 mousePos = default;
-        private bool isShot = default;
         private float currentAmmo = default;
         private float currentReroadCoolTIme = default;
+        private bool isShot = default;
         private bool isReload = default;
 
         private void Start()
@@ -57,7 +61,6 @@ namespace OTO.Charactor.Player
             currentAmmo = maxAmmo;
             var canvas = GameObject.FindGameObjectWithTag("MainCanvas");
             ammoText = canvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-
             MainCamera = Camera.main;
         }
         private void Update()
@@ -80,15 +83,21 @@ namespace OTO.Charactor.Player
             Reload();
         }
 
+        
         private void Reload()
         {
             if (!isShot && currentAmmo != maxAmmo && Input.GetKeyDown(KeyCode.R) && isReload == false && playerMovement.isDash == false)
             {
+                AudioManager.instance.PlaySFX("Reload");
                 isReload = true;
                 StartCoroutine(Co_Reload());
             }
         }
 
+        /// <summary>
+        /// 총을 재장전하는 코루틴
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator Co_Reload()
         {
             while(true)
@@ -107,6 +116,9 @@ namespace OTO.Charactor.Player
             }
         }
 
+        /// <summary>
+        /// 마우스 코드
+        /// </summary>
         private void Spin()
         {
             mousePos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -117,6 +129,10 @@ namespace OTO.Charactor.Player
 
             HandPos.transform.rotation = Quaternion.Euler(0, 0, RotZ);
         }
+
+        /// <summary>
+        /// 총알을 발사하는 함수
+        /// </summary>
         private void Shoot()
         {
             if (playerMovement.isDash)
@@ -130,10 +146,16 @@ namespace OTO.Charactor.Player
             }
         }
 
+        /// <summary>
+        /// 총알을 발사하는 코루틴
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator Co_Shooting()
         {
             float SpreadAngle = RotZ + Random.Range(minSpreadAngle, maxSpreadAngle);
             bulletAngle = Quaternion.Euler(0, 0, SpreadAngle);
+            AudioManager.instance.PlaySFX("GunFire");
+            CameraShakeManager.instance.PlayShake("GunFire");
             GameObject _bullet = Instantiate(Bullet, FirePos.transform.position, bulletAngle);
             _bullet.GetComponent<Bullet>().bulletDamage = bulletDamage;
             currentAmmo -= 1;

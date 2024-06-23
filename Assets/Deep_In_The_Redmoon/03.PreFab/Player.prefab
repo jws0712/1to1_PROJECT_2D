@@ -286,6 +286,7 @@ MonoBehaviour:
   dashingTimeCoolTime: 0.15
   shotScript: {fileID: 5420330156186610167}
   playerGhost: {fileID: 5420330156186610160}
+  isFilp: 1
   isDash: 0
 --- !u!114 &5420330156186610167
 MonoBehaviour:
@@ -304,7 +305,7 @@ MonoBehaviour:
   FirePos: {fileID: 0}
   SpinPos: {fileID: 0}
   Bullet: {fileID: 6183457796777578699, guid: d437f2ed53d3c3b489d7109c523def0b, type: 3}
-  bulletDamage: 1
+  bulletDamage: 30
   maxAmmo: 10
   fireCoolTime: 0.3
   reloadCoolTime: 0.5
@@ -329,7 +330,7 @@ MonoBehaviour:
   flashMaterial: {fileID: 2100000, guid: fc5839795288f184c9b4a7f35534f809, type: 2}
   isDead: 0
   currentHp: 0
-  maxHp: 10000
+  maxHp: 100000
   playerFlashCount: 4
   duration: 0.1
 --- !u!114 &5420330156186610160

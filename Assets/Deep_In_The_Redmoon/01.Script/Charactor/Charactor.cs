@@ -49,6 +49,7 @@ namespace OTO.Charactor
         protected virtual void Die() 
         {
             isDead = true;
+            AudioManager.instance.PlaySFX("Dead");
         }
 
         private void SpriteFlash()

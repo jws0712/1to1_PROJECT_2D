@@ -1,6 +1,9 @@
 using OTO.Manager;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +32,11 @@ public class Shop : MonoBehaviour
         houseHpSlider.value = currentHp/maxHp;
         animator.SetBool("isOpen", GameManager.instance.isStoreOpen);
 
+        if(GameManager.instance.isFieldClear == true)
+        {
+            currentHp = maxHp;
+        }
+
         if(currentHp <= 0 )
         {
             GameManager.instance.GameOver();
@@ -39,6 +47,4 @@ public class Shop : MonoBehaviour
     {
         currentHp -= damage;
     }
-
-
 }

@@ -45,11 +45,11 @@ namespace OTO.Charactor.Player
         private GameObject GunObject;
         private Animator animator = null;
         private Rigidbody2D rb;
-        private bool isFilp = true;
         private bool canDash = true;
         private float horizontal = default;
 
         //public variables
+        public bool isFilp = true;
         public bool isDash;
 
         private void Awake()
@@ -93,15 +93,25 @@ namespace OTO.Charactor.Player
             PlayerMove();
         }
 
+        /// <summary>
+        /// 플레이어의 입력을 관리하는 함수
+        /// </summary>
         private void PlayerInput()
         {
             horizontal = Input.GetAxisRaw("Horizontal");
         }
+
+        /// <summary>
+        /// 플레이어의 움직임을 관리하는 함수
+        /// </summary>
         private void PlayerMove()
         {
             rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
         }
 
+        /// <summary>
+        /// 플레이어의 점프 기능을 구현한 함수
+        /// </summary>
         private void PlayerJump()
         {
             if (rb.velocity.y < 0)
@@ -115,6 +125,8 @@ namespace OTO.Charactor.Player
 
             if (Input.GetButtonDown("Jump") && CheckGround() == true && !isDash)
             {
+
+                AudioManager.instance.PlaySFX("PlayerJump");
                 rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
             }
@@ -130,6 +142,9 @@ namespace OTO.Charactor.Player
 
         }
 
+        /// <summary>
+        /// 플레이어 오브젝트를 뒤집는 함수
+        /// </summary>
         private void Filp()
         {
             if (!isDash)
@@ -163,6 +178,9 @@ namespace OTO.Charactor.Player
 
         }
 
+        /// <summary>
+        /// 대시를 실행하는 함수
+        /// </summary>
         private void Dash()
         {
             if(Input.GetMouseButtonDown(1) && canDash && horizontal != 0 && CheckGround() == true)
@@ -171,6 +189,10 @@ namespace OTO.Charactor.Player
             }
         }
 
+        /// <summary>
+        /// 대시의 기능을 구현한 함수
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator Dashing()
         {
             rb.velocity = Vector2.zero;
@@ -204,6 +226,9 @@ namespace OTO.Charactor.Player
             GunObject.SetActive(true);
         }
 
+        /// <summary>
+        /// 플레이어의 애니매이션 상태를 관리하는 함수
+        /// </summary>
         private void PlayerAnimation()
         {
             if(horizontal != 0)
@@ -218,6 +243,10 @@ namespace OTO.Charactor.Player
             animator.SetBool("isDash", isDash);
         }
 
+        /// <summary>
+        /// 땅에 닿았는지 검사하는 함수
+        /// </summary>
+        /// <returns></returns>
         private bool CheckGround()
         {
             return Physics2D.OverlapCircle(groundCheckPos.position, 0.1f, groundLayer);

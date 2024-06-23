@@ -8,7 +8,9 @@ namespace OTO.Charactor.Player
     //UnityEngine
     using UnityEngine;
 
-
+    /// <summary>
+    /// 플레이어의 대시시 잔상을 관리하는 클래스
+    /// </summary>
     public class PlayerGhost : MonoBehaviour
     {
         [Header("GhostSetting")]
@@ -16,7 +18,7 @@ namespace OTO.Charactor.Player
         [SerializeField] private GameObject ghost;
         [SerializeField] private float destoryTime;
 
-        //public variables
+        [HideInInspector]
         public bool makeGhost = false;
 
         //private variables
@@ -27,6 +29,9 @@ namespace OTO.Charactor.Player
             ghostDelaySeconds = ghostDelay;
         }
 
+        /// <summary>
+        /// 플레이어가 대시를 할때 잔상을 소환하는 코드
+        /// </summary>
         private void Update()
         {
             if (makeGhost)

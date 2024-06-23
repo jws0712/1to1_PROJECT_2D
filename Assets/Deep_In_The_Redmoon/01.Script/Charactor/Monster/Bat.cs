@@ -14,6 +14,9 @@ namespace OTO.Charactor.Monster
     //Project
     using OTO.Bullet;
 
+    /// <summary>
+    /// 박쥐 몬스터의 행동 이벤트를 관리하는 클래스
+    /// </summary>
     public class Bat : Monster
     {
         [Header("BatInfo")]
@@ -28,6 +31,8 @@ namespace OTO.Charactor.Monster
 
         protected override void OnEnable()
         {
+            chaseHouse = true;
+
             base.OnEnable();
         }
 
@@ -36,6 +41,9 @@ namespace OTO.Charactor.Monster
             base.Update();
         }
 
+        /// <summary>
+        /// 몬스터 공격을 실행하는 함수
+        /// </summary>
         protected override void Attack()
         {
             base.Attack();

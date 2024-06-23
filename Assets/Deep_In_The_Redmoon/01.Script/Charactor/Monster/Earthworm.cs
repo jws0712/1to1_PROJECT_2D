@@ -10,6 +10,9 @@ namespace OTO.Charactor.Monster
     //Project
     using OTO.Bullet;
 
+    /// <summary>
+    /// 지렁이의 행동을 관리하는 클래스
+    /// </summary>
     public class Earthworm : Monster
     {
         [Header("BulletInfo")]
@@ -29,6 +32,8 @@ namespace OTO.Charactor.Monster
 
         protected override void OnEnable()
         {
+            chaseHouse = true;
+
             base.OnEnable();
         }
 
@@ -47,6 +52,9 @@ namespace OTO.Charactor.Monster
             }
         }
 
+        /// <summary>
+        /// 지렁이의 공격을 실행하는 함수
+        /// </summary>
         protected override void Attack()
         {
             base.Attack();
@@ -69,6 +77,10 @@ namespace OTO.Charactor.Monster
             }
         }
 
+        /// <summary>
+        /// 타겟의 위치를 가져와서 총알 발사 각도를 구하는 함수
+        /// </summary>
+        /// <param name="targetPos"></param>
         private void GetFireRot(Transform targetPos)
         {
             Vector3 rotation = targetPos.position - firePos.position;

@@ -13,16 +13,21 @@ namespace OTO.Charactor.Player
     using OTO.Charactor.Monster;
     using OTO.Manager;
 
+    /// <summary>
+    /// 플레이어의 상태를 관리하는 클래스
+    /// </summary>
     public class PlayerManager : Charactor
     {
-        [Header("GetHitFlash")]
+        [Header("GetHit")]
         [SerializeField] private float playerFlashCount = default;
         [SerializeField] private float duration = default;
 
-        //Private variables
+        //private variables
         private GameObject gunObject = null;
         private GameObject handPos = null;
         private SpriteRenderer gunRenderer = null;
+        private PlayerMovement playerMovement = null;
+        private Rigidbody2D rb = null;
         private LayerMask monsterLayer = default;
         private LayerMask playerLayer = default;
 
@@ -33,16 +38,30 @@ namespace OTO.Charactor.Player
             playerLayer = LayerMask.NameToLayer("Player");
 
             Physics2D.IgnoreLayerCollision(playerLayer, monsterLayer, false);
+
+            playerMovement = GetComponent<PlayerMovement>();
+            rb = GetComponent<Rigidbody2D>();
         }
 
         private void Update()
         {
             GameManager.instance.hpSlider.value = currentHp / maxHp;
+
+            if(GameManager.instance.isFieldClear == true)
+            {
+                currentHp = maxHp;
+            }
         }
 
+        /// <summary>
+        /// 데미지를 받을때 실행하는 함수
+        /// </summary>
+        /// <param name="damage">받을 데미지</param>
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
+
+            CameraShakeManager.instance.PlayShake("Hit");
 
             handPos = GameObject.FindWithTag("HandPos");
 
@@ -59,10 +78,13 @@ namespace OTO.Charactor.Player
             StartCoroutine(Co_PlayerSpriteFlash(playerFlashCount));
         }
 
+        /// <summary>
+        /// 플레이어가 데미지를 받았을때 플레이어 오브젝트를 깜빡거리게 만든 코루틴
+        /// </summary>
+        /// <param name="Count"></param>
+        /// <returns></returns>
         private IEnumerator Co_PlayerSpriteFlash(float Count)
         {
-
-
             Color _playerAlpha = renderer.color;
             for (int i = 0; i < Count; i++)
             {
@@ -79,6 +101,10 @@ namespace OTO.Charactor.Player
             }
             Physics2D.IgnoreLayerCollision(playerLayer, monsterLayer, false);
         }
+
+        /// <summary>
+        /// 플레이어가 죽었을때 실행하는 함수
+        /// </summary>
         protected override void Die()
         {
             base.Die();

@@ -12,6 +12,9 @@ namespace OTO.Charactor.Monster
     using OTO.Charactor.Player;
     using OTO.Manager;
 
+    /// <summary>
+    /// 몬스터의 이벤트들을 관리하는 부모 클래스
+    /// </summary>
     public class Monster : Charactor
     {
         [Header("MonsterInfo")]
@@ -27,8 +30,6 @@ namespace OTO.Charactor.Monster
         [Header("DropItem")]
         [SerializeField] private GameObject coinDiamond = null;
 
-
-
         //Protected variables
         protected Animator anim = null;
         protected Rigidbody2D rb = null;
@@ -39,8 +40,8 @@ namespace OTO.Charactor.Monster
         protected float currentCoolTime = default;
         protected float bulletDamage = default;
         protected float bodyDamage = default;
-
-        //Private variables
+        protected bool isFlip = false;
+        protected bool chaseHouse = false;
 
 
         protected virtual void OnEnable()
@@ -59,12 +60,27 @@ namespace OTO.Charactor.Monster
             {
                 ChaseLogic(playerTrasnform);
             }
-            else
+            else if(chaseHouse == true)
             {
                 ChaseLogic(houseTransform);
             }
         }
+        /// <summary>
+        /// 몬스터 클래스의 필드를 초기화 하는 함수
+        /// </summary>
+        private void Init()
+        {
+            anim = GetComponent<Animator>();
+            rb = GetComponent<Rigidbody2D>();
 
+            bulletDamage = monsterData.BulletDamage;
+            bodyDamage = monsterData.BodyDamage;
+            maxHp = monsterData.MaxHp;
+        }
+
+        /// <summary>
+        /// 집과 플레이어가 공격거리에 있는지 검사하는 함수
+        /// </summary>
         private void CheackAttackDistance()
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
@@ -82,6 +98,9 @@ namespace OTO.Charactor.Monster
             }
         }
 
+        /// <summary>
+        /// 공격 쿨타임이 다 돌면 공격을 실행하는 함수
+        /// </summary>
         protected virtual void Attack()
         {
             currentCoolTime += Time.deltaTime;
@@ -92,20 +111,10 @@ namespace OTO.Charactor.Monster
             }
         }
 
-        private void ChaseLogic(Transform chaseTransform)
-        {
-            float objectDistance = Mathf.Abs(chaseTransform.position.x - transform.position.x);
-
-            if (objectDistance < stopDistance)
-            {
-                StopChase();
-            }
-            else
-            {
-                Chase(chaseTransform);
-            }
-        }
-
+        /// <summary>
+        /// 사정거리 내에 플레이어가 있는지 판단하는 함수
+        /// </summary>
+        /// <param name="range">자정거리</param>
         private void CheckRange(float range)
         {
             Collider2D collider = Physics2D.OverlapCircle(transform.position, range, chaseTarget);
@@ -121,35 +130,55 @@ namespace OTO.Charactor.Monster
             }
         }
 
+        /// <summary>
+        /// 타겟으로 일정거리 다가가면 멈추는 함수
+        /// </summary>
+        /// <param name="chaseTransform">타겟</param>
+        private void ChaseLogic(Transform chaseTransform)
+        {
+            float objectDistance = Mathf.Abs(chaseTransform.position.x - transform.position.x);
+
+            if (objectDistance < stopDistance)
+            {
+                StopChase();
+            }
+            else
+            {
+                Chase(chaseTransform);
+            }
+        }
+
+        /// <summary>
+        /// 타겟을 추적하는 함수
+        /// </summary>
+        /// <param name="chaseTransform">타겟</param>
         private void Chase(Transform chaseTransform)
         {
-            if (transform.position.x < chaseTransform.position.x)
+            if (transform.position.x < chaseTransform.position.x && isAttack)
             {
                 rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
                 transform.localScale = new Vector2(-monsterSacle, monsterSacle);
+                isFlip = false;
             }
             else
             {
                 rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
                 transform.localScale = new Vector2(monsterSacle, monsterSacle);
+                isFlip = true;
             }
         }
-
-        private void StopChase()
+        
+        /// <summary>
+        /// 몬스터를 멈추는 함수
+        /// </summary>
+        protected virtual void StopChase()
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
-        private void Init()
-        {
-            anim = GetComponent<Animator>();
-            rb = GetComponent<Rigidbody2D>();
-
-            bulletDamage = monsterData.BulletDamage;
-            bodyDamage = monsterData.BodyDamage;
-            maxHp = monsterData.MaxHp;
-        }
-
+        /// <summary>
+        /// 몬스터가 죽었을때 실행되는 함수
+        /// </summary>
         protected override void Die()
         {
             base.Die();
@@ -163,6 +192,10 @@ namespace OTO.Charactor.Monster
 
         }
 
+        /// <summary>
+        /// 몬스터가 죽었을때 아이템을 떨어뜨리는 함수
+        /// </summary>
+        /// <param name="dropItem">떨어질 아이템</param>
         private void DropItem(params GameObject[] dropItem)
         {
             for(int i = 0; i < dropItem.Length; i++)
@@ -173,9 +206,29 @@ namespace OTO.Charactor.Monster
             }
         }
 
+        /// <summary>
+        /// 데미지를 받을때 실행되는 함수
+        /// </summary>
+        /// <param name="damage">받을 데미지</param>
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                collision.gameObject.GetComponent<PlayerManager>().TakeDamage(bodyDamage);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Player"))
+            {
+                collision.gameObject.GetComponent<PlayerManager>().TakeDamage(bodyDamage);
+            }
         }
 
         private void OnDrawGizmos()
@@ -187,13 +240,5 @@ namespace OTO.Charactor.Monster
             Gizmos.DrawWireSphere(transform.position, attackRange);
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-            {
-                Debug.Log("플레이어 공격");
-                collision.gameObject.GetComponent<PlayerManager>().TakeDamage(bodyDamage);
-            }
-        }
     }
 }

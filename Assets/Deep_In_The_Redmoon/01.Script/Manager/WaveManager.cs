@@ -18,11 +18,12 @@ namespace OTO.Manager
         {
             public GameObject[] monsterArray;
         }
+
         public List<WaveMonster> waveList = new List<WaveMonster>();
         [SerializeField] private Transform[] spawnPosArray = null;
 
         
-        [SerializeField] private float delayTime = default;
+        [SerializeField] private float spawnDelayTime = default;
         [SerializeField] private float waveDelayTime = default;
         [SerializeField] private GameObject waveText = null;
         [SerializeField] private TextMeshProUGUI waveNumber = null;
@@ -44,10 +45,9 @@ namespace OTO.Manager
 
         private void Update()
         {
-
             if (GameManager.instance.isPlayerSpawn == true && isWaveStart == false)
             {
-                WaveStart(delayTime);
+                WaveStart(spawnDelayTime);
                 isWaveStart = true;
             }
         }
