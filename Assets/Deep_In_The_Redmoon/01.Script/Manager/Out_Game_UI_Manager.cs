@@ -68,7 +68,7 @@ namespace OTO.Manager
         /// </summary>
         public void StartButton()
         {
-            LoadingScreenManager.LoadScene("MainInGame");
+            LoadingScreenManager.LoadScene("2");
         }
 
         /// <summary>

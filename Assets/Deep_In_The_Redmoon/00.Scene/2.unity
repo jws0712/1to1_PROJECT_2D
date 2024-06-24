@@ -490,7 +490,6 @@ GameObject:
   - component: {fileID: 86494664}
   - component: {fileID: 86494667}
   - component: {fileID: 86494666}
-  - component: {fileID: 86494665}
   m_Layer: 5
   m_Name: KeepPlayButton
   m_TagString: Untagged
@@ -519,35 +518,6 @@ RectTransform:
   m_AnchoredPosition: {x: 168, y: -199}
   m_SizeDelta: {x: 218.1, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &86494665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 86494663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3313340035870511882}
-          m_TargetAssemblyTypeName: OTO.Manager.GameManager, Assembly-CSharp
-          m_MethodName: MoveNextScene
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &86494666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,9 +562,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1509405095}
-        m_TargetAssemblyTypeName: In_Game_UI_Manager, Assembly-CSharp
-        m_MethodName: TitleButton
+      - m_Target: {fileID: 3313340035870511882}
+        m_TargetAssemblyTypeName: OTO.Manager.GameManager, Assembly-CSharp
+        m_MethodName: MoveNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22988,7 +22958,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 1711340543
+    rgba: 4278254591
   m_fontColor: {r: 1, g: 0.98279655, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -26920,7 +26890,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 7763574
+    rgba: 4285953654
   m_fontColor: {r: 0.4627451, g: 0.4627451, b: 0.4627451, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -31016,7 +30986,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 7763574
+    rgba: 4285953654
   m_fontColor: {r: 0.4627451, g: 0.4627451, b: 0.4627451, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3

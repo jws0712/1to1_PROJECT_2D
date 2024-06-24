@@ -12,12 +12,12 @@ EditorBuildSettings:
     path: Assets/Deep_In_The_Redmoon/00.Scene/LoadingScreen.unity
     guid: 7b19f648e5ad9eb42956437eaa9aaef8
   - enabled: 1
-    path: Assets/Deep_In_The_Redmoon/00.Scene/1.unity
+    path: Assets/Deep_In_The_Redmoon/00.Scene/2.unity
     guid: e6762add1b36b9f42ad8ba64864dbb2d
   - enabled: 1
-    path: Assets/Deep_In_The_Redmoon/00.Scene/2.unity
-    guid: 3462d7c8937d4e54f809296d0186d3a0
-  - enabled: 1
     path: Assets/Deep_In_The_Redmoon/00.Scene/3.unity
-    guid: cace07f545842794891cb07ea6b4e35c
+    guid: e9643b6956fb88d4a822fd5df44d9562
+  - enabled: 1
+    path: Assets/Deep_In_The_Redmoon/00.Scene/4.unity
+    guid: a9d43d43eca518748a29933cf4e66e35
   m_configObjects: {}
