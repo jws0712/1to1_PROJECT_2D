@@ -1,7 +1,5 @@
-namespace OTO.Cursor
+namespace OTO.Manager
 {
-    using OTO.Manager;
-
     //UnityEngine
     using UnityEngine;
 
@@ -13,7 +11,10 @@ namespace OTO.Cursor
         [SerializeField] GameObject CursorObject;
 
         private Vector2 mousePos;
-        // Start is called before the first frame update
+
+        /// <summary>
+        /// 초기 마우스커서의 값 설정
+        /// </summary>
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Confined;
@@ -21,7 +22,9 @@ namespace OTO.Cursor
 
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// 마우스커서 오브젝트가 마우스 위치를 따라오게 만든코드
+        /// </summary>
         private void LateUpdate()
         {
             if(GameManager.instance.isGameOver == true)

@@ -20,15 +20,16 @@ namespace OTO.Charactor.Player
     {
 
         [Header("Camera")]
-        [SerializeField] private Camera MainCamera = default;
+        [SerializeField] private Camera mainCamera = default;
 
         [Header("Positions")]
         public Transform HandPos;
-        [SerializeField] private Transform FirePos = default;
-        [SerializeField] private Transform SpinPos = default;
+        [SerializeField] private Transform firePos = default;
+        [SerializeField] private Transform spinPos = default;
 
         [Header("Bullet")]
-        [SerializeField] private GameObject Bullet = default;
+        [SerializeField] private GameObject bullet = default;
+        [SerializeField] private GameObject gunSmoke = default;
         [SerializeField] private float bulletDamage = default;
         [SerializeField] private float maxAmmo = default;
 
@@ -54,6 +55,9 @@ namespace OTO.Charactor.Player
         private bool isShot = default;
         private bool isReload = default;
 
+        /// <summary>
+        /// 변수초기화
+        /// </summary>
         private void Start()
         {
             isShot = false;
@@ -61,8 +65,12 @@ namespace OTO.Charactor.Player
             currentAmmo = maxAmmo;
             var canvas = GameObject.FindGameObjectWithTag("MainCanvas");
             ammoText = canvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-            MainCamera = Camera.main;
+            mainCamera = Camera.main;
         }
+
+        /// <summary>
+        /// 플레이어의 공격을 관리하는 코드
+        /// </summary>
         private void Update()
         {
             if(GameManager.instance.isGameOver == true)
@@ -71,8 +79,8 @@ namespace OTO.Charactor.Player
             }
 
             HandPos = GameObject.FindGameObjectWithTag("HandPos").transform;
-            FirePos = GameObject.FindGameObjectWithTag("FirePos").transform;
-            SpinPos = GameObject.FindGameObjectWithTag("SpinPos").transform;
+            firePos = GameObject.FindGameObjectWithTag("FirePos").transform;
+            spinPos = GameObject.FindGameObjectWithTag("SpinPos").transform;
 
             reroadTimeSlider.gameObject.SetActive(false);
             ammoText.text = currentAmmo.ToString() + " / ∞";
@@ -83,7 +91,9 @@ namespace OTO.Charactor.Player
             Reload();
         }
 
-        
+        /// <summary>
+        /// 총을 재장전할때 실행되는 함수
+        /// </summary>
         private void Reload()
         {
             if (!isShot && currentAmmo != maxAmmo && Input.GetKeyDown(KeyCode.R) && isReload == false && playerMovement.isDash == false)
@@ -121,9 +131,9 @@ namespace OTO.Charactor.Player
         /// </summary>
         private void Spin()
         {
-            mousePos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
+            mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-            Vector3 rotation = mousePos - SpinPos.position;
+            Vector3 rotation = mousePos - spinPos.position;
 
             RotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
@@ -156,8 +166,14 @@ namespace OTO.Charactor.Player
             bulletAngle = Quaternion.Euler(0, 0, SpreadAngle);
             AudioManager.instance.PlaySFX("GunFire");
             CameraShakeManager.instance.PlayShake("GunFire");
-            GameObject _bullet = Instantiate(Bullet, FirePos.transform.position, bulletAngle);
+            GameObject _bullet = Instantiate(bullet, firePos.transform.position, bulletAngle);
             _bullet.GetComponent<Bullet>().bulletDamage = bulletDamage;
+            Instantiate(gunSmoke, firePos.transform.position, bulletAngle);
+            Animator animator = transform.GetChild(3).transform.GetChild(0).GetComponent<Animator>();
+            animator.SetTrigger("Fire");
+
+            
+
             currentAmmo -= 1;
             isShot = true;
             yield return new WaitForSeconds(fireCoolTime);

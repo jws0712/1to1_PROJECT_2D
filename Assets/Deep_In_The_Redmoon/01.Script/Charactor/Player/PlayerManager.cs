@@ -31,6 +31,9 @@ namespace OTO.Charactor.Player
         private LayerMask monsterLayer = default;
         private LayerMask playerLayer = default;
 
+        /// <summary>
+        /// 캐릭터 클래스의 스타트를 실행시키고 변수들을 초기화함
+        /// </summary>
         protected override void Start()
         {
             base.Start();
@@ -43,6 +46,9 @@ namespace OTO.Charactor.Player
             rb = GetComponent<Rigidbody2D>();
         }
 
+        /// <summary>
+        /// 플레이어의 체력과 체력 UI를 관리함
+        /// </summary>
         private void Update()
         {
             GameManager.instance.hpSlider.value = currentHp / maxHp;
@@ -113,15 +119,15 @@ namespace OTO.Charactor.Player
             Destroy(gameObject);
         }
 
+        /// <summary>
+        /// 아이템과 부딛쳤을때를 실행되는 코드
+        /// </summary>
+        /// <param name="collision"></param>
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Coin"))
             {
                 GameManager.instance.GetCoin();
-                Destroy(collision.gameObject);
-            }
-            if (collision.gameObject.layer == LayerMask.NameToLayer("CursePoint"))
-            {
                 Destroy(collision.gameObject);
             }
         }

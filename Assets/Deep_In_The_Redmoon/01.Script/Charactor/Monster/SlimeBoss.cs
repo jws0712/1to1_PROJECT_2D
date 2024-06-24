@@ -1,6 +1,6 @@
 namespace OTO.Charactor.Monster
 {
-    using OTO.Charactor.Player;
+    
 
     //System
     using System.Collections;
@@ -15,6 +15,8 @@ namespace OTO.Charactor.Monster
     using Bullet;
     using UnityEngine.LowLevel;
     using Unity.VisualScripting;
+    using OTO.Charactor.Player;
+    using OTO.Manager;
 
     public class SlimeBoss : Monster
     {
@@ -22,7 +24,6 @@ namespace OTO.Charactor.Monster
         [SerializeField] private float jumpPower = default;
         [SerializeField] private LayerMask gorundLayer = default;
         [SerializeField] private Transform groundCheckPos = default;
-        [SerializeField] private float dashPower = default;
 
         [Header("SlimeBossInfo")]
         [SerializeField]
@@ -34,21 +35,24 @@ namespace OTO.Charactor.Monster
         [SerializeField]
         private int startBulletSpreadAngle = default;
 
-        //public variables
-        [HideInInspector]
-        private bool isHouseAttack = default;
-
         //private variables
         private Animator animator = null;
 
+
+        /// <summary>
+        /// 초기화
+        /// </summary>
         protected override void OnEnable()
         {
-            chaseHouse = false;
+            chaseHouse = false; //집을 추격하지 않음
             base.OnEnable();
             animator = GetComponent<Animator>();
             currentCoolTime = 0f;
         }
 
+        /// <summary>
+        /// 몬스터 클래스의 업데이트를 실행시키고 슬라임보스의 애니매이션를 관리함
+        /// </summary>
         protected override void Update()
         {
             base.Update();
@@ -85,7 +89,7 @@ namespace OTO.Charactor.Monster
         /// <summary>
         /// 총알 퍼짐을 구현한 코드
         /// </summary>
-        private void bulletStorm()
+        private void FireBullet()
         {
             float bulletSpread = transform.rotation.z + startBulletSpreadAngle;
             for (int i = 0; i < bulletNumber; i++)
@@ -108,11 +112,11 @@ namespace OTO.Charactor.Monster
             {
                 AudioManager.instance.PlaySFX("SlimeBossJump");
                 rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-                bulletStorm();
+                FireBullet();
             }
         }
         /// <summary>
-        /// 슬라임이 땅에 닿았는지 검사하는 함수
+        /// 보스슬라임이 땅에 닿았는지 검사하는 함수
         /// </summary>
         /// <returns></returns>
         private bool CheckGround()
@@ -120,13 +124,17 @@ namespace OTO.Charactor.Monster
             return Physics2D.OverlapCircle(groundCheckPos.position, 0.1f, gorundLayer);
         }
 
+        /// <summary>
+        /// 땅과 부딛쳤을때 실행되는 코드
+        /// </summary>
+        /// <param name="collision"></param>
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
                 AudioManager.instance.PlaySFX("BossLanding");
                 CameraShakeManager.instance.PlayShake("BossLanding");
-                bulletStorm();
+                FireBullet();
             }
         }
     }

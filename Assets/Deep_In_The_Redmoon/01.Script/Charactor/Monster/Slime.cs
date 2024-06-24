@@ -28,13 +28,19 @@ namespace OTO.Charactor.Monster
         //public variables
         private bool isHouseAttack = default;
 
+        /// <summary>
+        /// 초기화
+        /// </summary>
         protected override void OnEnable()
         {
             base.OnEnable();
-            chaseHouse = true;
+            chaseHouse = true; //집을 추격함
             currentCoolTime = 0f;
         }
 
+        /// <summary>
+        /// 몬스터 클래스의 업데이트를 가져옴
+        /// </summary>
         protected override void Update()
         {
             base.Update();

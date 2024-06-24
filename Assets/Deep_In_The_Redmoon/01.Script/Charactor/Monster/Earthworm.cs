@@ -23,20 +23,26 @@ namespace OTO.Charactor.Monster
         [SerializeField]
         private int bulletNumber = default;
         [SerializeField]
-        private int bulletSpeadAngle = default;
+        private int bulletSpreadAngle = default;
         [SerializeField]
         private int startBulletSpreadAngle = default;
 
 
         private float rotZ = default;
 
+        /// <summary>
+        /// 초기화
+        /// </summary>
         protected override void OnEnable()
         {
-            chaseHouse = true;
+            chaseHouse = true; //집을 추격함
 
             base.OnEnable();
         }
 
+        /// <summary>
+        /// 몬스터 클래스의 업데이트를 실행하고 플레이어에게 발사할 총알의 각도를 구함
+        /// </summary>
         protected override void Update()
         {
 
@@ -66,7 +72,7 @@ namespace OTO.Charactor.Monster
                     Quaternion bulletAngle = Quaternion.Euler(0, 0, bulletSpread);
                     GameObject _bullet = Instantiate(bulletObject, firePos.position, bulletAngle);
                     _bullet.GetComponent<Bullet>().bulletDamage = bulletDamage;
-                    bulletSpread -= bulletSpeadAngle;
+                    bulletSpread -= bulletSpreadAngle;
 
                 }
                 bulletSpread = rotZ + startBulletSpreadAngle * 2;

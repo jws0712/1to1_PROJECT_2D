@@ -52,19 +52,27 @@ namespace OTO.Charactor.Player
         public bool isFilp = true;
         public bool isDash;
 
+        /// <summary>
+        /// 컴포넌트 초기화
+        /// </summary>
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
         }
 
+        /// <summary>
+        /// 변수 초기화
+        /// </summary>
         private void Start()
         {
-
             monsterLayer = LayerMask.NameToLayer("Monster");
             playerLayer = LayerMask.NameToLayer("Player");
         }
 
+        /// <summary>
+        /// 플레이어의 입력과 행동들을 관리함
+        /// </summary>
         private void Update()
         {
             if(GameManager.instance.isGameOver == true)
@@ -83,6 +91,9 @@ namespace OTO.Charactor.Player
             GunObject = handPos.transform.GetChild(0).gameObject;
         }
 
+        /// <summary>
+        /// 플레이어의 움직임을 관리함
+        /// </summary>
         private void FixedUpdate()
         {
             if (isDash)

@@ -43,13 +43,19 @@ namespace OTO.Charactor.Monster
         protected bool isFlip = false;
         protected bool chaseHouse = false;
 
-
+        /// <summary>
+        /// 초기화
+        /// </summary>
         protected virtual void OnEnable()
         {
             Init();
             houseTransform = GameObject.FindGameObjectWithTag("House").transform;
             currentCoolTime = 0f;
         }
+
+        /// <summary>
+        /// 플레이어를 추격하는 코드
+        /// </summary>
         protected virtual void Update()
         {
 
@@ -154,7 +160,7 @@ namespace OTO.Charactor.Monster
         /// <param name="chaseTransform">타겟</param>
         private void Chase(Transform chaseTransform)
         {
-            if (transform.position.x < chaseTransform.position.x && isAttack)
+            if (transform.position.x < chaseTransform.position.x)
             {
                 rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
                 transform.localScale = new Vector2(-monsterSacle, monsterSacle);
@@ -215,6 +221,10 @@ namespace OTO.Charactor.Monster
             base.TakeDamage(damage);
         }
 
+        /// <summary>
+        /// 플레이어와 부딛쳤을때 플레이어에게 피해를 입힘
+        /// </summary>
+        /// <param name="collision"></param>
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -223,6 +233,10 @@ namespace OTO.Charactor.Monster
             }
         }
 
+        /// <summary>
+        /// 플레이어와 부딛쳤을때 플레이어에게 피해를 입힘
+        /// </summary>
+        /// <param name="collision"></param>
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Player"))
@@ -231,6 +245,9 @@ namespace OTO.Charactor.Monster
             }
         }
 
+        /// <summary>
+        /// 공격거리와 추격거리를 보여줌
+        /// </summary>
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;

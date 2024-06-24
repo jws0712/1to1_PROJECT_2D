@@ -10,7 +10,11 @@ namespace OTO.Manager
     //UnityEngine
     using UnityEngine;
     using UnityEngine.UI;
+    using UnityEngine.SceneManagement;
 
+    /// <summary>
+    /// 게임을 전체적으로 관리하는 클래스
+    /// </summary>
     public class GameManager : MonoBehaviour
     {
         public static GameManager instance = null;
@@ -27,15 +31,28 @@ namespace OTO.Manager
         public TextMeshProUGUI coinText = null;
         public Slider hpSlider = null;
         [SerializeField] GameObject gameOverPanel = null;
+        [SerializeField] GameObject gameClearPanel = null;
 
         [Header("UI_Info")]
         public float coinCount = default;
 
-        private void Awake()
+        private void Awake() //싱글톤
         {
-            instance = this;
+            if(instance == null)
+            {
+                instance = this;
+            }
+
         }
 
+        private void Start()
+        {
+            CheckScene();
+        }
+
+        /// <summary>
+        /// 게임의 상태를 관리하는 코드
+        /// </summary>
         private void Update()
         {
             CheckFieldMonster();
@@ -54,6 +71,9 @@ namespace OTO.Manager
             }
         }
 
+        /// <summary>
+        /// 필드에서 몬스터가 있는지 없는지 관리하는 함수
+        /// </summary>
         private void CheckFieldMonster()
         {
             if(fieldMonsterCount == 0)
@@ -66,16 +86,55 @@ namespace OTO.Manager
             }
         }
 
+        /// <summary>
+        /// 동전을 얻었을때 실행되는 함수
+        /// </summary>
         public void GetCoin()
         {
             coinCount += coinVel;
         }
 
+        /// <summary>
+        /// 게임 오버가 됬을때 실행되는 함수
+        /// </summary>
         public void GameOver()
         {
             gameOverPanel.SetActive(true);
             isGameOver = true;
             Time.timeScale = 0;
+        }
+
+        /// <summary>
+        /// 게임을 클리어 했을때 실행되는 함수
+        /// </summary>
+        public void Clear()
+        {
+            gameClearPanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+
+        private void CheckScene()
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            switch (scene.name)
+            {
+                case "MainTitle":
+                    {
+                        AudioManager.instance.PlayMusic("Title");
+                        break;
+                    }
+                case "MainInGame":
+                    {
+                        AudioManager.instance.PlayMusic("Stage1");
+                        break;
+                    }
+
+                case "MainInGame_Stage2":
+                    {
+                        AudioManager.instance.PlayMusic("Stage2");
+                        break;
+                    }
+            }
         }
     }
 }

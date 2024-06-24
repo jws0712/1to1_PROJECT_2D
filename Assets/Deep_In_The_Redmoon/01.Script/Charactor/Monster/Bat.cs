@@ -29,13 +29,20 @@ namespace OTO.Charactor.Monster
         [SerializeField]
         private int startBulletSpreadAngle = default;
 
+
+        /// <summary>
+        /// 초기화
+        /// </summary>
         protected override void OnEnable()
         {
-            chaseHouse = true;
+            chaseHouse = true; //집을 추격함
 
             base.OnEnable();
         }
 
+        /// <summary>
+        /// 몬스터 클래스의 업데이트를 실행시킴
+        /// </summary>
         protected override void Update()
         {
             base.Update();

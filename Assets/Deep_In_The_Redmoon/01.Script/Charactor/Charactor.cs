@@ -9,6 +9,12 @@ namespace OTO.Charactor
     using UnityEngine;
     using UnityEngine.Experimental.GlobalIllumination;
 
+    //Project
+    using OTO.Manager;
+
+    /// <summary>
+    /// 생명이 있는 모든 객체들의 부모클래스
+    /// </summary>
     public class Charactor : MonoBehaviour
     {
         [Header("Material")]
@@ -25,6 +31,9 @@ namespace OTO.Charactor
 
         private const float duration = 0.05f;
 
+        /// <summary>
+        /// 변수 초기화
+        /// </summary>
         protected virtual void Start()
         {
             renderer = GetComponent<SpriteRenderer>();
@@ -33,6 +42,10 @@ namespace OTO.Charactor
             currentHp = maxHp;
         }
 
+        /// <summary>
+        /// 대미지를 받을때 실행되는 함수
+        /// </summary>
+        /// <param name="damage"></param>
         public virtual void TakeDamage(float damage)
         {
             currentHp -= damage;
@@ -52,6 +65,9 @@ namespace OTO.Charactor
             AudioManager.instance.PlaySFX("Dead");
         }
 
+        /// <summary>
+        /// 대미지를 받았을때 깜빡거림 기능을 구현한 함수
+        /// </summary>
         private void SpriteFlash()
         {
             StartCoroutine(Co_SpriteFlash());
