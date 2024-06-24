@@ -4,6 +4,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
+/// <summary>
+/// 인게임의 UI를 관리하는 클래스
+/// </summary>
 public class In_Game_UI_Manager : MonoBehaviour
 {
     [Header("UI")]
@@ -19,6 +22,9 @@ public class In_Game_UI_Manager : MonoBehaviour
     private bool isON = default;
     private bool isAudioPanelOn = default;
 
+    /// <summary>
+    /// 소리조절 슬라이더 초기화
+    /// </summary>
     private void Start()
     {
         isON = false;
@@ -42,7 +48,9 @@ public class In_Game_UI_Manager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// 게임 오버 됐을때 코드 
+    /// </summary>
     private void Update()
     {
         if(GameManager.instance.isGameOver == true)
@@ -50,12 +58,16 @@ public class In_Game_UI_Manager : MonoBehaviour
             settingBackGround.SetActive(false);
             settingPanel.SetActive(false);
             audioPanel.SetActive(false);
-            return;
         }
-
-        SettingPanelOnOff();
+        else
+        {
+            SettingPanelOnOff();
+        }
     }
 
+    /// <summary>
+    /// 열려있는 패널을 비활성화 하는 코드
+    /// </summary>
     private void SettingPanelOnOff()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && isON == false)
@@ -85,6 +97,9 @@ public class In_Game_UI_Manager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 오디오 패널을 활성화 하는 코드
+    /// </summary>
     public void AudioPanelOn()
     {
         settingPanel.SetActive(false);
@@ -92,19 +107,20 @@ public class In_Game_UI_Manager : MonoBehaviour
         isAudioPanelOn = true;
     }
 
+    /// <summary>
+    /// 리플레이 버튼 구현한 함수
+    /// </summary>
     public void RePlayButton()
     {
         LoadingScreenManager.LoadScene("MainInGame");
     }
 
+    /// <summary>
+    /// 타이틀버튼의 기능을 구현한 함수
+    /// </summary>
     public void TitleButton()
     {
         SceneManager.LoadScene("MainTitle");
         Time.timeScale = 1;
-    }
-
-    public void mouseEnterEvent()
-    {
-
     }
 }

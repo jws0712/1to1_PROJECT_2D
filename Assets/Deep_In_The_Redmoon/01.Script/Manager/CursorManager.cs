@@ -3,6 +3,9 @@ namespace OTO.Manager
     //UnityEngine
     using UnityEngine;
 
+    /// <summary>
+    /// 마우스커서를 관리하는 클래스
+    /// </summary>
     public class CursorManager : MonoBehaviour
     {
         [Header("Camera")]

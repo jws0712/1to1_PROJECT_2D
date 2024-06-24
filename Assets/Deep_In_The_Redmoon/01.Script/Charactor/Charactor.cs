@@ -73,6 +73,11 @@ namespace OTO.Charactor
             StartCoroutine(Co_SpriteFlash());
         }
 
+
+        /// <summary>
+        /// 스프라이트의 깜빡거림을 구혆한 코루틴
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator Co_SpriteFlash()
         {
             renderer.material = flashMaterial;

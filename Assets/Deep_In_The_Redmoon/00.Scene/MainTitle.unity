@@ -2223,7 +2223,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uB9C8\uC6B0\uC2A4 \uC67C\uCABD \uD074\uB9AD : \uCD1D\uC54C \uBC1C\uC0AC\n\uB9C8\uC6B0\uC2A4
     \uC624\uB978\uCABD \uD074\uB9AD : \uD50C\uB808\uC774\uC5B4 \uB300\uC2DC\n\uC2A4\uD398\uC774\uC2A4\uBC14
-    : \uC810\uD504"
+    : \uC810\uD504\nR \uD0A4 : \uCD1D \uC7AC\uC7A5\uC804"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ed90a8e3b3a37cf42be0736375ea89d0, type: 2}
   m_sharedMaterial: {fileID: 8379273789105284783, guid: ed90a8e3b3a37cf42be0736375ea89d0, type: 2}

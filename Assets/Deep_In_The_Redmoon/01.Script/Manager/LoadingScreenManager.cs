@@ -4,25 +4,39 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
+/// <summary>
+/// 로딩씬을 관리하는 클래스
+/// </summary>
 public class LoadingScreenManager : MonoBehaviour
 {
     static string nextScene = null;
 
     [SerializeField] private Image progreesBar = null;
 
+    /// <summary>
+    /// 로딩을 실행하는 코드
+    /// </summary>
     private void Start()
     {
         StartCoroutine(Co_LoadSceneProgrees());
 
         Time.timeScale = 1f;
     }
+
+    /// <summary>
+    /// 씬을 불러오는 함수
+    /// </summary>
+    /// <param name="sceneName"></param>
     public static void LoadScene(string sceneName)
     {
         nextScene = sceneName;
         SceneManager.LoadScene("LoadingScreen");
     }
 
+    /// <summary>
+    /// 로딩씬의 기능을 구현한 코루틴
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Co_LoadSceneProgrees()
     {
        AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);

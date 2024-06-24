@@ -57,7 +57,11 @@ namespace OTO.Manager
         {
             CheckFieldMonster();
 
-            coinText.text = coinCount.ToString();
+            if(coinText != null)
+            {
+                coinText.text = coinCount.ToString();
+            }
+            
 
             GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
@@ -113,6 +117,19 @@ namespace OTO.Manager
             Time.timeScale = 0;
         }
 
+        /// <summary>
+        /// 계속하기 버튼의 기능을 하는 함수
+        /// </summary>
+        public void MoveNextScene()
+        {
+            Scene scene = SceneManager.GetActiveScene();
+
+            LoadingScreenManager.LoadScene((scene.buildIndex + 1).ToString());
+        }
+
+        /// <summary>
+        /// 현재 씬을 검사해서 음악을 실행하는 함수
+        /// </summary>
         private void CheckScene()
         {
             Scene scene = SceneManager.GetActiveScene();
@@ -123,13 +140,13 @@ namespace OTO.Manager
                         AudioManager.instance.PlayMusic("Title");
                         break;
                     }
-                case "MainInGame":
+                case "1":
                     {
                         AudioManager.instance.PlayMusic("Stage1");
                         break;
                     }
 
-                case "MainInGame_Stage2":
+                case "2":
                     {
                         AudioManager.instance.PlayMusic("Stage2");
                         break;
