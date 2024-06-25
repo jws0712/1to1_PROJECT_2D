@@ -140,13 +140,13 @@ namespace OTO.Manager
                         AudioManager.instance.PlayMusic("Title");
                         break;
                     }
-                case "1":
+                case "2":
                     {
                         AudioManager.instance.PlayMusic("Stage1");
                         break;
                     }
 
-                case "2":
+                case "3":
                     {
                         AudioManager.instance.PlayMusic("Stage2");
                         break;
