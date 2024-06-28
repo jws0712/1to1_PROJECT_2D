@@ -28,12 +28,12 @@ namespace OTO.Manager
         /// <summary>
         /// 마우스커서 오브젝트가 마우스 위치를 따라오게 만든코드
         /// </summary>
-        private void LateUpdate()
+        private void Update()
         {
             if(GameManager.instance.isGameOver == true)
             {
                 Cursor.visible = true;
-                Destroy(CursorObject);
+                CursorObject.SetActive(false);
             }
 
             mousePos = MainCamera.ScreenToWorldPoint(Input.mousePosition);

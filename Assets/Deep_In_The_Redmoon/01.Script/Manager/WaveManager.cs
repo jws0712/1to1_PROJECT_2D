@@ -55,13 +55,16 @@ namespace OTO.Manager
         /// </summary>
         private void Update()
         {
+            Debug.Log(GameManager.instance.fieldMonsterCount);
+            Debug.Log(waveCount + "웨이브 카운트");
+
             if (GameManager.instance.isPlayerSpawn == true && isWaveStart == false)
             {
                 WaveStart(spawnDelayTime);
                 isWaveStart = true;
             }
 
-            if(waveCount >= waveList.Count && GameManager.instance.isStoreOpen == false)
+            if(waveCount - 1 > waveList.Count && GameManager.instance.isStoreOpen == false)
             {
                 GameManager.instance.Clear();
             }
@@ -94,7 +97,7 @@ namespace OTO.Manager
                     waveText.SetActive(true);
                     waveNumber.text = (waveCount + 1).ToString();
                     SpawnMonster(waveCount, delayTime);
-                    waveCount+=1;
+                    waveCount++;
                 }
                 yield return null;
             }

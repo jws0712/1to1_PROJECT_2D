@@ -117,7 +117,9 @@ public class In_Game_UI_Manager : MonoBehaviour
     /// </summary>
     public void RePlayButton()
     {
-        LoadingScreenManager.LoadScene("MainInGame");
+        Scene scene = SceneManager.GetActiveScene();
+
+        LoadingScreenManager.LoadScene(scene.name);
     }
 
     /// <summary>
