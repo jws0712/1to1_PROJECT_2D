@@ -53,6 +53,11 @@ public class In_Game_UI_Manager : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        if(GameManager.instance.isGameOver == true || GameManager.instance.isGameClear == true)
+        {
+            return;
+        }
+
         if(GameManager.instance.isGameOver == true)
         {
             settingBackGround.SetActive(false);

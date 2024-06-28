@@ -61,7 +61,7 @@ namespace OTO.Manager
                 isWaveStart = true;
             }
 
-            if(waveCount >= waveList.Count && GameManager.instance.isFieldClear == true)
+            if(waveCount >= waveList.Count && GameManager.instance.isStoreOpen == false)
             {
                 GameManager.instance.Clear();
             }

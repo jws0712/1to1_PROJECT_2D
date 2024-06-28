@@ -73,7 +73,7 @@ namespace OTO.Charactor.Player
         /// </summary>
         private void Update()
         {
-            if(GameManager.instance.isGameOver == true)
+            if (GameManager.instance.isGameOver == true || GameManager.instance.isGameClear == true)
             {
                 return;
             }

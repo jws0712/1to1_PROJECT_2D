@@ -24,6 +24,7 @@ namespace OTO.Manager
         public float fieldMonsterCount = default;
         public bool isFieldClear = true;
         public bool isGameOver = false;
+        public bool isGameClear = false;
         public bool isStoreOpen = false;
         public bool isPlayerSpawn = false;
 
@@ -114,6 +115,7 @@ namespace OTO.Manager
         public void Clear()
         {
             gameClearPanel.SetActive(true);
+            isGameClear = true;
             Time.timeScale = 0;
         }
 
