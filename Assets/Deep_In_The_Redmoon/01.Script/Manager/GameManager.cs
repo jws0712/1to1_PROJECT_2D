@@ -153,6 +153,11 @@ namespace OTO.Manager
                         AudioManager.instance.PlayMusic("Stage2");
                         break;
                     }
+                case "4":
+                    {
+                        AudioManager.instance.PlayMusic("Stage3");
+                        break;
+                    }
             }
         }
     }

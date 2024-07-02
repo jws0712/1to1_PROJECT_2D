@@ -23091,7 +23091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &638145617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23107,9 +23107,9 @@ MonoBehaviour:
   waves:
   - monsterArray:
     - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
+  - monsterArray:
     - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
+  - monsterArray:
     - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
   spawnPosArray:
   - {fileID: 1710626288}
@@ -31629,18 +31629,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1950859422631501849, guid: e34beebcfd48f0d4aabb96dd3bc80096, type: 3}
-      propertyPath: musicSounds.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1950859422631501849, guid: e34beebcfd48f0d4aabb96dd3bc80096, type: 3}
-      propertyPath: musicSounds.Array.data[3].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: bede6eae8148e428fb9de09d5cf7cb20, type: 3}
-    - target: {fileID: 1950859422631501849, guid: e34beebcfd48f0d4aabb96dd3bc80096, type: 3}
-      propertyPath: musicSounds.Array.data[3].name
-      value: GameOver
-      objectReference: {fileID: 0}
     - target: {fileID: 1950859422631501850, guid: e34beebcfd48f0d4aabb96dd3bc80096, type: 3}
       propertyPath: m_RootOrder
       value: 8

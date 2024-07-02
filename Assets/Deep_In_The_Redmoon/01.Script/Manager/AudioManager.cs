@@ -49,6 +49,14 @@ namespace OTO.Manager
         }
 
         /// <summary>
+        /// 음악을 멈추는 함수
+        /// </summary>
+        public void StopMusic()
+        {
+            musicSource.Stop();
+        }
+
+        /// <summary>
         /// 효과음을 실행시키는 함수
         /// </summary>
         /// <param name="name">효과음의 이름</param>

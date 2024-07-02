@@ -90,7 +90,7 @@ namespace OTO.Manager
                     yield return waitForSeconds;
                     GameManager.instance.isStoreOpen = false;
                     waveText.SetActive(true);
-                    waveNumber.text = (waveCount).ToString();
+                    waveNumber.text = (waveCount + 1).ToString();
                     SpawnMonster(waveCount, delayTime);
                     waveCount++;
                     

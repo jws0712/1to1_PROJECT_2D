@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using OTO.Manager;
 
 /// <summary>
 /// 로딩씬을 관리하는 클래스
@@ -18,6 +19,8 @@ public class LoadingScreenManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        AudioManager.instance.StopMusic();
+
         StartCoroutine(Co_LoadSceneProgrees());
 
         Time.timeScale = 1f;
