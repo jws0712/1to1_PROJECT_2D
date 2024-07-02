@@ -23104,46 +23104,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf25e0011f868d4cb0de61257303b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveList:
+  waves:
   - monsterArray:
     - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
     - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
     - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
     - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
     - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-  - monsterArray:
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1005953667795667322, guid: 7cc2bf2187b58434ea62336e3b690c15, type: 3}
-    - {fileID: 1005953667795667322, guid: 7cc2bf2187b58434ea62336e3b690c15, type: 3}
-  - monsterArray:
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1005953667795667322, guid: 7cc2bf2187b58434ea62336e3b690c15, type: 3}
-    - {fileID: 1005953667795667322, guid: 7cc2bf2187b58434ea62336e3b690c15, type: 3}
-    - {fileID: 1042164939521377151, guid: c0c98fa7856e26744b355c22eafb3485, type: 3}
-    - {fileID: 1042164939521377151, guid: c0c98fa7856e26744b355c22eafb3485, type: 3}
-  - monsterArray:
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1005953667795667322, guid: 7cc2bf2187b58434ea62336e3b690c15, type: 3}
-    - {fileID: 1042164939521377151, guid: c0c98fa7856e26744b355c22eafb3485, type: 3}
-    - {fileID: 1005953667795667322, guid: 7cc2bf2187b58434ea62336e3b690c15, type: 3}
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1005953667795667322, guid: 7cc2bf2187b58434ea62336e3b690c15, type: 3}
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1042164939521377151, guid: c0c98fa7856e26744b355c22eafb3485, type: 3}
-  - monsterArray:
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1005953667795667322, guid: 7cc2bf2187b58434ea62336e3b690c15, type: 3}
-    - {fileID: 1042164939521377151, guid: c0c98fa7856e26744b355c22eafb3485, type: 3}
-    - {fileID: 1940766095298738704, guid: 3802e0447ba91684abe69d838f206f56, type: 3}
-    - {fileID: 1005953667795667322, guid: 7cc2bf2187b58434ea62336e3b690c15, type: 3}
-    - {fileID: 1042164939521377151, guid: c0c98fa7856e26744b355c22eafb3485, type: 3}
-    - {fileID: 1005953667795667322, guid: 7cc2bf2187b58434ea62336e3b690c15, type: 3}
   spawnPosArray:
   - {fileID: 1710626288}
   - {fileID: 2026016592}
@@ -31662,6 +31629,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1950859422631501849, guid: e34beebcfd48f0d4aabb96dd3bc80096, type: 3}
+      propertyPath: musicSounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1950859422631501849, guid: e34beebcfd48f0d4aabb96dd3bc80096, type: 3}
+      propertyPath: musicSounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: bede6eae8148e428fb9de09d5cf7cb20, type: 3}
+    - target: {fileID: 1950859422631501849, guid: e34beebcfd48f0d4aabb96dd3bc80096, type: 3}
+      propertyPath: musicSounds.Array.data[3].name
+      value: GameOver
+      objectReference: {fileID: 0}
     - target: {fileID: 1950859422631501850, guid: e34beebcfd48f0d4aabb96dd3bc80096, type: 3}
       propertyPath: m_RootOrder
       value: 8

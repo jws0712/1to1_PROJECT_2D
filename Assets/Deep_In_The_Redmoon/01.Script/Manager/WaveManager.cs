@@ -17,15 +17,9 @@ namespace OTO.Manager
     {
         public static WaveManager instance = null;
 
-        [System.Serializable]
-        public struct WaveMonster
-        {
-            public GameObject[] monsterArray; //몬스터를 담을 배열
-        }
+        public List<WaveData> waves = new List<WaveData>(); //한 웨이브에 나올 몬스터 배열을 담은 리스트
 
-        public List<WaveMonster> waveList = new List<WaveMonster>(); //한 웨이브에 나올 몬스터 배열을 담은 리스트
         [SerializeField] private Transform[] spawnPosArray = null;
-
         
         [SerializeField] private float spawnDelayTime = default;
         [SerializeField] private float waveDelayTime = default;
@@ -55,8 +49,6 @@ namespace OTO.Manager
         /// </summary>
         private void Update()
         {
-            Debug.Log(GameManager.instance.fieldMonsterCount);
-            Debug.Log(waveCount + "웨이브 카운트");
 
             if (GameManager.instance.isPlayerSpawn == true && isWaveStart == false)
             {
@@ -64,11 +56,14 @@ namespace OTO.Manager
                 isWaveStart = true;
             }
 
-            if(waveCount - 1 > waveList.Count && GameManager.instance.isStoreOpen == false)
+            if(GameManager.instance.fieldMonsterCount == 0 && waveCount == waves.Count)
             {
                 GameManager.instance.Clear();
             }
+
         }
+
+
 
         /// <summary>
         /// 웨이브를 시작하는 함수
@@ -86,7 +81,7 @@ namespace OTO.Manager
         /// <returns></returns>
         private IEnumerator WaveLogic(float delayTime)
         {
-            while(waveCount < waveList.Count)
+            while(waveCount < waves.Count)
             {
                 if (GameManager.instance.isFieldClear == true)
                 {
@@ -95,9 +90,10 @@ namespace OTO.Manager
                     yield return waitForSeconds;
                     GameManager.instance.isStoreOpen = false;
                     waveText.SetActive(true);
-                    waveNumber.text = (waveCount + 1).ToString();
+                    waveNumber.text = (waveCount).ToString();
                     SpawnMonster(waveCount, delayTime);
                     waveCount++;
+                    
                 }
                 yield return null;
             }
@@ -121,11 +117,11 @@ namespace OTO.Manager
         /// <returns></returns>
         private IEnumerator Co_SpawnMonsterDelay(int currentWaveCount, float delayTime)
         {
-            GameManager.instance.fieldMonsterCount = waveList[currentWaveCount].monsterArray.Length;
-            for (int i = 0; i < waveList[currentWaveCount].monsterArray.Length; i++)
+            GameManager.instance.fieldMonsterCount = waves[currentWaveCount].monsterArray.Length;
+            for (int i = 0; i < waves[currentWaveCount].monsterArray.Length; i++)
             {
                 int spawnPosNumber = Random.Range(0, spawnPosArray.Length);
-                Instantiate(waveList[currentWaveCount].monsterArray[i], spawnPosArray[spawnPosNumber].position, spawnPosArray[spawnPosNumber].rotation);
+                Instantiate(waves[currentWaveCount].monsterArray[i], spawnPosArray[spawnPosNumber].position, spawnPosArray[spawnPosNumber].rotation);
                 yield return new WaitForSeconds(delayTime);
             }
         }
