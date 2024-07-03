@@ -8,7 +8,7 @@ namespace OTO.Charactor.Monster
     using UnityEngine;
 
     //Project
-    using OTO.Bullet;
+    using OTO.Object;
 
     /// <summary>
     /// 지렁이의 행동을 관리하는 클래스

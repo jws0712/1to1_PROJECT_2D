@@ -9,7 +9,7 @@ namespace OTO.Charactor.Player
     using UnityEngine.UI;
 
     //Project
-    using OTO.Bullet;
+    using OTO.Object;
     using TMPro;
     using OTO.Manager;
 

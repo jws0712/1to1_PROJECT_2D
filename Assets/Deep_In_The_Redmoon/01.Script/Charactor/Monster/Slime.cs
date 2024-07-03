@@ -12,7 +12,7 @@ namespace OTO.Charactor.Monster
     using UnityEngine;
 
     //Project
-    using OTO.Bullet;
+    using OTO.Object;
     using System.Linq.Expressions;
 
     /// <summary>

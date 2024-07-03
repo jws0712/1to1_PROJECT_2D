@@ -12,10 +12,7 @@ namespace OTO.Charactor.Monster
     using UnityEngine;
 
     //Project
-    using Bullet;
-    using UnityEngine.LowLevel;
-    using Unity.VisualScripting;
-    using OTO.Charactor.Player;
+    using OTO.Object;
     using OTO.Manager;
 
     public class SlimeBoss : Monster

@@ -12,7 +12,7 @@ namespace OTO.Charactor.Monster
     using UnityEngine;
 
     //Project
-    using OTO.Bullet;
+    using OTO.Object;
 
     /// <summary>
     /// 박쥐 몬스터의 행동 이벤트를 관리하는 클래스
