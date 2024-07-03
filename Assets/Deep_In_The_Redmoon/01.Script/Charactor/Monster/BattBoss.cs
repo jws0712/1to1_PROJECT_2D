@@ -20,16 +20,11 @@ namespace OTO.Charactor.Monster
 
         private BatBossState batBossState;
 
-        private Animator animator = null;
-
         protected override void OnEnable()
         {
-            chaseHouse = false; //집을 추격하지 않음
             base.OnEnable();
-            animator = GetComponent<Animator>();
             currentCoolTime = 0f;
-
-            animator.SetTrigger("Smoke");
+            anim.SetTrigger("Smoke");
             batBossState = BatBossState.Idle;
         }
 
@@ -50,10 +45,12 @@ namespace OTO.Charactor.Monster
 
         public void ChangeState()
         {
+
             switch(batBossState)
             {
                 case BatBossState.Idle:
                     {
+                        Debug.Log("스위치 아이들");
                         Idle();
                         break;
                     }
@@ -62,16 +59,16 @@ namespace OTO.Charactor.Monster
                         Skill1();
                         break;
                     }
-                case BatBossState.Skill2:
-                    {
-                        Skill2();
-                        break;
-                    }
-                case BatBossState.Skill3:
-                    {
-                        Skill3();
-                        break;
-                    }
+                //case BatBossState.Skill2:
+                //    {
+                //        Skill2();
+                //        break;
+                //    }
+                //case BatBossState.Skill3:
+                //    {
+                //        Skill3();
+                //        break;
+                //    }
             }
         }
 
@@ -80,6 +77,40 @@ namespace OTO.Charactor.Monster
         /// </summary>
         private void Idle()
         {
+            Debug.Log("아이들");
+            transform.position = Vector2.up * 5;
+            StartCoroutine(Co_Idle());
+        }
+
+        private IEnumerator Co_Idle()
+        {
+            anim.SetTrigger("Idle");
+            yield return new WaitForSeconds(3);
+            Debug.Log("바꿔");
+            int skillIndex = 1; //Random.Range(1, 4);
+
+            switch (skillIndex)
+            {
+                case 1:
+                    {
+                        batBossState = BatBossState.Skill1;
+                        
+                        break;
+                    }
+                    //case 2:
+                    //    {
+                    //        batBossState = BatBossState.Skill2;
+                    //        break;
+                    //    }
+                    //case 3:
+                    //    {
+                    //        batBossState = BatBossState.Skill3;
+                    //        break;
+                    //    }
+            }
+
+            anim.SetTrigger("Smoke");
+
 
         }
 
@@ -88,24 +119,41 @@ namespace OTO.Charactor.Monster
         /// </summary>
         private void Skill1()
         {
-
+            Debug.Log("스킬1");
+            batBossState = BatBossState.Idle;
+            anim.SetTrigger("Smoke");
         }
 
-        /// <summary>
-        /// 박쥐를 소환해서 날리는 스킬을 구현한 함수
-        /// </summary>
-        private void Skill2()
-        {
+        //private IEnumerator Co_Skill1()
+        //{
 
-        }
+        //}
 
-        /// <summary>
-        /// 불기둥을 만드는 함수
-        /// </summary>
-        private void Skill3()
-        {
+        ///// <summary>
+        ///// 박쥐를 소환해서 날리는 스킬을 구현한 함수
+        ///// </summary>
+        //private void Skill2()
+        //{
 
-        }
+        //}
+
+        //private IEnumerator Co_Skill2()
+        //{
+
+        //}
+
+        ///// <summary>
+        ///// 불기둥을 만드는 함수
+        ///// </summary>
+        //private void Skill3()
+        //{
+
+        //}
+
+        //private IEnumerator Co_Skill3()
+        //{
+
+        //}
 
     }
 }

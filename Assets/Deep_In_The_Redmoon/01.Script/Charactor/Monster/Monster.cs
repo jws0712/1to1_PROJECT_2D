@@ -49,7 +49,11 @@ namespace OTO.Charactor.Monster
         protected virtual void OnEnable()
         {
             Init();
-            houseTransform = GameObject.FindGameObjectWithTag("House").transform;
+            if(GameObject.FindGameObjectWithTag("House") != null)
+            {
+                houseTransform = GameObject.FindGameObjectWithTag("House").transform;
+            }
+            
             currentCoolTime = 0f;
         }
 
