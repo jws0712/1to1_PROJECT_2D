@@ -182,10 +182,12 @@ namespace OTO.Charactor.Monster
         public void Skill1_Attack()
         {   
             GameObject bullet = Instantiate(bulletObject, shotPos.position, Quaternion.identity);
-            
-            if(isFlip)
+            bullet.GetComponent<Bullet>().bulletDamage = bulletDamage;
+
+            if (isFlip)
             {
                 bullet.GetComponent<Bullet>().BulletSpeed *= -1;
+
             }
             else
             {
