@@ -13,7 +13,7 @@ namespace OTO.Object
     public class Bullet : MonoBehaviour
     {
         [Header("Bullet")]
-        [SerializeField] private float BulletSpeed = default;
+        [SerializeField] public float BulletSpeed = default;
         [SerializeField] private float BulletDestroyTime = default;
         [SerializeField] private GameObject hitEffect = default;
 

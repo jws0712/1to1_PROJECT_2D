@@ -1,5 +1,6 @@
 namespace OTO.Charactor.Monster
 {
+    using OTO.Object;
 
     //System
     using System.Collections;
@@ -176,15 +177,13 @@ namespace OTO.Charactor.Monster
         {   
             GameObject bullet = Instantiate(bulletObject, firePos.position, Quaternion.identity);
             
-            if(!isFlip)
+            if(isFlip)
             {
-                bullet.transform.localScale = new Vector3(-bullet.transform.localScale.x, bullet.transform.localScale.y, bullet.transform.localScale.z);
-                bullet.GetComponent<Rigidbody2D>().velocity = Vector2.right * bulletSpeed;
+                bullet.GetComponent<Bullet>().BulletSpeed *= -1;
             }
             else
             {
-                
-                bullet.GetComponent<Rigidbody2D>().velocity = Vector2.left * bulletSpeed;
+                bullet.transform.localScale = new Vector3(-bullet.transform.localScale.x, bullet.transform.localScale.y, bullet.transform.localScale.z);
             }
 
             anim.SetTrigger("Skill1_Idle");
