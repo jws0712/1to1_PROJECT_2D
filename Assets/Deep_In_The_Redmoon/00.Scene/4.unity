@@ -779,6 +779,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 246477362}
   m_CullTransparentMesh: 1
+--- !u!1 &365494677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 365494678}
+  m_Layer: 7
+  m_Name: FirePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &365494678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365494677}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.99, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1866792114}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &367305532
 GameObject:
   m_ObjectHideFlags: 0
@@ -29605,8 +29636,8 @@ GameObject:
   - component: {fileID: 1866792112}
   - component: {fileID: 1866792116}
   - component: {fileID: 1866792115}
-  - component: {fileID: 1866792110}
   - component: {fileID: 1866792117}
+  - component: {fileID: 1866792118}
   m_Layer: 7
   m_Name: BatBoss
   m_TagString: Monster
@@ -29614,33 +29645,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1866792110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866792109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2bb1901431a21e40ab21c546c8cdea2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashMaterial: {fileID: 2100000, guid: fc5839795288f184c9b4a7f35534f809, type: 2}
-  isDead: 0
-  currentHp: 0
-  maxHp: 0
-  monsterData: {fileID: 11400000, guid: fec2e88272d8b6148b2e26e0a7ac8d0c, type: 2}
-  moveSpeed: 0
-  chaseRange: 0
-  attackRange: 75.9
-  stopDistance: 0
-  attackCoolTime: 0
-  monsterSacle: 0
-  chaseTarget:
-    serializedVersion: 2
-    m_Bits: 0
-  coinDiamond: {fileID: 8359279979153482042, guid: 6478ba801994a5c468f9eda4b55f30d9, type: 3}
 --- !u!61 &1866792112
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29727,10 +29731,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866792109}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.23, y: 11.34, z: 0}
+  m_LocalPosition: {x: 0.48, y: 11.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 365494678}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29802,6 +29807,36 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1866792118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866792109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2bb1901431a21e40ab21c546c8cdea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: fc5839795288f184c9b4a7f35534f809, type: 2}
+  isDead: 0
+  currentHp: 0
+  maxHp: 0
+  monsterData: {fileID: 11400000, guid: 7e38a61b6b0a2094baac2add18e885cd, type: 2}
+  moveSpeed: 0
+  chaseRange: 0
+  attackRange: 80
+  stopDistance: 0
+  attackCoolTime: 0
+  monsterSacle: 1
+  chaseTarget:
+    serializedVersion: 2
+    m_Bits: 0
+  coinDiamond: {fileID: 8359279979153482042, guid: 6478ba801994a5c468f9eda4b55f30d9, type: 3}
+  bulletObject: {fileID: 3196587436704547201, guid: 4af086143d9652a4fbfb931c2fb26955, type: 3}
+  firePos: {fileID: 365494678}
+  bulletSpeed: 15
 --- !u!1 &1888168117
 GameObject:
   m_ObjectHideFlags: 0

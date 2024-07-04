@@ -41,7 +41,10 @@ namespace OTO.Object
         /// </summary>
         private void BulletDestory()
         {
-            Instantiate(hitEffect, transform.position, transform.rotation);
+            if(hitEffect != null)
+            {
+                Instantiate(hitEffect, transform.position, transform.rotation);
+            }
             DestroyObject();
 
         }
@@ -62,7 +65,11 @@ namespace OTO.Object
         {
             if (collision.CompareTag("Wall") || collision.CompareTag("Monster") || collision.CompareTag("Player"))
             {
-                Instantiate(hitEffect, transform.position, transform.rotation);
+                if(hitEffect != null)
+                {
+                    Instantiate(hitEffect, transform.position, transform.rotation);
+                }
+                
                 DestroyObject();
             }
 

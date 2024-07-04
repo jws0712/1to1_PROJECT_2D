@@ -14,6 +14,7 @@ namespace OTO.Charactor.Monster
     //Project
     using OTO.Object;
     using OTO.Manager;
+    using OTO.Charactor.Player;
 
     public class SlimeBoss : Monster
     {
@@ -127,7 +128,12 @@ namespace OTO.Charactor.Monster
         /// <param name="collision"></param>
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                collision.gameObject.GetComponent<PlayerManager>().TakeDamage(bodyDamage);
+            }
+
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
                 AudioManager.instance.PlaySFX("BossLanding");
                 CameraShakeManager.instance.PlayShake("BossLanding");

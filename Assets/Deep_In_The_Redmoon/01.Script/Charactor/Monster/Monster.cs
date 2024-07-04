@@ -24,7 +24,7 @@ namespace OTO.Charactor.Monster
         [SerializeField] private float attackRange = default;
         [SerializeField] private float stopDistance = default;
         [SerializeField] private float attackCoolTime = default;
-        [SerializeField] private float monsterSacle = default;
+        [SerializeField] protected float monsterSacle = default;
         [SerializeField] private LayerMask chaseTarget = default;
 
         [Header("DropItem")]

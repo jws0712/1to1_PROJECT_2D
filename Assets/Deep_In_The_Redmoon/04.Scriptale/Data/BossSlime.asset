@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BossSlime
   m_EditorClassIdentifier: 
   bulletDamage: 1
-  bodyDamage: 3
+  bodyDamage: 1
   maxHp: 30
