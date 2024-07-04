@@ -6,7 +6,6 @@ namespace OTO.Charactor.Monster
     using System.Collections.Generic;
     using System.Threading;
     using Unity.VisualScripting;
-    using UnityEditorInternal;
 
     //UnityEngine
     using UnityEngine;

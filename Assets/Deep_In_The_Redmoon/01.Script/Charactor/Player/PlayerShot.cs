@@ -64,7 +64,7 @@ namespace OTO.Charactor.Player
             currentReroadCoolTIme = 0;
             currentAmmo = maxAmmo;
             var canvas = GameObject.FindGameObjectWithTag("MainCanvas");
-            ammoText = canvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+            ammoText = canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             mainCamera = Camera.main;
         }
 
