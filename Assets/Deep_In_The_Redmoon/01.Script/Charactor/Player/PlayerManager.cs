@@ -127,6 +127,7 @@ namespace OTO.Charactor.Player
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Coin"))
             {
+                AudioManager.instance.PlaySFX("GetCoin");
                 GameManager.instance.GetCoin();
                 Destroy(collision.gameObject);
             }

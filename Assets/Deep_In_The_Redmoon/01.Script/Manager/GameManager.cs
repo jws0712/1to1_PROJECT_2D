@@ -104,6 +104,8 @@ namespace OTO.Manager
         /// </summary>
         public void GameOver()
         {
+            AudioManager.instance.PlayMusic("GameOver");
+            AudioManager.instance.PlaySFX("GameOver");
             gameOverPanel.SetActive(true);
             isGameOver = true;
             Time.timeScale = 0;

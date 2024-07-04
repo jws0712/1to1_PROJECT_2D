@@ -68,6 +68,7 @@ namespace OTO.Manager
         /// </summary>
         public void StartButton()
         {
+            AudioManager.instance.PlaySFX("PressStartButton");
             LoadingScreenManager.LoadScene("2");
         }
 

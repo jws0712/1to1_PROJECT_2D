@@ -1,5 +1,6 @@
 namespace OTO.Charactor.Monster
 {
+    using OTO.Manager;
     using OTO.Object;
 
     //System
@@ -10,6 +11,9 @@ namespace OTO.Charactor.Monster
     //UnityEngine
     using UnityEngine;
 
+    /// <summary>
+    /// 박쥐 보스의 기능을 구현한 클래스
+    /// </summary>
     public class BattBoss : Monster
     {   
         /// <summary>
@@ -75,6 +79,14 @@ namespace OTO.Charactor.Monster
 
 
             rb.velocity = Vector2.down;
+        }
+
+        /// <summary>
+        /// 박쥐보스가 사라질때 효과음을 재생하는 함수
+        /// </summary>
+        public void PlaySmokeSFX()
+        {
+            AudioManager.instance.PlaySFX("BatBossSmoke");
         }
 
         /// <summary>
@@ -180,7 +192,8 @@ namespace OTO.Charactor.Monster
         /// 검기를 날리는 함수
         /// </summary>
         public void Skill1_Attack()
-        {   
+        {
+            AudioManager.instance.PlaySFX("BatBossAttack");
             GameObject bullet = Instantiate(bulletObject, shotPos.position, Quaternion.identity);
             bullet.GetComponent<Bullet>().bulletDamage = bulletDamage;
 
@@ -219,11 +232,13 @@ namespace OTO.Charactor.Monster
 
             for(int i = 0; i < fireCount; i++)
             {
+                AudioManager.instance.PlaySFX("BatBossFire");
                 for (int j = 0; j < 10; j++)
                 {
                     Instantiate(fireObject, new Vector3(50 - 10 * j, 2f, playerPos.position.z), Quaternion.identity);
                 }
                 yield return new WaitForSeconds(0.5f);
+                AudioManager.instance.PlaySFX("BatBossFire");
                 for (int k = 0; k < 10; k++)
                 {
                     Instantiate(fireObject, new Vector3(45 - 10 * k, 2f, playerPos.position.z), Quaternion.identity);

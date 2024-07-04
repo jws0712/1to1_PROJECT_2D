@@ -13,6 +13,7 @@ namespace OTO.Charactor.Monster
     //Project
     using OTO.Object;
     using System.Linq.Expressions;
+    using OTO.Manager;
 
     /// <summary>
     /// 슬라임의 행동을 관리하는 함수
@@ -56,6 +57,7 @@ namespace OTO.Charactor.Monster
 
                 if (CheckGround() == true)
                 {
+                    AudioManager.instance.PlaySFX("MiniSlimeJump");
                     rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
                     isHouseAttack = true;
                 }

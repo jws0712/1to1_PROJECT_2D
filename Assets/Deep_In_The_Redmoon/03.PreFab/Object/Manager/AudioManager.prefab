@@ -55,8 +55,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7429d8ea619c549acb6976fe1d36d909, type: 3}
   - name: GameOver
     clip: {fileID: 8300000, guid: bede6eae8148e428fb9de09d5cf7cb20, type: 3}
-  - name: Loading
-    clip: {fileID: 8300000, guid: 29637033c3fbe40babbfc55520686f60, type: 3}
+  - name: Stage3
+    clip: {fileID: 8300000, guid: 3812e536cf8ac4f09a0654525635cc0f, type: 3}
   sfxSounds:
   - name: SlimeBossJump
     clip: {fileID: 8300000, guid: dcdb64a9e134804458dfd10a73820070, type: 3}
@@ -74,8 +74,22 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 08df159976934ea4c85b651a5030f6d4, type: 3}
   - name: BossLanding
     clip: {fileID: 8300000, guid: eca34228b7bc1a54ea9ddb717ac4a9b8, type: 3}
-  - name: BossLanding
+  - name: PlayerJump
     clip: {fileID: 8300000, guid: eca34228b7bc1a54ea9ddb717ac4a9b8, type: 3}
+  - name: BatBossFire
+    clip: {fileID: 8300000, guid: 9d76b24e360970b4ea1eb26673912898, type: 3}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 9dd98be5874d2c94b9bb17a77429a7c4, type: 3}
+  - name: BatBossSmoke
+    clip: {fileID: 8300000, guid: ed77a632d1d04e04583c4c0eba82aeb6, type: 3}
+  - name: GetCoin
+    clip: {fileID: 8300000, guid: 64ce1dcc2c3e9ec418c29de2266ca1ba, type: 3}
+  - name: PressStartButton
+    clip: {fileID: 8300000, guid: 3099bd49314886c49a966238cf91b8bb, type: 3}
+  - name: BatBossAttack
+    clip: {fileID: 8300000, guid: 3faea7b7c42d208469b818fece0a43c9, type: 3}
+  - name: EarthWormAttack
+    clip: {fileID: 8300000, guid: 75dbbc737d73a9c409dabdc67bd5cb4f, type: 3}
   musicSource: {fileID: 1950859423820671606}
   sfxSource: {fileID: 1950859424206608306}
 --- !u!1 &1950859423820671600

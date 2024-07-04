@@ -9,6 +9,7 @@ namespace OTO.Charactor.Monster
 
     //Project
     using OTO.Object;
+    using OTO.Manager;
 
     /// <summary>
     /// 지렁이의 행동을 관리하는 클래스
@@ -67,6 +68,7 @@ namespace OTO.Charactor.Monster
             if (isAttack == true)
             {
                 float bulletSpread = rotZ + startBulletSpreadAngle;
+                AudioManager.instance.PlaySFX("EarthWormAttack");
                 for(int i = 0; i < bulletNumber; i++)
                 {
                     Quaternion bulletAngle = Quaternion.Euler(0, 0, bulletSpread);
